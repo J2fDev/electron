@@ -1,0 +1,42 @@
+<div class="loginForms">
+
+  <div class="header">
+    <div class="first">
+      <button (click)="backToLogin()" style="border: none; background: none; margin-bottom: 1rem; cursor: pointer;">
+        <mat-icon color="primary">arrow_back</mat-icon>
+      </button>
+      <h1 class="title">Esqueci minha senha</h1>
+      <mat-icon></mat-icon>
+    </div>
+      <span>Insira o seu CPF para continuar.</span>
+    <span *ngIf="errorResponse" class="errorSpan">{{errorResponse}}</span>
+  </div>
+
+  <form (ngSubmit)="onSubmit()"   name="loginForms" [formGroup]="loginForm" class="forms">
+
+    <mat-form-field class="formField" appearance="outline">
+      <mat-label>CPF</mat-label>
+      <input mask="000.000.000-00" formControlName="login" class="input" matInput placeholder="Digite seu login" required/>
+      <button mat-icon-button matSuffix  [attr.aria-label]="'Hide Password'"
+      [attr.aria-pressed]="hide">
+<mat-icon color="primary">
+  {{!loginForm.controls['login'].valid ? 'block' : 'check_circle_outline'}}
+</mat-icon>
+</button>
+
+      <mat-error *ngIf="!loginForm.controls['login'].valid">
+        Digite um login válido.
+      </mat-error>
+    </mat-form-field>
+
+    
+  </form>
+
+  <div class="buttonForms">
+    <button [disabled]="!loginForm.valid"  class="primaryButton" (click)="sendToServer()" mat-raised-button color="primary">
+      Enviar
+    </button>
+  </div>
+
+ 
+</div>

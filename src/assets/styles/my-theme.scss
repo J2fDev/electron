@@ -1,0 +1,70 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Poppins, sans-serif'
+);
+@include mat-core($custom-typography);
+
+
+$my-primary-color: (
+  100 : #80a1ac,
+  200 : #80a1ac,
+  500 : #0059ff,
+  700 : #0059ff,
+  contrast: (
+  100 : #80a1ac,
+
+    200 : #000000,
+    500 : #ffffff,
+    700 : #ffffff,
+  )
+);
+
+$my-accent-color: (
+  100 : #80a1ac,
+
+  200 : #8fc5b8,
+  500 : #777777,
+  700 : #686a69,
+  contrast: (
+    200 : #000000,
+    500 : #ffffff,
+    700 : #ffffff,
+  )
+);
+
+$my-warn-color: (
+  100 : #80a1ac,
+
+  200 : #feba80,
+  500 : #fd0000,
+  700 : #fc0000,
+  contrast: (
+    200 : #000000,
+    500 : #000000,
+    700 : #000000,
+  )
+);
+
+$my-second-button: (
+  color : $my-accent-color,
+);
+
+
+$my-palette-primary: mat-palette($my-primary-color);
+$my-palette-accent: mat-palette($my-accent-color);
+$my-palette-warn: mat-palette($my-warn-color);
+
+$my-theme: mat-light-theme((
+ color: (
+   primary: $my-palette-primary,
+   accent: $my-palette-accent,
+   warn: $my-palette-warn
+ )
+));
+
+@include angular-material-theme($my-theme);
+
+

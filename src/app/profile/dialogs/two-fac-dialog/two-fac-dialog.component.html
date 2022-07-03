@@ -1,0 +1,63 @@
+<span>Autenticação de 2 fatores</span>
+<mat-stepper linear #stepper>
+    <mat-step  >
+      <h1>Método de autenticação</h1>
+      <span>Escolha como deseja receber o código de verificação.</span>
+      <div class="methods">
+        <div class="whatsapp method">
+          <mat-icon>whatsapp</mat-icon>
+          <span>Por Whatsapp</span>
+          <span>O códio será enviado para o seu whatsapp</span>
+        </div>
+      </div>
+
+      <div class="email method">
+        <mat-icon>email</mat-icon>
+        <span>Por Email</span>
+        <span>O códio será enviado para o seu email</span>
+      </div>
+      <div>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+    </mat-step> 
+    <mat-step  >
+
+      <h2>
+        Autenticação por {{method}}
+      </h2>
+
+      <span>O código de verficação será enviado para o {{method}} :</span>
+
+      {{methodString}}
+      <form >
+        <mat-form-field appearance="outline">
+          <mat-label>Substituir {{method}}</mat-label>
+          <input matInput formControlName="secondCtrl"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Enviar número </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <h1>Verificação do {{method}}</h1>
+      <span>Insira o código de validação enviado para o {{method}} {{methodString}} <br>
+      Esse código é valido por 30 minutos.</span>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+
+
+  
+  </mat-stepper>

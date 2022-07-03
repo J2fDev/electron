@@ -1,0 +1,17 @@
+<div [ngClass]="classToBackBoard">
+  <!-- <div class="toolbar"> -->
+
+    <mat-toolbar [ngClass]="classToBackBoardTool">
+      {{title}}
+      <button class="buttonFullScreen"  (click)="changeFullScreen()">
+        <mat-icon *ngIf= "classToBackBoard === 'backBoard'" class="fullScreenButton">open_in_full</mat-icon>
+        <mat-icon *ngIf= "classToBackBoard === 'backBoardFullScreen'" class="fullScreenButton">close_fullscreen</mat-icon>
+      </button>
+    </mat-toolbar>
+
+  <!-- </div> -->
+  <div class="innnerBack">
+    <ng-content></ng-content>
+  </div>
+
+</div>

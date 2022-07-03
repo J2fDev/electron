@@ -1,0 +1,151 @@
+
+
+.custom-toolbar{
+    background-color: #0031cb;
+    min-height: 4rem;
+    max-height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.firstSection{
+    display: flex;
+}
+
+.secondSection{
+    display: flex;
+}
+
+.thirdSection{
+    display: flex;
+}
+.unicoLogo{
+    background-color: #0059ff;
+    height: 4rem;
+    width: 14rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.5rem;
+}
+
+.unicoLogo img{
+    width: 8.063rem;
+    height: 2rem;
+}
+
+.searchInput{
+    background: none;
+    color: #ffff;
+    border: none;
+    width: 13rem;
+     height: 1.8rem;
+     margin-right: 1.5rem;
+    border-radius: 8px;
+     border: solid 0.5px #fff;
+}
+
+.searchInput::placeholder{
+    color: #ffffff;
+}
+
+.time{
+    height: 2rem;
+    width: 13rem;
+    background-color:#f4f7fc ;
+    font-size: 0.75rem;
+    text-align: center;
+    border-radius: 8px;
+    margin-right: 4rem;
+    color:#979797 ;
+}
+
+.buttonToContract{
+    margin-right: 0.5rem;
+    height: 2rem;
+    width: 7.5rem;
+    line-height: 1rem;
+}
+.timeTrial{
+    height: 2rem;
+    width: 2rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-right: 0.3rem;
+}
+
+
+.timeTrial span{
+    position: absolute;
+    font-size: 1rem;
+    color: #ffff;
+}
+
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {   
+    stroke: #36b5ff;
+}
+
+.pTrial{
+    font-size: 0.65rem;
+    line-height: 1rem;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.Icon{
+    color: white;
+    margin-left: 1.3rem;
+}
+
+
+
+.iconButton{
+    background:none;
+    border:none;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #18181a;
+
+}
+
+.profileSection{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: 1.5rem;
+}
+
+.profileSection img{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    border: solid 2px #fff;
+}
+
+.profileInfo{
+    line-height: 1rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.75rem;
+    color: #ffffff;
+    font-weight: 600;
+}
+.OAB{
+    width: 4.938rem;
+    height: 0.938rem;
+    font-size: 0.625rem;
+}
+.arrowDown{
+    color: #ffffff;
+    font-size: 1.2rem;
+    line-height: 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}

@@ -1,0 +1,82 @@
+.iconArea{
+    background-color: #0059ff;
+    min-height: 3.5rem;
+    max-height: 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.white{
+    background-color: #ffff;
+    width: 3px;
+    height: 3.5rem;
+}
+
+.iconArea img{
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.sideNav{
+    display: flex;
+    flex-direction: column;
+    width: 4rem;
+    overflow: hidden;
+    background-color: #ffff;
+    height: 100vh;
+    max-height: 1080px;
+    transition: 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    z-index: 2000;
+}
+
+.sideNav:hover {
+    width: 14rem;
+    position: fixed;
+    height: 100vh;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow-y:scroll;
+}
+
+.sideNav::-webkit-scrollbar {
+    width: 0px;
+  }
+  
+
+  ul{
+      margin: 0;
+      padding: 0;
+  }
+
+  li mat-icon{
+        margin-right: 1.3rem;
+        margin-left: 1.2rem;
+  }
+li{
+    display: flex;
+    height: 2.5rem;
+    margin-bottom: 1px;
+    align-items: center;
+    width: 14rem;
+    cursor: pointer;
+    color: #161616;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    transition: 1s;
+}
+
+mat-icon{
+    color: #92929d;
+    font-weight: 200;
+}
+
+
+.checked{
+    color: #0059ff;
+    font-weight: 700;
+}
+li:hover{
+    background-color: #dbeefd;
+    color: black;
+}

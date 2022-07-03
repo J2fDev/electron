@@ -1,0 +1,112 @@
+<form (onSubmit)="save()"  action="" [formGroup]="adressForm">
+<div *ngIf="addAdress" class="firstDiv margin-top">
+
+
+             <mat-form-field class="tam10p5 Input firstIten" appearance="outline">
+                 <mat-label>Tipo</mat-label>
+                 <input formControlName="tipo"  type="string" matInput placeholder="pat@example.com">
+                 <mat-error *ngIf="true"></mat-error>
+                </mat-form-field>
+                
+                <mat-form-field class="tam10p5 Input" appearance="outline">
+                    <mat-label>Cep</mat-label>
+                    <input formControlName="cep"  matInput placeholder="pat@example.com">
+                    
+                    <!-- <mat-error *ngIf=""></mat-error> -->
+                </mat-form-field>
+                
+                <mat-form-field class="tam18 Input" appearance="outline">
+                    <mat-label>Logradouro</mat-label>
+                    <input formControlName="logradouro"  matInput placeholder="pat@example.com">
+                    <!-- <mat-error *ngIf=""></mat-error> -->
+                </mat-form-field>
+                
+                <mat-form-field class="tam6p2 Input" appearance="outline">
+                    <mat-label>Número</mat-label>
+                    <input formControlName="numero" matInput placeholder="pat@example.com">
+                    <!-- <mat-error *ngIf=""></mat-error> -->
+                </mat-form-field>
+                
+                <div class="clientPhoto">
+                </div>
+            </div>
+            <div *ngIf="addAdress" class="firstDiv">
+                
+                <mat-form-field class="tam10p5 Input firstIten" appearance="outline">
+                    <mat-label>Complemento</mat-label>
+                    <input  formControlName="complemento"  matInput placeholder="pat@example.com">
+            <mat-error *ngIf="true">DIgite</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field class="tam18 Input" appearance="outline">
+            <mat-label>Bairro</mat-label>
+            <input  formControlName="bairro"  matInput placeholder="pat@example.com">
+            <!-- <mat-error *ngIf=""></mat-error> -->
+        </mat-form-field>
+        
+        <mat-form-field class="tam6p2 Input" appearance="outline">
+            <mat-label>Uf</mat-label>
+            <!--<input matInput placeholder="pat@example.com">-->
+            <mat-select (valueChange)="setCitie($event)" formControlName="estado"  >
+                <mat-option *ngFor="let uf of ibgeService.ufs" [value]="uf.sigla" >{{uf.sigla}}</mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf=""></mat-error> -->
+        </mat-form-field>
+        
+        
+        
+        <mat-form-field class="tam10p5 Input" appearance="outline">
+            <mat-label>Cidades</mat-label>
+            <!--<input matInput placeholder="pat@example.com">-->
+            <mat-select formControlName="cidade"  >
+                <mat-option *ngFor="let citie of cidades" [value]="citie" >{{citie.nome}}</mat-option>
+        </mat-select>
+        <!-- <mat-error *ngIf=""></mat-error> -->
+    </mat-form-field>
+    
+    <div class="clientPhoto">
+        <!-- <img src="../../../assets/imgs/marinasilva.jpg" alt=""> -->
+    </div>
+    
+</div>
+</form>
+<div *ngIf="addAdress" class="addAdressButtons">
+    <button (click)="addAdress === true ? addAdress = false : addAdress = true" style="border:none; background: none; ">
+        <mat-icon class="closeIcon">close</mat-icon>
+    </button>
+    <button *ngIf="true" (click)="save()" class="addAdress" style="border:none; background: none; ">
+        <mat-icon class="addIcon">done</mat-icon>
+    </button>
+</div>
+
+
+<div *ngIf="!addAdress" class="adressesDiv">
+    
+    <div  *ngFor="let adress of values" class="adresses">
+        <div class="adressDiv">
+            <div class="infoAdress">
+                <mat-icon color="primary" >location_on</mat-icon> 
+                <div class="infoText">        
+                    <span class="tipoAdress"> {{adress.tipo}}</span>
+                    <br>
+                    <span>{{adress.logradouro}}, {{adress.numero}}, {{adress.complemento}} - {{adress.bairro}}</span>
+                    <br>
+                    <span>{{adress.cep}} - {{adress.cidade}} - {{adress.estado}}</span>
+                </div>
+            </div>
+            
+            <div class="iconsAdress">
+                <mat-icon class="editIcon" color="primary">edit</mat-icon>
+                <mat-icon  class="excludeIcon" color="warn">close</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!addAdress" class="addAdressButtons">
+    <button (click)="addAdress === false ? addAdress = true : addAdress = false" style="border: none; background: none; "  >
+        <mat-icon class="addIcon" >add</mat-icon>
+    </button>
+</div>
+
+

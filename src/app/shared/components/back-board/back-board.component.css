@@ -1,0 +1,75 @@
+.backBoard {
+  /* overflow: auto; */
+  margin-top: 32px;
+}
+
+.backBoardFullScreen{
+    height: 100%;
+    width: 100%;
+    background-color:#271919 ;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.16);
+    display: flex;
+    justify-content: start;
+}
+
+.toolBar{
+    width: 100%;
+}
+
+.backBoardTool{
+    background-color: #0059ff;
+    border-radius: 0.5rem 0.5rem 0rem 0rem;
+    height: 2rem;
+    color: #ffff;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+
+.backBoardToolFullScreen{
+    background-color: #0059ff;
+    height: 2rem;
+    color: #ffff;
+    font-size: 0.8rem;
+    position: fixed;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.buttonFullScreen{
+    height: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fullScreenButton{
+    background:#0059ff;
+    border: none;
+    color: #ffff;
+    display: flex;
+    align-items: center;
+    line-height: 1rem;
+    font-size: large;
+}
+
+.innnerBack{
+    margin-top: 1.5rem;
+    width: 100%;
+    /* background-color: #0059ff; */
+}
+
+.backBoard::-webkit-scrollbar {
+    width: 0rem;               /* width of the entire scrollbar */
+}
+

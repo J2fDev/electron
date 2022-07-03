@@ -1,0 +1,271 @@
+
+.backBoard{
+    width: 20%;
+}
+.profileSection{
+    /* position: fixed; */
+    /*width: 70rem;*/
+}
+mat-tab-group{
+    margin-top: 0.2rem;
+    line-height: 1rem;
+    font-size: 0.75rem;
+    display: flex;
+}
+
+
+
+.firstTab{
+    background-color: #92929d;
+}
+
+.firstDiv{
+    width: 70vw;
+    display: flex;
+}
+.margin-top{
+    margin-top: 1rem;
+}
+.firstIten{
+    margin-left: 1rem;
+}
+.Input{
+    font-size: 0.8rem;
+    max-height: 1rem;
+    margin-right: 1rem;
+}
+.tam48{
+    width: 48%;
+}
+
+.tam17{
+    width: 17%;
+}
+
+.tam12{
+    width: 12%;
+}
+
+.tam23{
+    width: 23.2%;
+}
+
+.tam31{
+    width: 31%;
+}
+
+.clientPhoto{
+    height: 3.5rem;
+    width: 3.5rem;
+}
+
+.clientPhoto img{
+    height: 88%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.endereçoDiv{
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+.buttonsDiv{
+    display: flex;
+    justify-content: initial;
+    position: fixed;
+    bottom: 2rem;
+    
+}
+
+.buttonsDiv button{
+    max-height: 2.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width:11rem ;
+}
+
+
+.planSection{
+    font-family: 'Poppins';
+}
+.myPlanDiv{
+    width: 28.438rem;
+    height: 20.5rem;
+    border-radius: 8px;
+    border: solid 1px #dadada;
+    margin-left: 2.6rem;
+    margin-top: 2rem;
+    overflow-y: auto;
+}
+
+.headerPlan{
+    height: 4rem;
+    border-radius: 0.5rem 0.5rem 0rem 0rem ;
+    background-color: #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.firstCheckIcon{
+    color: #0059ff;
+    font-size: 2rem;
+    line-height: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.titleHeader{
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: #0059ff;
+}
+.priceHeader{
+    font-size: 2rem;
+    font-weight: normal;
+    line-height: 1;
+    color: #161616;
+}
+
+.frequencyHeader{
+    margin-right: 1rem;
+}
+.buttonPlan{
+    width: 33.1%;
+    margin-left: 2.6rem;
+    margin-top: 0.5rem;
+}
+
+li{
+    height: 1.6rem;
+    font-size: 0.8rem;
+    justify-content: space-between;
+    line-height: 1rem;
+    color:#161616;
+    display: flex;
+    align-items: center;
+    width: 85%;
+    margin-bottom: 0.5rem;
+}
+
+.checkIcon{
+    color: #0059ff;
+    font-size: 1.3rem;
+}
+
+.cancelIcon{
+    color:   #92929d;
+    font-size: 1.3rem;
+}
+
+.buttonPlan button{
+    font-family: 'Poppins';
+    width: 28.438rem;
+    height: 3rem;
+}
+
+.securityDiv{
+    /* display: flex; */
+    align-items: center;
+    flex-direction: column;
+}
+
+.umFaDiv{
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.login{
+    width:24rem ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 16.5rem;
+    border-radius: 8px;
+    border: solid 1px #dadada;
+    margin-right: 1.5rem;
+    margin-top: 0.75rem;
+}
+
+.first {
+    margin-left:2.65rem ;
+}
+
+.inputSecurity{
+    width: 85% ;
+    max-height: 7%;
+    margin-bottom: 2.3rem;
+}
+
+.toolBarHeader{
+    margin-bottom: 1rem;
+    background-color: #eaeaea;
+    height:17%;
+}
+
+.informSpan{
+    font-family: 'Poppins';
+    font-size: 0.75rem;
+    line-height: 1.33;
+    color: #92929d;
+    margin-bottom: 1rem;
+}
+
+.saveButton{
+    width: 82%;
+    height: 3rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-bottom: 1rem;
+}
+
+.saveButton button{
+    width: 40%
+}
+
+.doisFaDiv{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2.65rem;
+    margin-top: 1rem;
+    width: 49.5rem;
+    height: 8.5rem;
+    border-radius: 8px;
+    border: solid 1px #dadada;
+    background-color: #fff;
+}
+
+.header{
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:25rem ;
+}
+.h1{
+    line-height: 1rem;
+    font-size: 1rem;
+    color: #161616;
+}
+.symbol{
+    line-height: 1rem;
+    font-size: 0.75rem;
+    color:#ff9800;
+    border: 1px solid #ff9800;
+    padding: 0rem 0.8rem;
+    border-radius: 0.25rem;
+}
+
+.text{
+    line-height: 1rem;
+    font-size: 0.75rem;
+    color: #92929d;
+    margin-left: 4.3rem;
+    margin-top: 0.5rem;
+}
+
+

@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="960" viewBox="0 0 1920 960">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #161616;
+        stroke: #707070;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-10, .cls-11, .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-20, .cls-21, .cls-22, .cls-23, .cls-24, .cls-25, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9 {
+        fill: none;
+        stroke: #001e69;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-4 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-5 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-6 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-7 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-8 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-9 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-10 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-11 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-12 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-13 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-14 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-15 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-16 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-17 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-18 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-19 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-20 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-21 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-22 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-23 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-24 {
+        stroke-width: 0.726px;
+      }
+
+      .cls-25 {
+        stroke-width: 0.726px;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="Retângulo_1491" data-name="Retângulo 1491" class="cls-1" width="1920" height="960"/>
+    </clipPath>
+  </defs>
+  <g id="Grupo_de_máscara_6" data-name="Grupo de máscara 6" class="cls-2">
+    <g id="Unico_Brandbook-31" transform="translate(138.275 -635.239)">
+      <rect id="Retângulo_20" data-name="Retângulo 20" class="cls-3" width="1176.014" height="1176.014" rx="6.001" transform="matrix(0.866, -0.5, 0.5, 0.866, 62.913, 589.212)"/>
+      <rect id="Retângulo_21" data-name="Retângulo 21" class="cls-4" width="1162.909" height="1162.909" rx="5.933" transform="matrix(0.88, -0.475, 0.475, 0.88, 72.435, 595.252)"/>
+      <rect id="Retângulo_22" data-name="Retângulo 22" class="cls-5" width="1150.772" height="1150.772" rx="5.87" transform="translate(81.978 601.245) rotate(-26.71)"/>
+      <rect id="Retângulo_23" data-name="Retângulo 23" class="cls-6" width="1139.634" height="1139.634" rx="5.814" transform="translate(91.5 607.286) rotate(-25.01)"/>
+      <rect id="Retângulo_24" data-name="Retângulo 24" class="cls-7" width="1129.498" height="1129.498" rx="5.763" transform="matrix(0.919, -0.395, 0.395, 0.919, 101.037, 613.305)"/>
+      <rect id="Retângulo_25" data-name="Retângulo 25" class="cls-8" width="1120.436" height="1120.436" rx="5.715" transform="translate(110.558 619.347) rotate(-21.52)"/>
+      <rect id="Retângulo_26" data-name="Retângulo 26" class="cls-9" width="1112.431" height="1112.431" rx="5.676" transform="translate(120.082 625.391) rotate(-19.73)"/>
+      <rect id="Retângulo_27" data-name="Retângulo 27" class="cls-10" width="1105.529" height="1105.529" rx="5.64" transform="matrix(0.951, -0.308, 0.308, 0.951, 129.62, 631.422)"/>
+      <rect id="Retângulo_28" data-name="Retângulo 28" class="cls-11" width="1099.741" height="1099.741" rx="5.611" transform="matrix(0.961, -0.277, 0.277, 0.961, 139.158, 637.439)"/>
+      <rect id="Retângulo_29" data-name="Retângulo 29" class="cls-12" width="1095.086" height="1095.086" rx="5.587" transform="translate(148.679 643.464) rotate(-14.24)"/>
+      <rect id="Retângulo_30" data-name="Retângulo 30" class="cls-8" width="1091.588" height="1091.588" rx="5.57" transform="translate(158.237 649.474) rotate(-12.38)"/>
+      <rect id="Retângulo_31" data-name="Retângulo 31" class="cls-13" width="1089.238" height="1089.238" rx="5.558" transform="translate(167.707 655.536) rotate(-10.5)"/>
+      <rect id="Retângulo_32" data-name="Retângulo 32" class="cls-14" width="1088.066" height="1088.066" rx="5.55" transform="matrix(0.989, -0.15, 0.15, 0.989, 177.235, 661.571)"/>
+      <rect id="Retângulo_33" data-name="Retângulo 33" class="cls-4" width="1088.072" height="1088.072" rx="5.55" transform="matrix(0.993, -0.117, 0.117, 0.993, 186.761, 667.592)"/>
+      <rect id="Retângulo_34" data-name="Retângulo 34" class="cls-12" width="1089.238" height="1089.238" rx="5.558" transform="translate(196.293 673.625) rotate(-4.86)"/>
+      <rect id="Retângulo_35" data-name="Retângulo 35" class="cls-15" width="1091.588" height="1091.588" rx="5.57" transform="matrix(0.999, -0.052, 0.052, 0.999, 205.854, 679.641)"/>
+      <rect id="Retângulo_36" data-name="Retângulo 36" class="cls-16" width="1095.096" height="1095.096" rx="5.587" transform="translate(215.421 685.653) rotate(-1.13)"/>
+      <rect id="Retângulo_37" data-name="Retângulo 37" class="cls-17" width="1099.736" height="1099.736" rx="5.611" transform="matrix(0.013, -1, 1, 0.013, 211.084, 1791.325)"/>
+      <rect id="Retângulo_38" data-name="Retângulo 38" class="cls-18" width="1105.526" height="1105.526" rx="5.64" transform="matrix(0.044, -0.999, 0.999, 0.044, 185.198, 1802.101)"/>
+      <rect id="Retângulo_39" data-name="Retângulo 39" class="cls-19" width="1112.438" height="1112.438" rx="5.676" transform="matrix(0.076, -0.997, 0.997, 0.076, 159.335, 1812.888)"/>
+      <rect id="Retângulo_40" data-name="Retângulo 40" class="cls-20" width="1120.429" height="1120.429" rx="5.715" transform="translate(133.46 1823.737) rotate(-83.85)"/>
+      <rect id="Retângulo_41" data-name="Retângulo 41" class="cls-21" width="1129.51" height="1129.51" rx="5.763" transform="translate(107.599 1834.548) rotate(-82.09)"/>
+      <rect id="Retângulo_42" data-name="Retângulo 42" class="cls-22" width="1139.637" height="1139.637" rx="5.814" transform="translate(81.716 1845.342) rotate(-80.36)"/>
+      <rect id="Retângulo_43" data-name="Retângulo 43" class="cls-23" width="1150.78" height="1150.78" rx="5.87" transform="translate(55.845 1856.173) rotate(-78.66)"/>
+      <rect id="Retângulo_44" data-name="Retângulo 44" class="cls-24" width="1162.908" height="1162.908" rx="5.933" transform="translate(29.973 1866.92) rotate(-77)"/>
+      <rect id="Retângulo_45" data-name="Retângulo 45" class="cls-25" width="1176.014" height="1176.014" rx="6.001" transform="translate(4.114 1877.746) rotate(-75.37)"/>
+    </g>
+  </g>
+</svg>

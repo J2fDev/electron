@@ -1,0 +1,34 @@
+<!-- <mat-card>
+    <mat-card-content>
+      <div class="header">
+        <h1> Recuperação de senha. </h1>
+      </div>
+      
+      <form  (change)="buttonIsAble()"   *ngIf="inputDisable"  (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm">
+        <h3>Você receberá um Email para redefinir sua senha.</h3>
+        <div class="emailInput">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label> Digite seu CPF </mat-label>
+            <input
+              mask ="000.000.000-00"
+              formControlName="cpf"
+              matInput
+              placeholder="Digite seu CPF" required
+            />
+            <mat-error *ngIf="!loginForm.controls['cpf'].valid">
+              Digite um CPF válido.
+              </mat-error>
+          </mat-form-field>
+        </div>
+
+        
+        
+        <button [disabled] = "buttonDisable" *ngIf = "showButton"  mat-flat-button color="primary" (click)="sendMessage()">Enviar Email de recuperação.</button>
+      </form>
+      <div *ngIf="showMessageEmail">
+      <p>Foi enviado uma mensagem de recuperação de texto para o Email:</p>
+      <h2>{{userInformations.email}}</h2>
+    </div>
+      
+    </mat-card-content>
+  </mat-card> -->

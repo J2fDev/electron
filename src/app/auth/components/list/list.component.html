@@ -1,0 +1,48 @@
+<div class="base">
+
+    <div class="confirmAndHide" *ngIf="!confirmAndHide">
+        <div class="section1">
+            <h1>Selecione seus tribunais</h1>
+            <span style="font-size: 1rem;">Para continuar selecione <span style="color:#0059ff; font-size: 1rem;">até
+                    {{maxSelection}} tribunais </span>que você atua</span>
+        </div>
+        <app-list-tribunais [(courts)]="courtsValue" [(preCourts)]="preCourstValue"> </app-list-tribunais>
+        <div class="button">
+            <span style="color: rgba(255, 255, 255, 0)">preciso de ajudaa</span>
+            <button (click)="continue()" mat-raised-button>Continuar</button>
+            <span style="display: flex; align-items: center; color: #0059ff;">preciso de ajuda <mat-icon style="font-size: 1rem; display: flex;
+            align-items:center; margin-left: 3px;">help_outline</mat-icon></span>
+        </div>
+    </div>
+
+
+    <div class="listToConfirmDiv" *ngIf="confirmAndHide">
+        <div class="alertDiv">
+            <button style="border: none ; background: none; cursor: pointer;" (click)="confirmAndHide = false">
+                <mat-icon color="primary">arrow_back</mat-icon>
+            </button>
+            <span class="spanToConfirm">confirme seus tribunais.</span>
+            <button style="border: none; background: none; color: none;">
+                <mat-icon></mat-icon>
+            </button>
+        </div>
+        <div class="listToConfirm">
+
+            <h1> Tribunais Selecionados </h1>
+
+            <div *ngFor="let selec of courtsValue" class="listaToConfirm">
+                <div class="itensToConfirm">
+                    <span>{{selec.name}}</span>
+                </div>
+            </div>
+
+            <div *ngFor="let selec of preCourstValue" class="listaToConfirmBlock">
+                <div class="itensToConfirmBlock">
+                    <span>{{selec.name}}</span>
+                </div>
+            </div>
+
+        </div>
+        <button class="primaryButton" mat-raised-button color="primary"
+            (click)="confirm()">Confirmar</button>
+    </div>

@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Sem certificado</h1>
+<div class="alertDiv" mat-dialog-content>
+  <div class="errorIcon">
+    <mat-icon class="errorOutline">error_outline</mat-icon>
+  </div>
+  <div class="errorText">
+    <h1>Atenção!</h1>
+    <p>Sem um certificado não será possível atualizar processos ou realizar peticionamentos.</p>
+  </div>
+
+  <div class="buttonError">
+    <button mat-raised-button color="primary" (click)="closeDialog()">
+      Entrar assim mesmo.
+    </button>
+  </div>
+</div>

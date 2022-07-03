@@ -1,0 +1,16 @@
+
+.footerSection{
+    display: flex;
+    /* max-height: 4rem; */
+    justify-content: space-between;
+    align-items: center;
+    width: 71rem;
+    margin-left: 1rem;
+    margin-bottom: 2rem;
+}
+
+button{
+    height: 2.5rem;
+    width: 11rem;
+    margin-right: 0.5rem;
+}

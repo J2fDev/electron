@@ -1,0 +1,29 @@
+.confirmPin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+}
+
+.confirmInput input {
+    width: 100%;
+}
+
+.confirmButton {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirmButton button {
+    width: 100%;
+}
+
+.helpLink {
+    float: right;
+}

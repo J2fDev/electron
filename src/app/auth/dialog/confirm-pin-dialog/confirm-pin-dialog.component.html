@@ -1,0 +1,26 @@
+<div class="confirmPin">
+    <div>
+        <h1>PIN de Utilização</h1>
+        <p>Insira a senha de uso do Certificado selecionado.</p>
+    </div>
+
+    <div class="confirmInput">
+        <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'" required />
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>
+                    {{hide ? 'visibility_off' : 'visibility'}}
+                </mat-icon>
+            </button>
+        </mat-form-field>
+
+        <div class="confirmButton">
+            <button mat-raised-button color="primary" (click)="closeDialog()">
+                Entrar
+            </button>
+        </div>
+
+
+    </div>

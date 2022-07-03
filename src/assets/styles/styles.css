@@ -1,0 +1,70 @@
+/* You can add global styles to this file, and also import other style files */
+/* *{
+  font-family:'Poppins';
+}
+ */
+
+html, body { height: 100%; }
+body { margin: 0; font-family:'Poppins', sans-serif; }
+
+
+
+.mat-dialog-container{
+    border-radius: 20px !important;
+}
+
+a{
+  color: #0059FF;
+  text-decoration: none;
+}
+
+.errorSpan{
+  color: #ff0000;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+
+
+.forms{
+  display: flex;
+  flex-direction: column;
+  width: 24rem ;
+}
+  h1{
+      font-size: 1.5rem;
+      color:#161616 ;
+      margin-top: 2.5rem;
+      line-height: 2rem
+}
+
+.primaryButton{
+  background-color: #0059FF;
+  color: white;
+  width: 24rem;
+  height: 2.98rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.buttonForms {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  margin-bottom: 1.5rem;
+}
+
+  button{
+      transition: 0.7s;
+  }
+
+  h3{
+      font-size: 1rem;
+      line-height: 1.125rem;
+      color: #666666;
+  }
+
+  .mat-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

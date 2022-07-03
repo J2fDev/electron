@@ -1,0 +1,127 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
+
+<div *ngIf="true" class="courtsSection">
+
+
+  <div class="selectField">
+
+    <form>
+      <mat-form-field appearance="outline"
+        style="width: 33rem; margin-right: 3rem; margin-bottom: 2rem; max-height: 1rem; font-size: 0.75rem;">
+        <mat-icon style="color:#b8b8b8" matPrefix>search</mat-icon>
+        <input style="max-height: 3rem;" [(ngModel)]="filterSearch" [ngModelOptions]="{standalone: true}" matInput
+          placeholder="Pesquise aqui">
+      </mat-form-field>
+    </form>
+
+    <div class="list">
+
+      <div class="lista2" (click)="select(selec)" color="primary"
+        *ngFor="let selec of result | filtrarTribunais:filterSearch | organize:'name'">
+
+        <div class="info">
+
+          <span>{{selec.name}}</span>
+
+          <div class="secondLine">
+
+            <span [ngClass]="{'firstGrade': selec.grade == '1º Grau', 'secondGrade': selec.grade == '2º Grau'}">
+              {{selec.grade}}
+            </span>
+
+            <div class="ufDivs">
+              <div class="ufs" *ngFor="let uf of selec.uf">
+                <span>
+                  {{uf}}
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <mat-icon class="icon arrow">arrow_forward_ios</mat-icon>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="selectField">
+
+
+    <div class="headerSelecteds">
+      <span>
+        Tribunais selecionados
+      </span>
+      <div class="qtdSelecionados">
+        {{courts.length}}/{{maxSelections}}
+      </div>
+    </div>
+
+    <div class="list">
+
+
+      <div class="lista1" (click)="unSelect(selected)" color="primary"
+        *ngFor="let selected of courts | filtrarTribunais:filterSearch | organize:'name'">
+
+
+        <div class="info">
+
+          <span>{{selected.name}}</span>
+
+
+          <div class="secondLine">
+
+            <span [ngClass]="{'firstGrade': selected.grade == '1º Grau', 'secondGrade': selected.grade == '2º Grau'}">
+              {{selected.grade}}
+            </span>
+
+
+            <div class="ufDivs">
+              <div class="ufs" *ngFor="let uf of selected.uf">
+                <span>
+                  {{uf}}
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <mat-icon class="icon delete">close</mat-icon>
+      </div>
+
+      <div class="preSelectedList" color="primary"
+        *ngFor="let selected of preCourts | filtrarTribunais:filterSearch | organize:'name'">
+        <div class="info">
+          <span>{{selected.name}}</span>
+        </div>
+        <mat-icon class="icon lockIcon">
+          lock_outline
+        </mat-icon>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="listToConfirmDiv" *ngIf="false">
+  <div class="alertDiv">
+      <span>confirme seus tribunais.</span>
+  </div>
+  <div class="listToConfirm">
+
+    <h1> Tribunais Selecionados </h1>
+
+    <div *ngFor="let selec of selectedList" class="listaToConfirm">
+      <div class="itensToConfirm">
+        <span>{{selec.name}}</span>
+      </div>
+    </div>
+
+    <div *ngFor="let selec of preSelectedList" class="listaToConfirmBlock">
+      <div class="itensToConfirmBlock">
+        <span>{{selec.name}}</span>
+      </div>
+    </div>
+
+  </div>
+  <button class="primaryButton" mat-raised-button color="primary" (click)="confirm()">Confirmar</button>

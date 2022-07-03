@@ -1,0 +1,20 @@
+<div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
+    
+    <div (click)="logAll(processTab.code)" [ngClass]="{'nonSelected': processTab.code !== selectedCss, 'selected':processTab.code == selectedCss}"*ngFor="let processTab of arrayOfProcess" cdkDrag>
+            {{processTab.code}}
+
+            <div class="buttons">
+                <button  *ngIf="processTab.code !== 'Meus Processos'" class="buttonIcon" >
+                    <mat-icon class="icon">
+                        open_in_new
+                        </mat-icon>
+                </button>
+                
+                <button *ngIf="processTab.code !== 'Meus Processos'" (click)="closeTab(processTab.code)" class="buttonIcon">
+                    <mat-icon class="icon">close</mat-icon>
+                </button>
+                
+            </div>
+    </div>
+  </div>
+  

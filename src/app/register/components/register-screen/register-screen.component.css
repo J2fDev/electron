@@ -1,0 +1,135 @@
+
+section{
+  border: 0;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  width: 100vw;
+
+}
+
+.sideDiv{
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #161616;
+  background-image: url("/../assets/imgs/BG-Login.svg");
+  background-position: right 155px bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+ background-size:cover;
+}
+
+.sideDivContent{
+  display: flex;
+  max-width: 23rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20%;
+}
+.sideDivContent h1{
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 5rem;
+}
+.sideDivContent img{
+  width: 10rem;
+  padding-right: 2rem;
+  padding-top: 9rem;
+  position: absolute;
+}
+
+.divForm{
+  width: 50%;
+  height: 100vh;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+ position: relative;
+ 
+}
+
+.h1Forms{
+  font-size: 1.5rem;
+  line-height: 1rem;
+  font-weight: 600;
+}
+
+.form-check-label{
+  color: black;
+}
+
+.checkbox{
+  line-height: 1rem;
+  font-size: 0.8rem;
+}
+
+
+mat-form-field{
+  height: 4.4rem;
+  font-size: 0.8rem;
+}
+
+.registerForm{
+  color: #0059FF;
+  width: 22rem;
+  border-radius: 15px;
+  background-color: #fff;
+  padding-right: 25%;
+}
+
+.buttonForms{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.buttonForms button{
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  height: 2.938rem;
+}
+.inputsRegister{
+  flex-direction: column;
+ display: flex;
+
+}
+
+
+
+@media screen and (min-height: 900px) {
+
+  
+mat-form-field{
+  padding: 10px;
+  height: 5.5rem;
+  padding: 10px;
+  font-size: 1.2rem;
+}
+mat-form-field input{
+  padding: 0px;
+  height: 50%;
+}
+button{
+  transition: 1s;
+
+}
+label{
+  font-size: 0.7rem;
+}
+
+
+.registerForm{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+  padding-right: 35%;
+}
+}

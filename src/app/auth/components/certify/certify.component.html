@@ -1,0 +1,91 @@
+<div class="noneCertDetec">
+  <div class="backIcon">
+    <mat-icon>arrow_back</mat-icon>
+  </div>
+
+  <div class="textList">
+    <h1>Certificado Digital</h1>
+    <span>Selecione um certificado para uso no Unico.</span>
+  </div>
+
+  <div *ngIf="isWeb" class="alert">
+    <app-alert title="Certificados A3 indisponiveis"
+               message="Os certificadoa A3 só podem ser usados na versão desktop "></app-alert>
+  </div>
+
+  <div *ngIf="reciveListA1.length == 0" class="noneDetectedImg">
+    <div class="bgImg">
+      <img src="../../../../assets/imgs/noneCertify.svg" alt="">
+    </div>
+  </div>
+
+  <div *ngIf="reciveListA1.length == 0" class="noneDetectedText">
+    <div class="noneDetectedH1">
+      <h3><b> Não encontramos nenhum certificado! </b></h3>
+    </div>
+    <div class="noneDetectedP">
+      <p>Certifique-se de ter plugado o token ou adicione um certificado válido</p>
+    </div>
+  </div>
+
+  <div *ngIf="reciveListA1.length > 0" class="A1List">
+    <div (click)="openPinDialog()" class="A1Ables" *ngFor="let a1 of reciveListA1">
+      <div class="A1Certify">
+        <div class="iconCertify">
+          <mat-icon class="material-icons-outlined">cloud_done</mat-icon>
+        </div>
+        <div class="A1Name">
+          <!-- <mat-icon class="arrowBackIcon" color= "primary">dvr</mat-icon> -->
+          {{a1.name}}
+          <br>
+          <span class="A1Data"> Emissor: {{a1.emissor}}</span>
+          <span class="A1Data">Validade: {{a1.validade}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="reciveListA1.length === 0" class="noneDetectedButton">
+    <button mat-raised-button (click)="addCertifyA1()">
+      Adicione um certificado A1
+    </button>
+  </div>
+
+  <div class="footer">
+    <div class="buttonNoCertify">
+      <button (click)="openDialog()">Entrar sem certificado-></button>
+    </div>
+    <div class="aNoCertify">
+      <a href="">Preciso de ajuda ?</a>
+    </div>
+  </div>
+</div>
+
+<!--  -->
+<div *ngIf="" class="adicionarA1Div">
+  <div class="h1AddCertify">
+    <div class="iconAdd">
+      <mat-icon>arrow_back</mat-icon>
+    </div>
+    <div class="h1Add">
+      <h1>Adicione o Certificado A1</h1>
+    </div>
+  </div>
+
+  <div [formGroup]="a1Forms" class="inputAdicionarA1">
+
+    <div class="dropzone">
+      <div class="dropContent">
+        <input (change)="installCertifyPassword()" formControlName="fileA1" type="file" #fileDropRef id="fileDropRef"
+               multiple/>
+        <mat-icon>cloud_done</mat-icon>
+        <div>
+          Arraste e solte seu arquivo aqui
+          <h3>-----ou-----</h3>
+        </div>
+        <label formControlName="fileA1" for="fileDropRef"> Escolha o arquivo </label>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav-content>
+        <div class="logoImg">
+          <img src="../../../../assets/imgs/logo2.png" alt="logo unico">
+        </div>
+        <ul class="sideNavUl" style="list-style: none;">
+            <div class="firstDiv">
+                <li [ngClass]="{'checked': itenSelected == 'home'}" (click)="itenSelected = 'home'">
+                    <mat-icon class="material-icons-outlined">home</mat-icon> Inicio
+                </li>
+
+                <li [ngClass]="{'checked': itenSelected == 'processos'}" (click)="itenSelected = 'processos'">
+                    <mat-icon class="material-icons-outlined">gavel_outline</mat-icon> Processos
+                </li>
+
+            <li [ngClass]="{'checked': itenSelected == 'published'}" (click)="itenSelected = 'published'">
+                <mat-icon class="material-icons-outlined">sim_card_download</mat-icon> Publicações
+            </li>
+
+            <li [ngClass]="{'checked': itenSelected == 'atendimento'}" (click)="itenSelected = 'atendimento'">
+                <mat-icon class="material-icons-outlined">question_answer</mat-icon> Atendimentos
+            </li>
+
+            <li [ngClass]="{'checked': itenSelected == 'clients'}" (click)="itenSelected = 'clients'">
+                <mat-icon class="material-icons-outlined">people_alt</mat-icon> Clientes
+            </li>
+
+            <li [ngClass]="{'checked': itenSelected == 'calendar'}" (click)="itenSelected = 'calendar'">
+                <mat-icon class="material-icons-outlined">calendar_month</mat-icon> Agenda
+            </li>
+
+            <li [ngClass]="{'checked': itenSelected == 'documents'}" (click)="itenSelected = 'documents'">
+                <mat-icon class="material-icons-outlined">description</mat-icon> Documentos
+            </li>
+        </div>
+
+
+            <div class="finalList">
+
+                <li class="settingsSelected ? checked : unchecked"
+                (click)="!openMenu ? openMenu = true : openMenu = false">
+                    <mat-icon>settings</mat-icon> Configurações
+                </li>
+                <div *ngIf="openMenu">
+                    <ul class="search">
+                        <li (click)="sendTo('profile')" class="contaSelected ? checked : unchecked">Conta</li>
+                        <li (click)="sendTo('profile/list')">Tribunais</li>
+                        <li (click)="sendTo('profile/certify')">Certificados</li>
+                        <li>notificações</li>
+                    </ul>
+                </div>
+                <li>
+                    <mat-icon>help</mat-icon> Ajuda
+                </li>
+                <li>
+                    <mat-icon>logout</mat-icon> Sair
+                </li>
+            </div>
+        </ul>
+    </mat-sidenav-content>
+
+
+</mat-sidenav-container>

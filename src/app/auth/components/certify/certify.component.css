@@ -1,0 +1,296 @@
+.noneCertDetec{
+  color: #0059FF;
+  width: 50vw;
+  max-height: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.274) 0px 5px 15px;
+  background-color: rgb(246, 246, 246);
+  overflow: hidden;
+}
+
+.backIcon {
+  width: 40%;
+  float: left;
+  position: absolute;
+}
+
+.backIcon mat-icon {
+  float: left;
+  margin-top: 1.5rem;
+}
+
+.textList {
+  display: flex;
+  color: black;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}
+
+.textList h1{
+  height: 1.3rem;
+  font-size: 1.5rem;
+  color: #161616;
+  font-weight: 500;
+}
+
+.textList span{
+  font-size: 1rem;
+  color: #666666;
+}
+
+.alert{
+  width: 60rem;
+  height: 5rem;
+  margin-top: 0.8rem;
+}
+
+.noneDetectedText{
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.noneDetectedH1{
+  height: 1.7rem;
+  color: black;
+  position: relative;
+}
+
+.noneDetectedP{
+  color: black;
+}
+
+.noneDetectedImg{
+  width: 14.8rem;
+  height: 14.3rem;
+  margin-top: 8%;
+}
+
+.noneDetectedImg img{
+  width: 12.8rem;
+}
+
+.noneDetectedButton{
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+.noneDetectedButton button{
+  border: 1px solid #0059FF;
+  border-radius: 8px;
+  padding: 0rem 2rem;
+  transition: 0.5s;
+  color: #0059FF;
+}
+
+.noneDetectedButton button:hover{
+  background-color: #0059FF;
+  color: white;
+}
+
+.footer{
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.aNoCertify a{
+  color: #0059FF;
+  text-decoration: none;
+  margin-right: 1.5rem;
+}
+
+
+.buttonNoCertify button{
+  color: #0059FF;
+  background-color: #0059ff00;
+  border: none;
+  margin-left: 1.5rem;
+}
+
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+.certifyList{
+  color: #0059FF;
+  width: 43vw;
+  max-height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.274) 0px 5px 15px;
+  background-color: rgb(246, 246, 246);
+  overflow: hidden;
+}
+
+
+
+.iconCertify{
+  float: left;
+  position: relative;
+}
+.header{
+  width: 100%;
+}
+
+
+.material-icons-outlined{
+  color: #0059FF;
+  font-size: 1.2rem;
+}
+
+
+.certifyListTxt{
+  text-align: center;
+}
+
+.A1List{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: 305px;
+  overflow-y: scroll;
+}
+
+.A1Ables{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.A1Certify{
+  border: 0.5px solid rgba(201, 197, 197, 0.631);
+  width: 75%;
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  color: black;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.A1Certify:hover{
+  border: 0.5px solid rgb(201, 197, 197);
+  background-color: #4f8dff12;
+}
+
+.A1Name{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 2rem;
+}
+
+.A1Name p{
+  margin-left: 10rem;
+}
+
+.A1Data{
+  font-size: 10px;
+}
+
+.ativoCertify{
+  padding-left: 2rem;
+}
+
+.footerList{
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+.adicionarA1Div{
+  color: #0059FF;
+  width: 35%;
+  text-align: center;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.274) 0px 5px 15px;;
+  background-color: #fff;
+}
+
+
+
+.iconAdd{
+  float: left;
+  margin-left: 1rem;
+  margin-top: 0.2rem;
+  position: absolute;
+  font-size: 0.7rem;
+}
+
+.h1Add{
+  margin-top: 1.2rem;
+  margin-left: 1rem;
+  font-size: 1.2rem;
+  color: black;
+}
+
+.h1AddCertify h1{
+  color: black;
+  font-size: 1.4rem;
+}
+
+.dropzone{
+  width: 68%;
+  height: 5rem;
+  background-color:#e1f2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border: dashed 2.5px #0059ff7a;
+  border-radius: 10px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.dropContent{
+  margin-bottom: 2rem;
+}
+
+input {
+  opacity: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+label{
+  color: white;
+  border-radius: 5px;
+  background-color: #0059FF;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+h3{
+  font-size: 1rem;
+  font-weight: 200;
+  color: rgb(0, 0, 0);
+}
+
+.mat-tab-body-body-wrapper{
+  border-radius: 15px;
+}

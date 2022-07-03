@@ -1,0 +1,39 @@
+
+.h1List{
+}
+.mat-dialog-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.backIcon {
+    width: 40%;
+    float: left;
+    position: absolute;
+  }
+  .backIcon mat-icon {
+    float: left;
+    margin-left: 1.8rem;
+    color: #0059FF;
+  }
+.backIcon{
+    float: left;
+    margin-left: 1rem;
+    margin-top: 0.2rem;
+    position: absolute;
+    font-size: 0.7rem;
+}
+.textHeader{
+    display: flex;
+    flex-direction: column;
+}
+
+.forms{
+    display: flex;
+    flex-direction: column;
+    width: 20.4rem;
+}
+
+.button{
+    padding: 0px 5rem;
+}

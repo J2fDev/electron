@@ -1,0 +1,17 @@
+
+  <div  *ngIf="type == 'alert' " class="alert">
+    <div class="listra"></div>
+    <mat-icon class="errorIcon">error_outline</mat-icon>
+    <h3>{{title}}</h3>
+    <a>{{message}}</a>
+  </div>
+  
+  
+
+  <div  *ngIf="type == 'atention'" class="atention">
+    <div class="listraAtention"></div>
+    <mat-icon class="atentionIcon">error_outline</mat-icon>
+    <h3>{{title}}</h3>
+    <a>{{message}}</a>
+  </div>
+  

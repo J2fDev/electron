@@ -1,0 +1,79 @@
+.loginForms{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-height: 23rem;
+  min-width: 33rem;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.274) 0px 5px 15px;;
+  background-color: #fff;
+  /* overflow: hidden; */
+}
+
+.title{
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #161616;
+  line-height: 1.5rem;
+}
+
+.loginForms{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.274) 0px 5px 15px;;
+  background-color: #fff;
+  /* overflow: hidden; */
+}
+
+.formField{
+  width: 100%;
+}
+.loginH1{
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #161616;
+  line-height: 1.5rem;
+}
+
+.mat-slide{
+  float:left ;
+  color: black;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 0.9rem;
+}
+
+.formField{
+  font-size: 0.8rem;
+  height: 4.5rem;
+}
+
+.loginLinks{
+  display: flex;
+  padding-bottom: 2rem;
+  justify-content: space-between;
+  width: 92%;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.loginLinks span{
+  line-height: 1rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  
+}
+
+
+.footerIcon{
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}

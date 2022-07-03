@@ -1,0 +1,87 @@
+.logoImg{
+    width: 100%;
+    background-color: #0059ff;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sideNav{
+      width: 14rem;
+      overflow: hidden;
+  }
+  
+  .logoImg img{
+    width: 8rem;
+    margin-left: 0.5rem;
+  }
+   
+  .checked{
+      color: #0059ff;
+      font-weight: 700;
+  }
+  
+  .unchecked{
+      color: #161616;
+      font-weight: 700;
+  }
+  
+  .mat-sidenav-container{
+      width: 14rem;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    background-color: #ffff;
+  
+  }
+  
+  .sideNavUl{
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+  }
+  
+  li{
+      display: flex;
+      padding-left: 1rem;
+      height: 2.5rem;
+      margin-bottom: 1px;
+      align-items: center;
+      width: 14rem;
+      cursor: pointer;
+      color: #161616;
+      font-size: 0.75rem;
+      line-height: 1rem;
+      transition: 1s;
+  }
+  
+  li:hover{
+      background-color: #dbeefd;
+      color: black;
+  }
+  
+  mat-icon{
+      font-size: 1.1rem;
+      width: 1.1rem;
+    height: 1.1rem;
+    color:
+    #92929d;
+    margin-right: 1.1rem;
+    margin-left: 0.7rem;
+  }
+  
+  
+  .search li {
+      width: 9rem;
+      color: #92929d;
+      height: 1.8rem;
+      margin-left: 1rem;
+  }
+  
+  .search li:hover{
+      background-color: #ffff;
+      color: #0059ff;
+  }
+  

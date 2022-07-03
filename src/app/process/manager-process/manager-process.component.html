@@ -1,0 +1,149 @@
+<app-table></app-table>
+<div class="managerProcessDiv" *ngIf=" processService.windowOpen === 'Meus Processos'">
+
+  <div class="abas">
+
+  </div>
+
+  <div class="filterSection">
+
+    <mat-form-field class="formField" appearance="standard">
+      <mat-chip-list class="chipList" style="margin-bottom:1rem ;" #chipList [multiple]="true">
+        <mat-chip style="font-size: 0.7rem;" *ngFor="let filter of filters" (removed)="remove(filter)">
+          {{filter}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input style="background-color: white;" placeholder="+Adicionar filtro" #filterInput [formControl]="processCtrl"
+          [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)" (keyup)="change($event)">
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let filter of allProcess " [value]="filter">
+          {{filter}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <div class="filtersButton" style="display: flex;">
+      <button mat-button> Limpar Filtro </button>
+      <button mat-button class="">Salvar filtro</button>
+    </div>
+
+    <button class="newProcessButton">
+      + Novo Processo
+    </button>
+  </div>
+
+  <mat-divider style="background-color: #161616;"></mat-divider>
+  <table style="background: white ;" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="isSecreet">
+      <th  mat-header-cell *matHeaderCellDef> </th>
+      <td style="width:3rem ;" mat-cell *matCellDef="let element"> <mat-icon class="material-icons-outlined mat-icon" color="warn" *ngIf="element.isSecreet">locked</mat-icon></td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="tribunal">
+      <th mat-header-cell *matHeaderCellDef="let row; columns: displayedCol"> Tribunal</th>
+      <td style="width: 7.5rem;" mat-cell *matCellDef="let element">
+
+          
+          <div class="processClass">
+            
+            <span class="simpleClass">
+              {{element.tribunal}}
+            </span>
+            <div class="grau" [ngClass]="{'primeiro': element.grau == '1 grau', 'segundo': element.grau == '2 grau', 'superior': element.grau == 'Tribunal Superior' }">
+              <span>
+                {{element.grau}}
+              </span>
+              
+            </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="processo">
+      <th mat-header-cell *matHeaderCellDef> Processo</th>
+      <td style="max-width: 8rem" mat-cell *matCellDef="let element">
+        <div class="processClass">
+          <span style="cursor: pointer;" (click)="openNewProcess(element.processo)" class="simpleClass">
+            {{element.processo}}
+          </span>
+
+          <span class="secondInfo">
+            {{element.processClass}}
+          </span>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastMov">
+      <th mat-header-cell *matHeaderCellDef> Última mov.</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="processClass">
+          <span class="simpleClass">
+            {{element.lastMov}} 
+          </span>
+          <span class="secondInfo">
+            {{element.movDescription}}
+          </span>
+        </div> 
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="partes">
+      <th mat-header-cell *matHeaderCellDef> Partes</th>
+
+
+      <td  style="max-width: 13rem; overflow:hidden;" mat-cell *matCellDef="let element">
+        <div  class="processClass"> <span class="simpleClass">   {{ (element.partes.length>15)? (element.partes | slice:0:40)+'...':(element.partes) }}</span> 
+          <span class="secondInfo">
+            Distribuído em {{element.deliveryDate}}
+          </span> 
+        </div>
+      </td>
+
+    </ng-container>
+    <!-- Weight Column -->
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="juizo">
+      <th mat-header-cell *matHeaderCellDef> Juízo</th>
+      <td style="max-width: 9rem;" mat-cell *matCellDef="let element"> <div class="processClass">
+       <span class="simpleClass"> {{ (element.juizo.length>15)? (element.juizo | slice:0:35)+'...':(element.juizo) }}  </span> 
+       <span class="secondInfo"> {{element.ufJuizo}}</span>
+      </div> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Categorias</th>
+      <td mat-cell *matCellDef="let element"> {{element.category}}</td>
+    </ng-container>
+
+   
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Nada foi encontrado com esses termos procure com outros ;)</td>
+    </tr>
+  </table>
+
+
+
+
+</div>
+
+<div *ngIf="processService.windowOpen !== 'Meus Processos'" class="watch">
+
+  <app-watch-process>
+
+  </app-watch-process>
+</div>

@@ -1,0 +1,144 @@
+/* Structure */
+table {
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+.formField{
+  background-color: white;
+  min-height: 3.5rem;
+  max-height: 3.5rem;
+  font-size: 0.8rem;
+   width: 80%;
+   padding: 0rem;
+}  
+  
+
+.filterSection{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.newProcessButton{
+  height: 100%;
+  background-color: #0059ff;
+  height: 3.5rem;
+  color: white;
+  border: none;
+  width: 12%;
+  cursor: pointer;
+}
+
+::ng-deep .mat-form-field-infix {
+padding: 0rem;
+}
+
+
+
+::ng-deep .mat-form-field{
+  background-color: white;
+
+}
+
+  /* th.mat-header-cell {
+    text-align: center !important;
+  } */
+
+  /* td {
+    text-align: center !important;
+    vertical-align: middle !important;
+} */
+
+.tabCell{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tribunalClass{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 3rem;
+}
+.processClass{
+  display: flex;
+  flex-direction: column;
+}
+td {
+  overflow: hidden;
+}
+
+
+tr.mat-header-row {
+  height: 2.3rem;
+  background-color: 
+  #f4f7fc;
+}
+tr.mat-row{
+  transition: 0.4s;
+}
+
+tr.mat-row, tr.mat-footer-row {
+    height: 4rem;
+}
+th{
+  color: #000000;
+  font-weight: 500;
+}
+tr.mat-row:hover{
+  background-color: #e6edf8;
+}
+
+.mat-sort-header-container {
+    justify-content: center !important;
+}
+
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+.simpleClass{
+  color: #161616;
+  font-size: 0.756rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.segundo{
+  color: #6929c4;
+  width: 2.7rem;
+  background-color: #e8daff;
+}
+
+.primeiro{
+  width: 2.7rem;
+  color: #0e6027;
+  background-color: #a7f0ba;
+}
+
+.grau{
+  line-height: 1.6;
+  height: 1rem;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem 0.063rem;
+  border-radius: 8px;
+}
+
+.superior{
+  width: 6rem;
+  color: #653e36;
+  background-color: #f6edda;
+}
+
+
+.secondInfo{
+  color: #92929d;
+  font-size: 0.625rem;
+  line-height: 1.6;
+}
+

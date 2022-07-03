@@ -1,0 +1,55 @@
+<div class="loginForms">
+  <h1 class="title">Fazer Login</h1>
+
+  <span *ngIf="errorResponse" class="errorSpan">{{errorResponse}}</span>
+
+  <form (ngSubmit)="onSubmit()"   name="loginForms" [formGroup]="loginForm" class="forms">
+
+    <mat-form-field class="formField" appearance="outline">
+      <mat-label>CPF</mat-label>
+      <input mask="000.000.000-00" formControlName="login" matInput placeholder="Digite seu login" required/>
+      <button mat-icon-button matSuffix  [attr.aria-label]="'Hide Password'"
+      [attr.aria-pressed]="hide">
+<mat-icon color="primary">
+  {{!loginForm.controls['login'].valid ? 'block' : 'check_circle_outline'}}
+</mat-icon>
+</button>
+      <mat-error *ngIf="!loginForm.controls['login'].valid">
+        Digite um login válido.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="formField" appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'" required/>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+              [attr.aria-pressed]="hide">
+        <mat-icon color="primary">
+          {{hide ? 'visibility_off' : 'visibility'}}
+        </mat-icon>
+      </button>
+      <mat-error *ngIf="!loginForm.controls['password'].valid">
+        Digite uma senha válida.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-slide-toggle formControlName="keepLogged" class="mat-slide" style="font-size: 0.75rem; color: #0059ff;" color="primary">Manter-me conectado
+    </mat-slide-toggle>
+  </form>
+
+  <div class="buttonForms">
+    <button [disabled]="!loginForm.valid"  class="primaryButton" (click)="sendToServer()" mat-raised-button color="primary">
+      Login
+    </button>
+  </div>
+
+  <div class="loginLinks">
+        <span>
+          <a class="aLink" routerLink="/auth/forgotpass">Esqueceu a senha?</a> <mat-icon class="footerIcon" color="primary">lock_open</mat-icon>
+        </span>
+
+    <span class="register">
+          <a routerLink="/register">Ainda não tenho conta</a> <mat-icon class="footerIcon" color="primary">arrow_forward</mat-icon>
+        </span>
+  </div>
+</div>

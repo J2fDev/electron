@@ -1,0 +1,12 @@
+<div class="body">
+  <div class="doneDiv">
+    <div class="doneIconDiv">
+      <mat-icon class="doneIcon" color="primary">check_circle_outline</mat-icon>
+    </div>
+    <h1>Conta criada com sucesso !</h1>
+    <span>Olá, {{user.username}}, <br> Enviamos um resumo do seu cadastro <br> para o email:</span>
+    <h1 class="email">{{user.userEmail}}</h1>
+    <button mat-raised-button (click)="onLogin()" color="primary">Login -></button>
+  </div>
+
+</div>

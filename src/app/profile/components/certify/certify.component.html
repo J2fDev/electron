@@ -1,0 +1,26 @@
+
+    <div class="editCertify">
+        <div *ngFor="let cert of list" class="listOfCERTIFYS">
+            <div class="certify">
+                <div class="firstBlock">
+                    <mat-icon color="primary" class="material-icons-outlined iconCloud"> cloud_done_outlined </mat-icon>
+                    <div class="costumer">
+                        <span class="nameCertify">{{cert.name}}</span>
+                        <span class="emissorCertify">
+                            {{cert.emissor}}
+                        </span>
+                    </div>
+                </div>
+
+            <div class="info">
+                <span class="infoTime">Vence em 180 dias</span>
+                <span class="infoData">Validade 16/14/2023</span>
+            </div>
+
+            <mat-icon class="closeIcon">close</mat-icon>
+        </div>
+    </div>
+    <div class="button">
+        <button color="primary" mat-raised-button > + Novo Certificado A1</button>
+    </div>
+    </div>

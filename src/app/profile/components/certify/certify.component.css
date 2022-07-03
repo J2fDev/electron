@@ -1,0 +1,94 @@
+.editCertify{
+    margin: 2rem;
+}
+
+.certify{
+    display: flex;
+    height: 4rem;
+    width: 42rem;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0;
+    border-radius: 8px;
+    border: solid 1px #dadada;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.certify:hover{
+    background-color: #fdeceb;
+    border: 1px solid #f44336;
+}
+
+.iconCloud{
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+}
+
+.costumer{
+    display:flex ;
+    flex-direction: column;
+}
+
+.emissorCertify{
+    font-size: 0.75rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    text-align: left;
+    color: #92929d;
+}
+.nameCertify{
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.33;
+    color: #161616;
+}
+
+.closeIcon{
+    font-size: 1rem;
+    display: flex;
+    font-weight: 700;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.5rem;
+    border-radius: 0.2rem;
+    background-color: #fdeceb;
+    border: 1px solid #f44336;
+    color: #f44336;
+}
+
+.closeIcon:hover{
+    color: #ff9800;
+    animation-duration: 2s;
+    transform: rotateX(100%);
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+}
+
+.infoTime{
+    color: #ff9800;
+    font-size: 0.65rem;
+    border-radius: 0.2rem;
+    line-height: 1rem;
+    border: 1px solid #ff9800;
+    width: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.firstBlock{
+    display: flex;
+}
+
+.infoData{
+    font-size: 0.65rem;
+    line-height: 1.2rem;
+    color: #161616;
+}
