@@ -4,6 +4,7 @@ var electron_1 = require("electron");
 var path = require("path");
 var fs = require("fs");
 var url = require("url");
+var usbDetect = require('usb-detection');
 var win = null;
 var args = process.argv.slice(1), serve = args.some(function (val) { return val === '--serve'; });
 function createWindow() {
@@ -48,6 +49,10 @@ function createWindow() {
         // when you should delete the corresponding element.
         win = null;
     });
+    usbDetect.startMonitoring();
+    usbDetect.on('add', function (device) { console.log('add', device); });
+    usbDetect.on('remove', function (device) { console.log('remove', device); });
+    usbDetect.find(function (err, devices) { console.log('find', devices, err); });
     electron_1.ipcMain.handle("teste", function (event, data) {
         console.log(event);
         console.log(data);
@@ -65,6 +70,7 @@ try {
     electron_1.app.on('window-all-closed', function () {
         // On OS X it is common for applications and their menu bar
         // to stay active until the user quits explicitly with Cmd + Q
+        usbDetect.stopMonitoring();
         if (process.platform !== 'darwin') {
             electron_1.app.quit();
         }

@@ -1,61 +1,72 @@
-.alert{
-    width: 100%;
-    height: 3rem;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.16);
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
+.infoBox {
+  display: flex;
+  align-items: stretch;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.16);
+  margin-bottom: 0.5rem;
+  text-align: left;
+  overflow: hidden;
 }
 
-.listra{
-    width: 3px;
-    height: 100%;
-    margin-right: 1rem;
-    background-color: #f44336;
+.listra {
+  border-radius: 25px;
+  width: 4px;
+  margin-right: 0.4rem;
 }
 
-
-.alert h3{
-    font-size: 0.8rem;
-    line-height: 1.33rem;
-    color: #f44336;
+.icon {
+  line-height: 1.33rem;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
-.errorIcon{
-    margin-right: 1rem;
-    line-height: 1.33rem;
-    color: #f44336;
+.divText {
+  margin-left: 0.4rem;
+  display: flex;
+  flex-direction: column;
 }
 
-
-.atention{
-    width: 33rem;
-    height: 3rem;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.16);
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    line-height: 1.33;
-    letter-spacing: normal;
-    text-align: left;
-    color: #0092ff;
-    font-size: 0.75rem;
+.divText h3 {
+  margin-top: 0.3rem;
+  font-size: 0.8em;
 }
 
-
-.listraAtention{
-    width: 3px;
-    height: 100%;
-    border-radius: 1rem 1rem  0rem  0rem   ;
-    margin-right: 1rem;
-    background-color: #0092ff;
+.divText p {
+  margin-top: -15px;
+  margin-right: 10px;
+  font-size: 0.7em;
+  margin-bottom: 3px;
+  text-align: justify;
 }
 
+.error-bgcolor {
+  background-color: #f44336;
+}
 
-.atentionIcon{
-    margin-right: 1rem;
-    line-height: 1.33rem;
-    color: #0092ff;
+.success-bgcolor {
+  background-color: #4caf50;
+}
+
+.info-bgcolor {
+  background-color: #0092ff;
+}
+
+.warn-bgcolor {
+  background-color: #ff9800;
+}
+
+.error-color {
+  color: #f44336;
+}
+
+.success-color {
+  color: #4caf50;
+}
+
+.info-color {
+  color: #0092ff;
+}
+
+.warn-color {
+  color: #ff9800;
 }

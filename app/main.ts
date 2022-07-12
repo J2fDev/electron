@@ -3,6 +3,9 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as url from 'url';
 
+var usbDetect = require('usb-detection');
+
+
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
@@ -56,6 +59,12 @@ function createWindow(): BrowserWindow {
     win = null;
   });
 
+  usbDetect.startMonitoring();
+
+  usbDetect.on('add', function(device) { console.log('add', device); });
+  usbDetect.on('remove', function(device) { console.log('remove', device); });
+  usbDetect.find(function(err, devices) { console.log('find', devices, err); });
+
   ipcMain.handle("teste", (event, data) => {
     console.log(event);
     console.log(data);
@@ -77,6 +86,7 @@ try {
   app.on('window-all-closed', () => {
     // On OS X it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
+    usbDetect.stopMonitoring();
     if (process.platform !== 'darwin') {
       app.quit();
     }

@@ -37,7 +37,7 @@ Windows
  - .\node_modules\.bin\electron-rebuild.cmd - Windows
 
 Linux
- - $(npm bin)/electron-rebuild
+ - $(npm bin)/electron-rebuild normalmente ./node_modules/.bin/electron-rebuild
  
 # Problemas e Solućões
 A instaćão do ngx-electron está gerando um problema. Para corrigir seguir os passos

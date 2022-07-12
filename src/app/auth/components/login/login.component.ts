@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './userClass';
 import {LoginService} from "../../../core/services/login.service";
 import {ChargebeeService} from "../../../core/services/chargebee.service";
+import {ElectronService} from "../../../core/services";
 
 @Component({
   selector: 'auth-login',
@@ -12,16 +13,19 @@ import {ChargebeeService} from "../../../core/services/chargebee.service";
 })
 export class LoginComponent implements OnInit {
 
-  hide: boolean = true;
+  hidePassword: boolean = true;
   token: any;
   errorResponse: string = '';
   disableButton: boolean = true;
   loginForm!: FormGroup;
 
   constructor(private loginService: LoginService,
-    private formBuilder: FormBuilder, private router: Router, private chargeBee: ChargebeeService,) { }
+    private formBuilder: FormBuilder, private router: Router, private chargeBee: ChargebeeService,
+              private electronService: ElectronService) { }
 
   ngOnInit() {
+    // Verifica se o token atual ainda é válido e testa junto ao servidor
+
     this.createForm(new User());
   }
 
@@ -72,22 +76,22 @@ export class LoginComponent implements OnInit {
 
   }
 
-  onSubmit(){
-    console.log(this.loginForm.value);
-  }
-
   onEdit() {
     this.loginForm.valid ? this.disableButton = false : this.disableButton;
   }
 
   async sendToServer() {
+    if ( !this.loginForm.valid ) {
+      this.ErrorTreatment(-1);
+      return;
+    }
     this.loginService.login(this.loginForm.value).then((res: any) => {this.sucessTreatment(res);}
     ).catch((err: any) => {this.ErrorTreatment(err.status)});
   }
 
   sucessTreatment(res: any) {
     this.token = res.token;
-    //this.loginService.connectSocket();
+    this.loginService.connectSocket();
 
     this.loginService.checkAuth(this.token);
     this.router.navigate(['/auth/certify']);
@@ -100,8 +104,9 @@ export class LoginComponent implements OnInit {
     else if (status == 426) {
       this.errorResponse =
         "Problemas com a conexão com o servidor, atualize sua versão e se persistir o problema, entre em contato com o suporte";
+    } else if ( status === -1 ) {
+      this.errorResponse = "Verifique se o formulário está corretamente preenchido"
     }
-    console.log(this.errorResponse);
   }
 
 

@@ -1,17 +1,11 @@
-
-  <div  *ngIf="type == 'alert' " class="alert">
-    <div class="listra"></div>
-    <mat-icon class="errorIcon">error_outline</mat-icon>
-    <h3>{{title}}</h3>
-    <a>{{message}}</a>
+<div class="infoBox {{type}}">
+  <div class="listra {{type}}-bgcolor"></div>
+  <mat-icon *ngIf="type === 'error'" class="icon {{type}}-color">error_outline</mat-icon>
+  <mat-icon *ngIf="type === 'info'" class="icon {{type}}-color">info_outline</mat-icon>
+  <mat-icon *ngIf="type === 'warn'" class="icon {{type}}-color">warning_outline</mat-icon>
+  <mat-icon *ngIf="type === 'success'" class="icon {{type}}-color">check_circle_outline</mat-icon>
+  <div class="divText">
+    <h3 class="{{type}}-color">{{title}}</h3>
+    <p>{{message}}</p>
   </div>
-  
-  
-
-  <div  *ngIf="type == 'atention'" class="atention">
-    <div class="listraAtention"></div>
-    <mat-icon class="atentionIcon">error_outline</mat-icon>
-    <h3>{{title}}</h3>
-    <a>{{message}}</a>
-  </div>
-  
+</div>
