@@ -7,8 +7,8 @@ import {Subject} from "rxjs";
   providedIn: 'root'
 })
 export class ApiService {
-  private urlBase : string = "http://192.168.1.85:3000";
-  // private urlBase : string = "http://localhost:3000";
+  //private urlBase : string = "http://192.168.1.85:3000";
+  private urlBase : string = "http://localhost:3000";
   constructor(private req: HttpClient) { }
 
   private static socket : any = null;
@@ -53,6 +53,13 @@ export class ApiService {
           console.log(e);
         }
       })
+    }
+
+  }
+
+  disconnectSocket() {
+    if ( ApiService.socket !== null && ApiService.socket !== undefined && ApiService.socket.connected ) {
+      ApiService.socket.disconnect();
     }
 
   }
@@ -142,7 +149,6 @@ export class ApiService {
           request = this.req.get(this.urlBase + url, httpOptions);
           break;
         case "put":
-          console.log(httpOptions);
           request = this.req.put(this.urlBase + url, data, httpOptions);
           break;
         case "delete":
@@ -154,8 +160,16 @@ export class ApiService {
       }
 
       request.subscribe(
-        res => resolve(res),
-        err => reject(err)
+        res => {
+          console.log("Resposta do request subscribe");
+          console.log(res);
+          resolve(res)
+        },
+        err => {
+          console.log("Resposta do request subscribe com erro");
+          console.log(err);
+          reject(err)
+        }
       );
 
     });

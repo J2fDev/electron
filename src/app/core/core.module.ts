@@ -21,6 +21,7 @@ import { CourtsService } from './services/courts.service';
 import {MatIconModule} from "@angular/material/icon";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatButtonModule} from "@angular/material/button";
+import {CertifyService} from "./services/certify.service";
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import {MatButtonModule} from "@angular/material/button";
     LoginService,
     IbgeService,
     CourtsService,
-    ProcessService
+    ProcessService,
+    CertifyService
   ]
 })
 export class CoreModule { }

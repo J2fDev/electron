@@ -18,19 +18,21 @@
       <mat-label>CPF</mat-label>
       <input mask="000.000.000-00" formControlName="login" class="input" matInput placeholder="Digite seu login"
              required/>
-      <mat-icon matSuffix color="primary">
+      <mat-icon *ngIf="loginForm.controls['login'].value"
+                matSuffix [color]="!loginForm.controls['login'].valid ? 'warn' : 'primary'">
         {{!loginForm.controls['login'].valid ? 'block' : 'check_circle_outline'}}
       </mat-icon>
 
       <mat-error *ngIf="!loginForm.controls['login'].valid">
-        Digite um login válido.
+        Digite um CPF válido.
       </mat-error>
     </mat-form-field>
 
 
   </form>
 
-  <button [disabled]="!loginForm.valid" class="primaryButton" (click)="sendToServer()" mat-raised-button color="primary">
+  <button [disabled]="!loginForm.valid" class="primaryButton" (click)="sendToServer()" mat-raised-button
+          color="primary">
     Enviar
   </button>
 

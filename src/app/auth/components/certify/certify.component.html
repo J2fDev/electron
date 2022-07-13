@@ -1,31 +1,23 @@
 <div class="noneCertDetec">
-  <div class="backIcon">
+  <div class="backIcon" (click)="logout()">
     <mat-icon>arrow_back</mat-icon>
   </div>
 
-  <div class="textList">
+  <!--<div class="textList">
     <h1>Certificado Digital</h1>
     <span>Selecione um certificado para uso no Unico.</span>
-  </div>
+  </div>-->
 
-  <div *ngIf="isWeb" class="alert">
-    <app-alert title="Certificados A3 indisponiveis"
-               message="Os certificadoa A3 só podem ser usados na versão desktop "></app-alert>
-  </div>
+  <app-alert *ngIf="!electronService.isElectron" title="Certificados A3 indisponiveis" type="info" class="alertBox"
+             message="Os certificadoa A3 só podem ser usados na versão desktop "></app-alert>
 
   <div *ngIf="reciveListA1.length == 0" class="noneDetectedImg">
-    <div class="bgImg">
-      <img src="../../../../assets/imgs/noneCertify.svg" alt="">
-    </div>
+      <img src="../../../../assets/imgs/noneCertify.svg" alt="Nenhum certificado encontrado">
   </div>
 
   <div *ngIf="reciveListA1.length == 0" class="noneDetectedText">
-    <div class="noneDetectedH1">
-      <h3><b> Não encontramos nenhum certificado! </b></h3>
-    </div>
-    <div class="noneDetectedP">
-      <p>Certifique-se de ter plugado o token ou adicione um certificado válido</p>
-    </div>
+    <h1>Não encontramos nenhum certificado! </h1>
+    <p>Certifique-se de ter plugado o token ou adicione um certificado válido</p>
   </div>
 
   <div *ngIf="reciveListA1.length > 0" class="A1List">
@@ -45,19 +37,17 @@
     </div>
   </div>
 
-  <div *ngIf="reciveListA1.length === 0" class="noneDetectedButton">
-    <button mat-raised-button (click)="addCertifyA1()">
-      Adicione um certificado A1
-    </button>
-  </div>
+  <button mat-raised-button (click)="addCertifyA1()" *ngIf="reciveListA1.length === 0" class="noneDetectedButton">
+    Adicione Certificado A1
+    <img src="../../../../assets/svg/icons/cloud_ckeched.svg" />
+  </button>
 
   <div class="footer">
-    <div class="buttonNoCertify">
-      <button (click)="openDialog()">Entrar sem certificado-></button>
-    </div>
-    <div class="aNoCertify">
-      <a href="">Preciso de ajuda ?</a>
-    </div>
+      <button (click)="openDialog()" class="buttonNoCertify">
+        Entrar sem certificado
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+      <a href="" class="aNoCertify">Preciso de ajuda ?</a>
   </div>
 </div>
 

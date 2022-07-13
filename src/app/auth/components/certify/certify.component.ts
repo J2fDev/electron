@@ -6,6 +6,9 @@ import {WithoutCertifyDialogComponent} from '../../dialog/without-certify-dialog
 import {ConfirmPinDialogComponent} from '../../dialog/confirm-pin-dialog/confirm-pin-dialog.component';
 import {RegisterPinDialogComponent} from '../../dialog/register-pin-dialog/register-pin-dialog.component';
 import {InstallCertifyDialogComponent} from '../../dialog/install-certify-dialog/install-certify-dialog.component';
+import {CertifyService} from "../../../core/services/certify.service";
+import {ElectronService} from "../../../core/services";
+import {ApiService} from "../../../core/services/api.service";
 
 @Component({
   selector: 'auth-certify',
@@ -36,7 +39,8 @@ export class CertifyComponent implements OnInit {
   liberaLista: boolean = false;
   isWeb: boolean = true;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog) {
+  constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog,
+              private certifyService: CertifyService, private electronService: ElectronService) {
   }
 
   ngOnInit(): void {
@@ -53,7 +57,6 @@ export class CertifyComponent implements OnInit {
   validateFormsA1() {
     if (this.a1Forms.valid) {
       this.ableButtonA1 = false;
-      console.log(this.a1Forms.value);
     }
   }
 
@@ -102,6 +105,12 @@ export class CertifyComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  logout() {
+    this.certifyService.token = "";
+    this.certifyService.disconnectSocket();
+    this.router.navigate(["auth"]);
   }
 
   installCertifyPassword() {

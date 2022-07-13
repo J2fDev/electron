@@ -5,6 +5,7 @@ import { User } from './userClass';
 import {LoginService} from "../../../core/services/login.service";
 import {ChargebeeService} from "../../../core/services/chargebee.service";
 import {ElectronService} from "../../../core/services";
+import {LocalStorageService} from "../../../core/services/local-storage.service";
 
 @Component({
   selector: 'auth-login',
@@ -25,6 +26,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     // Verifica se o token atual ainda é válido e testa junto ao servidor
+    if ( this.loginService.token !== null && this.loginService.token !== undefined && this.loginService.token !== "" ) {
+      // Token já existe, verifica a validade junto ao servidor
+
+    }
 
     this.createForm(new User());
   }
@@ -104,6 +109,9 @@ export class LoginComponent implements OnInit {
     else if (status == 426) {
       this.errorResponse =
         "Problemas com a conexão com o servidor, atualize sua versão e se persistir o problema, entre em contato com o suporte";
+    } else if ( status === 401 ) {
+      this.token = "";
+
     } else if ( status === -1 ) {
       this.errorResponse = "Verifique se o formulário está corretamente preenchido"
     }
