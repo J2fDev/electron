@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   errorResponse: string = '';
   disableButton: boolean = true;
   loginForm!: FormGroup;
+  alertCaps: boolean = false;
 
   constructor(private loginService: LoginService,
     private formBuilder: FormBuilder, private router: Router, private chargeBee: ChargebeeService,
@@ -26,13 +27,30 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     // Verifica se o token atual ainda é válido e testa junto ao servidor
-    if ( this.loginService.token !== null && this.loginService.token !== undefined && this.loginService.token !== "" ) {
-      // Token já existe, verifica a validade junto ao servidor
+    if ( this.loginService.keepLogged ) {
+      console.log("Marcou para ficar logado");
 
+      if ( this.loginService.token !== null && this.loginService.token !== undefined && this.loginService.token !== "" ) {
+        // Token já existe, verifica a validade junto ao servidor
+        console.log("Achou um token e vai tentar validar o mesmo");
+        this.loginService.validateToken()
+          .then((resp) => { console.log(resp)})
+          .catch((err) => {console.log(err)});
+
+      } else {
+        console.log("Não existe token armazado");
+      }
+    } else {
+      console.log("Nao deve permanecer logado");
     }
 
     this.createForm(new User());
   }
+
+  clearLocalStorage() {
+    window.localStorage.clear();
+  }
+
 
   createForm(user: User){
     this.loginForm = this.formBuilder.group({
@@ -85,7 +103,19 @@ export class LoginComponent implements OnInit {
     this.loginForm.valid ? this.disableButton = false : this.disableButton;
   }
 
-  async sendToServer() {
+  capsOn(e) {
+    if ( e.key === "CapsLock" ) {
+      this.alertCaps = !this.alertCaps;
+    } else {
+      if (e.getModifierState('CapsLock')) {
+        this.alertCaps = true;
+      } else {
+        this.alertCaps = false;
+      }
+    }
+  }
+
+  sendToServer() {
     if ( !this.loginForm.valid ) {
       this.ErrorTreatment(-1);
       return;

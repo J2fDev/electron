@@ -14,19 +14,37 @@ export class LoginService extends ApiService {
   private userAuth: boolean = false;
   private user: any;
 
+  set keepLogged(keep: boolean) {
+    window.localStorage.setItem("kl", (keep) ? "S" : "N");
+  }
+
+  get keepLogged() {
+    let resp = window.localStorage.getItem("kl");
+    if ( resp === undefined || resp === null ) return false;
+    else {
+      if ( resp === "S" ) return true;
+      else return false;
+    }
+  }
+
   constructor(private http: HttpClient) {
     super(http);
   }
 
   async login(user: any) {
-    let data : any = await this.request("post", this.urlLogin, user, false);
+    this.keepLogged = user.keepLogged;
 
+    let data : any = await this.request("post", this.urlLogin, user, false);
     if ( data.token !== null && data.token !== undefined ) {
       this.token = data.token;
     }
 
     return data;
 
+  }
+
+  async validateToken() {
+    return "";
   }
 
   checkAuth(token: string) {
@@ -39,7 +57,7 @@ export class LoginService extends ApiService {
   }
 
   authorizationToken() {
-    return this.userAuth
+    return this.userAuth;
   }
 
   verifyEmail() {

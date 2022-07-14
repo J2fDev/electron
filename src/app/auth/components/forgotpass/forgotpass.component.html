@@ -1,15 +1,11 @@
 <div class="loginForms">
+  <div class="backIcon">
+    <mat-icon (click)="backToLogin()">arrow_back</mat-icon>
+  </div>
 
-  <div class="header">
-    <div class="first">
-      <button (click)="backToLogin()" class="buttonBack">
-        <mat-icon color="primary">arrow_back</mat-icon>
-      </button>
-      <h1 class="title">Esqueci minha senha</h1>
-      <mat-icon></mat-icon>
-    </div>
-    <span style="color: #666; font-size: 1rem">Insira o seu CPF para continuar.</span>
-    <span *ngIf="errorResponse" class="errorSpan">{{errorResponse}}</span>
+  <div class="textList">
+    <h1>Esqueci minha senha</h1>
+    <span>Insira o seu CPF para continuar.</span>
   </div>
 
   <form (ngSubmit)="onSubmit()" name="loginForms" [formGroup]="loginForm" class="forms">

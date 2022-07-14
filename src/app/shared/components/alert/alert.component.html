@@ -1,11 +1,19 @@
-<div class="infoBox {{type}}">
+<div class="infoBox {{type}}" *ngIf="show">
   <div class="listra {{type}}-bgcolor"></div>
   <mat-icon *ngIf="type === 'error'" class="icon {{type}}-color">error_outline</mat-icon>
   <mat-icon *ngIf="type === 'info'" class="icon {{type}}-color">info_outline</mat-icon>
   <mat-icon *ngIf="type === 'warn'" class="icon {{type}}-color">warning_outline</mat-icon>
   <mat-icon *ngIf="type === 'success'" class="icon {{type}}-color">check_circle_outline</mat-icon>
-  <div class="divText">
+  <div class="divText" *ngIf="title.length > 0">
     <h3 class="{{type}}-color">{{title}}</h3>
-    <p>{{message}}</p>
+    <p class="normal-color">{{message}}</p>
+    <a class="link" href="{{link}}" *ngIf="linkText !== undefined && linkText.length > 0">{{linkText}}</a>
   </div>
+  <div class="soloText" *ngIf="title.length === 0">
+    <p class="{{type}}-color">{{message}}</p>
+  </div>
+  <button mat-icon-button aria-label="Close alert" class="closeButton"
+          *ngIf="canclose === 'true' || canclose === '1'" (click)="close()">
+    <mat-icon class="{{type}}-color">close</mat-icon>
+  </button>
 </div>

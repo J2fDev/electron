@@ -4,21 +4,26 @@
 }
  */
 
-html, body { height: 100%; }
-body { margin: 0; font-family:'Poppins', sans-serif; }
-
-
-
-.mat-dialog-container{
-    border-radius: 20px !important;
+html, body {
+  height: 100%;
 }
 
-a{
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.mat-dialog-container {
+  border-radius: 20px !important;
+}
+
+a {
   color: #0059FF;
   text-decoration: none;
 }
 
-.errorSpan{
+.errorSpan {
   color: #ff0000;
   font-size: 0.8rem;
   font-weight: 600;
@@ -26,19 +31,20 @@ a{
 }
 
 
-.forms{
+.forms {
   display: flex;
   flex-direction: column;
-  width: 24rem ;
-}
-  h1{
-      font-size: 1.5rem;
-      color:#161616 ;
-      margin-top: 2.5rem;
-      line-height: 2rem
+  width: 24rem;
 }
 
-.primaryButton{
+h1 {
+  font-size: 1.5rem;
+  color: #161616;
+  margin-top: 2.5rem;
+  line-height: 2rem
+}
+
+.primaryButton {
   background-color: #0059FF;
   color: white;
   width: 24rem;
@@ -53,18 +59,18 @@ a{
   margin-bottom: 1.5rem;
 }
 
-  button{
-      transition: 0.7s;
-  }
+button {
+  transition: 0.7s;
+}
 
-  h3{
-      font-size: 1rem;
-      line-height: 1.125rem;
-      color: #666666;
-  }
+h3 {
+  font-size: 1rem;
+  line-height: 1.125rem;
+  color: #666666;
+}
 
-  .mat-icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.mat-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

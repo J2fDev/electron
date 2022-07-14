@@ -57,6 +57,22 @@ h1 {
   align-items: center;
 }
 
+.capsOn {
+  margin-top: -5px;
+  font-size: 0.7rem;
+  /*color: #ff9800; GOLD*/
+  color: #0059ff;
+  display: flex;
+  align-items: center;
+}
+
+.capsOn img {
+  width: 1rem;
+  height: 1rem;
+  /*filter: invert(55%) sepia(94%) saturate(1075%) hue-rotate(358deg) brightness(100%) contrast(107%); GOLD*/
+  filter: invert(22%) sepia(67%) saturate(4845%) hue-rotate(217deg) brightness(100%) contrast(110%);
+}
+
 .footerIcon{
   font-size: 1rem;
   display: flex;

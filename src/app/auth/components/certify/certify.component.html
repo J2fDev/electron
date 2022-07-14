@@ -1,6 +1,6 @@
 <div class="noneCertDetec">
-  <div class="backIcon" (click)="logout()">
-    <mat-icon>arrow_back</mat-icon>
+  <div class="backIcon">
+    <mat-icon (click)="logout()">arrow_back</mat-icon>
   </div>
 
   <!--<div class="textList">
@@ -9,7 +9,9 @@
   </div>-->
 
   <app-alert *ngIf="!electronService.isElectron" title="Certificados A3 indisponiveis" type="info" class="alertBox"
-             message="Os certificadoa A3 só podem ser usados na versão desktop "></app-alert>
+             message="Os certificados A3 só podem ser usados na versão desktop"
+             link="https://google.com" linkText="Baixar versao desktop"
+  ></app-alert>
 
   <div *ngIf="reciveListA1.length == 0" class="noneDetectedImg">
       <img src="../../../../assets/imgs/noneCertify.svg" alt="Nenhum certificado encontrado">
@@ -47,7 +49,11 @@
         Entrar sem certificado
         <mat-icon>arrow_forward</mat-icon>
       </button>
-      <a href="" class="aNoCertify">Preciso de ajuda ?</a>
+      <button (click)="openDialog()" class="buttonNoCertify">
+        Usando login e senha PJE
+        <mat-icon>admin_panel_settings</mat-icon>
+      </button>
+      <a href="" class="aNoCertify">Preciso de ajuda <mat-icon>help_outlined</mat-icon></a>
   </div>
 </div>
 

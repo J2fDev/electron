@@ -1,7 +1,10 @@
 <div class="loginForms">
   <h1 class="title">Fazer Login</h1>
 
-  <app-alert *ngIf="errorResponse" title="Dados inválidos" message="{{errorResponse}}" type="error" style="width: 29rem"></app-alert>
+  <app-alert title="Falha no login" message="{{errorResponse}}"
+             *ngIf="errorResponse.length > 0" type="error" style="width: 29rem;" canclose="false">
+
+  </app-alert>
 
   <form name="loginForms" [formGroup]="loginForm" class="forms">
 
@@ -19,7 +22,7 @@
 
     <mat-form-field class="formField" appearance="outline" hideRequiredMarker>
       <mat-label>Senha</mat-label>
-      <input formControlName="password" matInput [type]=" hidePassword ? 'password' : 'text'" required/>
+      <input formControlName="password" matInput [type]=" hidePassword ? 'password' : 'text'" (keyup)="capsOn($event)" required/>
       <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide Password'"
               [attr.aria-pressed]="hidePassword">
         <mat-icon color="primary">
@@ -30,13 +33,16 @@
         Digite uma senha válida.
       </mat-error>
     </mat-form-field>
+    <p *ngIf="alertCaps" class="capsOn">
+      <img src="../../../../assets/svg/icons/waring_outlined.svg" />O CapsLock está ligado
+    </p>
 
     <mat-slide-toggle formControlName="keepLogged" class="mat-slide" style="font-size: 0.75rem;" color="primary"
                       >Manter-me conectado
     </mat-slide-toggle>
   </form>
 
-  <button mat-raised-button class="primaryButton" (click)="sendToServer()" color="primary">
+  <button mat-raised-button [disabled]="!loginForm.valid" class="primaryButton" (click)="sendToServer()" color="primary">
     Login
   </button>
 
@@ -45,7 +51,9 @@
       Esqueceu a senha
       <img src="../../../../assets/svg/icons/icone_account.svg" style="width: 1.5rem; height: 1rem;" />
     </a>
-
+    <button (click)="clearLocalStorage()">
+      Limpar storage
+    </button>
     <a routerLink="/register" class="register">
       Ainda não tenho conta
       <mat-icon class="footerIcon" color="primary">arrow_forward</mat-icon>

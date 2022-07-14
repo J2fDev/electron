@@ -22,7 +22,7 @@
 }
 
 .backIcon mat-icon {
-  border: 1px solid white;
+  border: 1px solid rgb(246, 246, 246);
   cursor: pointer;
   border-radius: 50%;
   padding: 0.3rem;
@@ -88,6 +88,12 @@
   color: #0059FF;
   text-decoration: none;
   margin-right: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.aNoCertify mat-icon {
+  margin-left: 5px;
 }
 
 .buttonNoCertify {

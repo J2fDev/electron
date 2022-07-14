@@ -14,10 +14,22 @@ export class AlertComponent implements OnInit {
   message!: string;
   @Input()
   type!: string;
+  @Input()
+  link!: string;
+  @Input()
+  canclose!: boolean;
+  @Input()
+  linkText!: string;
+
+  show: boolean = true;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  close() {
+    this.show = false;
   }
 
 }
