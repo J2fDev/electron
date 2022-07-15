@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as url from 'url';
 
 var usbDetect = require('usb-detection');
-
+let folder = app.getPath("userData");
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),

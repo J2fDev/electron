@@ -5,6 +5,10 @@ var path = require("path");
 var fs = require("fs");
 var url = require("url");
 var usbDetect = require('usb-detection');
+console.log("AAAAAAAAAAa");
+console.log(electron_1.app.getPath("appData"));
+console.log(electron_1.app.getPath("home"));
+console.log(electron_1.app.getPath("userData"));
 var win = null;
 var args = process.argv.slice(1), serve = args.some(function (val) { return val === '--serve'; });
 function createWindow() {

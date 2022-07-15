@@ -7,7 +7,7 @@ import {ApiService} from "./api.service";
 })
 export class LoginService extends ApiService {
   private urlLogin = '/auth/login';
-  private urlVerify = '/auth/verify';
+  private urlVerify = '/auth/verifymail';
   private urlFirstLogin = '/auth/fistlogin';
   private chargebeeUrl = '/chargebee/checkSubscription';
 
@@ -44,7 +44,9 @@ export class LoginService extends ApiService {
   }
 
   async validateToken() {
-    return "";
+    let data : any = await this.request("post", "/auth/verifytoken", {token: this.token}, false);
+
+    return data;
   }
 
   checkAuth(token: string) {

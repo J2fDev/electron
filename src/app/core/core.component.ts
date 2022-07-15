@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./core.component.css']
 })
 export class CoreComponent {
-  title = 'telasj2f';
+  title = 'Único';
   fullScreen = true;
 
 

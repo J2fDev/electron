@@ -161,13 +161,14 @@ export class ApiService {
 
       request.subscribe(
         res => {
-          console.log("Resposta do request subscribe");
-          console.log(res);
+          // TODO: Criar funcao para salvar o resultado em disco
           resolve(res)
         },
         err => {
           console.log("Resposta do request subscribe com erro");
           console.log(err);
+
+          // TODO: Emitir evento de unauthorized ( verificar token e deslogar se necessario )
           reject(err)
         }
       );

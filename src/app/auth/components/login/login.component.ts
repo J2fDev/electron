@@ -34,8 +34,19 @@ export class LoginComponent implements OnInit {
         // Token já existe, verifica a validade junto ao servidor
         console.log("Achou um token e vai tentar validar o mesmo");
         this.loginService.validateToken()
-          .then((resp) => { console.log(resp)})
-          .catch((err) => {console.log(err)});
+          .then((resp) => {
+            console.log(resp)
+          })
+          .catch((err) => {
+
+            // Token já não é mais válido
+            if ( err.status === 401 ) {
+              console.log("Token ja nao e mais valido");
+            } else {
+              console.log(err)
+            }
+
+          });
 
       } else {
         console.log("Não existe token armazado");
@@ -45,6 +56,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.createForm(new User());
+    this.loginForm.controls["keepLogged"].setValue(this.loginService.keepLogged);
   }
 
   clearLocalStorage() {
