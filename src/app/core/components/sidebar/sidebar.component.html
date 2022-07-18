@@ -1,63 +1,67 @@
-<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-<nav class="sideNav">
-    <div class="iconArea">
-        <div class="logoImg">
-            <img src="../../../../assets/imgs/logo2.png" alt="logo unico">
-          </div>
-          <div class="white"></div>
+<nav class="sideNav" (mouseenter)="thisIsOpen()" (mouseleave)="thisIsOpen()"
+     [@onSideNavChange]="isOpen ? 'open' : 'close'">
+  <div class="iconArea">
+    <div class="logoImg">
+      <img src="/assets/imgs/logo2.png" alt="logo unico">
     </div>
-     <ul class="sideNavUl" style="list-style: none;">
-            <div class="firstDiv" style="margin-top: 0.3rem;">
-                <li  (click)="itenSelection('Home')">
-                    <mat-icon [ngClass]="{'checked': itenSelected == 'Home'}" class="material-icons-outlined">home</mat-icon> Inicio
-                </li>
+    <div class="white"></div>
+  </div>
+  <ul class="sideNavUl" style="list-style: none;">
+    <div class="firstDiv" style="margin-top: 0.3rem;">
+      <li (click)="itenSelection('Home')">
+        <img class="icon" [ngClass]="{'checked': itenSelected == 'Home'}" src="/assets/svg/icons/icone_inicio.svg"
+             alt=""> ínicio
+      </li>
 
-                <li  (click)="itenSelection('Processos')">
-                    <mat-icon [ngClass]="{'checked': itenSelected == 'Processos'}" class="material-icons-outlined">gavel</mat-icon> Processos
-                </li>
+      <li (click)="itenSelection('Processos')">
+        <img class="icon" [ngClass]="{'checked': itenSelected == 'Processos'}"
+             src="/assets/svg/icons/icone_processos.svg" alt=""> Processos
+      </li>
 
-            <li (click)="itenSelection('Published')">
-                <mat-icon  [ngClass]="{'checked': itenSelected == 'Published'}" class="material-icons-outlined">sim_card_download</mat-icon> Publicações
-            </li>
+      <li (click)="itenSelection('Publicacoes')">
+        <img class="icon" [ngClass]="{'checked': itenSelected == 'Publicacoes'}"
+             src="/assets/svg/icons/icone_publicacoes.svg" alt=""> Publicações
+      </li>
 
-            <li  (click)="itenSelection('Atendimentos')">
-                <mat-icon [ngClass]="{'checked': itenSelected == 'Atendimentos'}" class="material-icons-outlined">question_answer</mat-icon> Atendimentos
-            </li>
+      <li (click)="itenSelection('Atendimentos')">
+        <img class="icon" [ngClass]="{'checked': itenSelected == 'Atendimentos'}"
+             src="/assets/svg/icons/icone_atendimento.svg" alt=""> Atendimentos
+      </li>
 
-            <li  (click)="itenSelection('Clients')">
-                <mat-icon [ngClass]="{'checked': itenSelected == 'Clients'}" class="material-icons-outlined">people_alt</mat-icon> Clientes
-            </li>
+      <li (click)="itenSelection('Clients')">
+        <img class="icon" [ngClass]="{'checked': itenSelected == 'Clients'}" src="/assets/svg/icons/icone_cliente.svg"
+             alt=""> Clientes
+      </li>
 
-            <li (click)="itenSelection('Calendar')">
-                <mat-icon [ngClass]="{'checked': itenSelected == 'Calendar'}"  class="material-icons-outlined">calendar_month</mat-icon> Agenda
-            </li>
+      <li (click)="itenSelection('Calendar')">
+        <img class="icon" [ngClass]="{'checked': itenSelected == 'Calendar'}"
+             src="/assets/svg/icons/icone_calendario.svg" alt=""> Calendário
 
-            <li  (click)="itenSelection('Documents')">
-                <mat-icon  [ngClass]="{'checked': itenSelected == 'Documents'}" class="material-icons-outlined">description</mat-icon> Documentos
-            </li>
-        </div>
+      </li>
+
+      <li (click)="itenSelection('Documents')">
+        <img class="icon" [ngClass]="{'checked': itenSelected == 'Documentsr'}"
+             src="/assets/svg/icons/icone_documentos.svg" alt=""> Documentos
+      </li>
+
+      <li (click)="itenSelection('Configs')">
+        <img class="icon" [ngClass]="{'checked': itenSelected == 'Configs'}"
+             src="/assets/svg/icons/icone_configuracoes.svg" alt=""> Congfigurações
+      </li>
+
+    </div>
 
 
-            <div class="finalList">
+    <div class="finalList">
+      <li (click)="itenSelection('Help')">
+        <img class="icon" [ngClass]="{'checked': itenSelected == 'Help'}" src="/assets/svg/icons/icone_ajuda.svg"
+             alt=""> Ajuda
+      </li>
 
-                <li class="settingsSelected ? checked : unchecked"
-                (click)="!openMenu ? openMenu = true : openMenu = false">
-                    <mat-icon>settings</mat-icon> Configurações
-                </li>
-                <div *ngIf="openMenu">
-                    <ul class="search">
-                        <li (click)="sendTo('profile')" class="contaSelected ? checked : unchecked">Conta</li>
-                        <li (click)="sendTo('profile/list')">Tribunais</li>
-                        <li (click)="sendTo('profile/certify')">Certificados</li>
-                        <li>notificações</li>
-                    </ul>
-                </div>
-                <li>
-                    <mat-icon>help</mat-icon> Ajuda
-                </li>
-                <li>
-                    <mat-icon>logout</mat-icon> Sair
-                </li>
-            </div>
-        </ul>
-</nav>
+
+      <li (click)="itenSelection('Out')">
+        <img class="icon" [ngClass]="{'checked': itenSelected == 'Out'}" src="/assets/svg/icons/icone_sair.svg" alt="">
+        Sair
+      </li>
+    </div>
+  </ul>

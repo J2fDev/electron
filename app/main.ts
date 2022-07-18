@@ -1,10 +1,13 @@
-import { app, BrowserWindow, screen, ipcMain } from 'electron';
+import {app, BrowserWindow, screen, ipcMain} from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as url from 'url';
 
 var usbDetect = require('usb-detection');
+const jwt = require("jsonwebtoken");
+
 let folder = app.getPath("userData");
+console.log(folder);
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
@@ -40,7 +43,7 @@ function createWindow(): BrowserWindow {
     let pathIndex = './index.html';
 
     if (fs.existsSync(path.join(__dirname, '../dist/index.html'))) {
-       // Path when running electron in local folder
+      // Path when running electron in local folder
       pathIndex = '../dist/index.html';
     }
 
@@ -61,19 +64,72 @@ function createWindow(): BrowserWindow {
 
   usbDetect.startMonitoring();
 
-  usbDetect.on('add', function(device) { console.log('add', device); });
-  usbDetect.on('remove', function(device) { console.log('remove', device); });
-  usbDetect.find(function(err, devices) { console.log('find', devices, err); });
+  usbDetect.on('add', function (device) {
+    console.log('add', device);
+  });
+  usbDetect.on('remove', function (device) {
+    console.log('remove', device);
+  });
+  usbDetect.find(function (err, devices) {
+    console.log('find', devices, err);
+  });
 
   ipcMain.handle("teste", (event, data) => {
-    console.log(event);
+    //console.log(event);
     console.log(data);
 
     return "TESTE OK";
   });
 
+  ipcMain.handle("validatetoken", async (event, token) => {
+    //console.log(event);
+    console.log(token);
+    let resp = await verifyJWT(token);
+
+    console.log(resp);
+
+    return resp;
+  });
+
   return win;
 }
+
+/**
+ * Verifica a validade do token retornando a informacao guardado no mesmo
+ *
+ * @param {String} token
+ */
+async function verifyJWT(token) {
+  return new Promise((resolve, reject) => {
+    var parts = token.split('.');
+
+    if (parts.length !== 3) {
+      return resolve(
+        {iat: 0, exp: 0}
+      );
+    }
+
+    let cert = fs.readFileSync('./app/key/public.pem');
+
+    try {
+      jwt.verify(token, cert, {algorithms: ['RS256']}, (err, decoded) => {
+        if (err) {
+          this.logger.warn("Erro na verificacao do JWT:", err);
+          return resolve(
+            {iat: 0, exp: 0}
+          );
+        }
+
+        resolve(decoded);
+      });
+    } catch (e) {
+      return resolve(
+        {iat: 0, exp: 0}
+      );
+    }
+  });
+}
+
 
 try {
   // This method will be called when Electron has finished

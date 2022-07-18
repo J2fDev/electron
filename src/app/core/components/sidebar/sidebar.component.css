@@ -1,34 +1,54 @@
-.iconArea{
-    background-color: #0059ff;
-    min-height: 3.5rem;
-    max-height: 3.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+.iconArea {
+  background-color: #0059ff;
+  min-height: 3.5rem;
+  max-height: 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.white{
-    background-color: #ffff;
-    width: 3px;
-    height: 3.5rem;
+.white {
+  background-color: #ffff;
+  width: 3px;
+  height: 3.5rem;
 }
 
-.iconArea img{
-    margin-left: 0.5rem;
-    margin-top: 0.5rem;
+.iconArea img {
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
 }
 
-.sideNav{
-    display: flex;
-    flex-direction: column;
-    width: 4rem;
-    overflow: hidden;
-    background-color: #ffff;
-    height: 100vh;
-    max-height: 1080px;
-    transition: 0.3s;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    z-index: 2000;
+.sideNav {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #ffff;
+  height: 100vh;
+  max-height: 1080px;
+  z-index: 2000;
+  position: absolute;
+}
+
+.checked {
+  filter: invert(28%) sepia(76%) saturate(7066%) hue-rotate(219deg) brightness(104%) contrast(105%);
+  margin-left: 1rem;
+  margin-right: 1.6rem;
+  width: 1rem;
+  height: 1rem;
+  border-right: 1px solid blue;
+}
+
+
+.icon {
+  margin-left: 1rem;
+  margin-right: 1.6rem;
+  width: 2rem;
+  height: 1.1rem;
+}
+
+/* .sideNavUl:hover{
+        width: 14rem;
 }
 
 .sideNav:hover {
@@ -37,46 +57,43 @@
     height: 100vh;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow-y:scroll;
-}
+} */
 
 .sideNav::-webkit-scrollbar {
-    width: 0px;
-  }
-  
-
-  ul{
-      margin: 0;
-      padding: 0;
-  }
-
-  li mat-icon{
-        margin-right: 1.3rem;
-        margin-left: 1.2rem;
-  }
-li{
-    display: flex;
-    height: 2.5rem;
-    margin-bottom: 1px;
-    align-items: center;
-    width: 14rem;
-    cursor: pointer;
-    color: #161616;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    transition: 1s;
-}
-
-mat-icon{
-    color: #92929d;
-    font-weight: 200;
+  width: 0px;
 }
 
 
-.checked{
-    color: #0059ff;
-    font-weight: 700;
+ul {
+  margin: 0;
+  padding: 0;
 }
-li:hover{
-    background-color: #dbeefd;
-    color: black;
+
+li mat-icon {
+  margin-right: 1.3rem;
+  margin-left: 1.2rem;
+}
+
+li {
+  display: flex;
+  height: 2.5rem;
+  margin-bottom: 1px;
+  align-items: center;
+  width: 14rem;
+  cursor: pointer;
+  color: #161616;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  transition: 1s;
+}
+
+mat-icon {
+  color: #92929dad;
+  font-size: 1.4rem;
+}
+
+
+li:hover {
+  background-color: #dbeefd;
+  color: black;
 }

@@ -9,17 +9,17 @@ export class AlertComponent implements OnInit {
 
 
   @Input()
-  title!: any;
+  title: string = "";
   @Input()
-  message!: string;
+  message: string = "";
   @Input()
-  type!: string;
+  type: string = "";
   @Input()
-  link!: string;
+  link: string = "";
   @Input()
-  canclose!: boolean;
+  canclose: boolean = false;
   @Input()
-  linkText!: string;
+  linkText: string = "";
 
   show: boolean = true;
 

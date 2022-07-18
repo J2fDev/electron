@@ -108,7 +108,7 @@ export class CertifyComponent implements OnInit {
   }
 
   logout() {
-    this.certifyService.token = "";
+    //this.certifyService.token = "";
     this.certifyService.disconnectSocket();
     this.router.navigate(["auth"]);
   }

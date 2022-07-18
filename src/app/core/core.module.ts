@@ -22,6 +22,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatButtonModule} from "@angular/material/button";
 import {CertifyService} from "./services/certify.service";
+import {MatRippleModule} from "@angular/material/core";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 @NgModule({
@@ -43,6 +45,8 @@ import {CertifyService} from "./services/certify.service";
     MatIconModule,
     MatBadgeModule,
     MatButtonModule,
+    MatRippleModule,
+    MatMenuModule,
 
   ],
   exports: [

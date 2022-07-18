@@ -5,7 +5,6 @@ import { User } from './userClass';
 import {LoginService} from "../../../core/services/login.service";
 import {ChargebeeService} from "../../../core/services/chargebee.service";
 import {ElectronService} from "../../../core/services";
-import {LocalStorageService} from "../../../core/services/local-storage.service";
 
 @Component({
   selector: 'auth-login',
@@ -28,20 +27,50 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     // Verifica se o token atual ainda é válido e testa junto ao servidor
     if ( this.loginService.keepLogged ) {
-      console.log("Marcou para ficar logado");
+      //console.log("Marcou para ficar logado");
 
       if ( this.loginService.token !== null && this.loginService.token !== undefined && this.loginService.token !== "" ) {
         // Token já existe, verifica a validade junto ao servidor
-        console.log("Achou um token e vai tentar validar o mesmo");
+        //console.log("Achou um token e vai tentar validar o mesmo");
+
+        // Tentar chamar primeiro na WEB pq valida e renova
         this.loginService.validateToken()
           .then((resp) => {
-            console.log(resp)
+            console.log(resp);
+            if ( resp.ok ) {
+              this.loginService.token = resp.token;
+              this.loginService.connectSocket();
+
+              this.loginService.checkAuth(this.token);
+              this.router.navigate(['/auth/certify']);
+            } else {
+              // Por algum motivo nao foi possivel validar o token
+              // Informacoes da falha na variavel resp.error
+            }
           })
           .catch((err) => {
-
+            console.log("Exibindo erro na requisicao de validacao do token");
+            console.log(err);
             // Token já não é mais válido
-            if ( err.status === 401 ) {
-              console.log("Token ja nao e mais valido");
+            if ( err.status === 0 ) {
+              // Não foi possível conectar com o servidor
+              if ( this.electronService.isElectron ) {
+                console.log("E electron e vai TENTAR validar localmente");
+                // Se for aplicacao electro faz a validacao local
+                this.electronService.ipcRenderer.invoke("validatetoken", this.loginService.token).then((resp) => {
+                  console.log("Resposta do electron");
+                  console.log(resp);
+
+                  // Verifica a validade do token
+
+                }).catch((err) => {
+                  console.log("ERRO NO INVOKE");
+                  console.log(err);
+                })
+              } else {
+                console.log("Versao WEB so exibir problemas com a conexao")
+              }
+
             } else {
               console.log(err)
             }
@@ -49,7 +78,7 @@ export class LoginComponent implements OnInit {
           });
 
       } else {
-        console.log("Não existe token armazado");
+        console.log("Não existe token armazenado");
       }
     } else {
       console.log("Nao deve permanecer logado");
@@ -153,7 +182,8 @@ export class LoginComponent implements OnInit {
         "Problemas com a conexão com o servidor, atualize sua versão e se persistir o problema, entre em contato com o suporte";
     } else if ( status === 401 ) {
       this.token = "";
-
+    } else if ( status === 0 ) {
+      this.errorResponse = "Não foi possível contactar o servidor. Verifique sua conexão com a internet e se necessário entre em contato com o suporte."
     } else if ( status === -1 ) {
       this.errorResponse = "Verifique se o formulário está corretamente preenchido"
     }

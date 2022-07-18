@@ -13,7 +13,7 @@ export class ApiService {
 
   private static socket : any = null;
   public messageEvent: Subject<string> = new Subject<string>();
-  public sectionTitle: String = 'Home'
+  public sectionTitle: String = 'Home';
 
   set token(token: string) {
     window.localStorage.setItem("token", token);
