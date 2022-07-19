@@ -2,14 +2,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { io } from "socket.io-client";
 import {Subject} from "rxjs";
+import {ElectronService} from "./electron/electron.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class ApiService extends ElectronService {
   //private urlBase : string = "http://192.168.1.85:3000";
   private urlBase : string = "http://localhost:3000";
-  constructor(private req: HttpClient) { }
+
+  constructor(private req: HttpClient) {
+    super();
+  }
 
   private static socket : any = null;
   public messageEvent: Subject<string> = new Subject<string>();
@@ -110,7 +114,6 @@ export class ApiService {
 
   request(type: string, url:any, data:any = null, secure: boolean = true, headers: Array<{property: string, value: string}> = []) {
     return new Promise((resolve, reject) => {
-
       let httpOptions = null;
 
       if ( secure ) {
@@ -168,6 +171,15 @@ export class ApiService {
           console.log("Resposta do request subscribe com erro");
           console.log(err);
 
+          if ( err.status === 500 ) {
+            // Aqui deu erro interno no servidor enviar para a pagina de problema
+          } else if ( err.status === 401 ) {
+            // Aqui deu que nao era authorizado, criar uma pagina para isso ou enviar para o login?
+          } else if ( err.status === 0 ) {
+            // Nao foi possivel conectar com o servidor
+          } else {
+
+          }
           // TODO: Emitir evento de unauthorized ( verificar token e deslogar se necessario )
           reject(err)
         }

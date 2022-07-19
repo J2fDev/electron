@@ -4,7 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './userClass';
 import {LoginService} from "../../../core/services/login.service";
 import {ChargebeeService} from "../../../core/services/chargebee.service";
-import {ElectronService} from "../../../core/services";
+import * as moment from "moment";
+
 
 @Component({
   selector: 'auth-login',
@@ -16,13 +17,13 @@ export class LoginComponent implements OnInit {
   hidePassword: boolean = true;
   token: any;
   errorResponse: string = '';
+  errorType: string = "error";
   disableButton: boolean = true;
   loginForm!: FormGroup;
   alertCaps: boolean = false;
 
   constructor(private loginService: LoginService,
-    private formBuilder: FormBuilder, private router: Router, private chargeBee: ChargebeeService,
-              private electronService: ElectronService) { }
+    private formBuilder: FormBuilder, private router: Router, private chargeBee: ChargebeeService) { }
 
   ngOnInit() {
     // Verifica se o token atual ainda é válido e testa junto ao servidor
@@ -33,35 +34,47 @@ export class LoginComponent implements OnInit {
         // Token já existe, verifica a validade junto ao servidor
         //console.log("Achou um token e vai tentar validar o mesmo");
 
+
         // Tentar chamar primeiro na WEB pq valida e renova
         this.loginService.validateToken()
           .then((resp) => {
-            console.log(resp);
             if ( resp.ok ) {
               this.loginService.token = resp.token;
               this.loginService.connectSocket();
 
               this.loginService.checkAuth(this.token);
-              this.router.navigate(['/auth/certify']);
+              this.errorType = "info";
+              this.errorResponse = "Login ainda é valido direcionar para a pagina prinipal do sistema";
+              //this.router.navigate(['/auth/certify']);
             } else {
               // Por algum motivo nao foi possivel validar o token
               // Informacoes da falha na variavel resp.error
+              this.errorType =  "error";
+              this.errorResponse = resp.err;
             }
           })
           .catch((err) => {
-            console.log("Exibindo erro na requisicao de validacao do token");
-            console.log(err);
             // Token já não é mais válido
             if ( err.status === 0 ) {
               // Não foi possível conectar com o servidor
-              if ( this.electronService.isElectron ) {
+              if ( this.loginService.isElectron ) {
                 console.log("E electron e vai TENTAR validar localmente");
                 // Se for aplicacao electro faz a validacao local
-                this.electronService.ipcRenderer.invoke("validatetoken", this.loginService.token).then((resp) => {
+                this.loginService.ipcRenderer.invoke("validatetoken", this.loginService.token).then((resp) => {
                   console.log("Resposta do electron");
                   console.log(resp);
 
                   // Verifica a validade do token
+                  if ( moment().unix() > resp.exp ) {
+                    // Token já não e mais válido
+                    this.errorType = "warn";
+                    this.errorResponse = "O token já não e mais valido. Faća login novamente no sistema."
+                  } else {
+                    // Token ainda é valido e permite o acesso
+                    // No caso vamos pular a parte de certificado pois o mesmo nao tem necessidade off line
+                    this.errorType = "info";
+                    this.errorResponse = "Login ainda é valido direcionar para a pagina prinipal do sistema";
+                  }
 
                 }).catch((err) => {
                   console.log("ERRO NO INVOKE");
@@ -176,16 +189,20 @@ export class LoginComponent implements OnInit {
   ErrorTreatment(status: number) {
     if (status == 400) {
       this.errorResponse = "Usuário ou senha inválidos";
+      this.errorType = "error";
     }
     else if (status == 426) {
       this.errorResponse =
         "Problemas com a conexão com o servidor, atualize sua versão e se persistir o problema, entre em contato com o suporte";
+      this.errorType = "error";
     } else if ( status === 401 ) {
       this.token = "";
     } else if ( status === 0 ) {
       this.errorResponse = "Não foi possível contactar o servidor. Verifique sua conexão com a internet e se necessário entre em contato com o suporte."
+      this.errorType = "error";
     } else if ( status === -1 ) {
-      this.errorResponse = "Verifique se o formulário está corretamente preenchido"
+      this.errorResponse = "Verifique se o formulário está corretamente preenchido";
+      this.errorType = "error";
     }
   }
 
