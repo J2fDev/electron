@@ -4,6 +4,67 @@
     <span class="titleSection">{{title}}</span>
   </div>
 
+  <div class="secondSection">
+
+    <div class="searchSection">
+      <img class="icon search" src="assets/svg/icons/icone_busca.svg" alt="" />
+      <input type="text" placeholder=" Pesquisar..." class="searchInput" />
+    </div>
+    <div class="time flex">
+      <span>10:50 hoje, 28 Maio 2020</span> <img class="icon calendar" src="assets/svg/icons/icone_calendario.svg" alt="" />
+    </div>
+
+    <div class="trialPeriod">
+      <button class="buttonToContract" mat-raised-button color="primary">
+        Contratar
+      </button>
+
+      <div class="timeTrial">
+        <mat-progress-spinner mode="determinate" value="90" [diameter]="32" color="#36b5ff">
+        </mat-progress-spinner>
+        <span class="restingDays">9</span>
+      </div>
+      <p class="pTrial">dias restantes</p>
+    </div>
+
+
+    <button mat-icon-button>
+      <mat-icon class="Icon">notifications_none</mat-icon>
+    </button>
+
+    <div class="profileSection">
+      <div class="clientPhoto">
+        <img src="../../../../assets/imgs/marinasilva.jpg" alt="">
+      </div>
+      <div class="profileInfo">
+
+        <div class="profileName">
+          <span>Marina Silva Santos</span>
+        </div>
+        <span class="OAB"> OAB MG - 12345</span>
+      </div>
+      <button matRipple class="matIconButton" [matMenuTriggerFor]="menu"><span style="color: #ffffff;"
+                                                                               class="material-icons-outlined">
+        expand_circle_down
+        </span></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Conta</button>
+        <button mat-menu-item>Plano</button>
+        <button mat-menu-item>Sair</button>
+      </mat-menu>
+    </div>
+  </div>
+
+
+</mat-toolbar>
+
+<!--
+<mat-toolbar class="toolBar">
+
+  <div class="firstSection">
+    <span class="titleSection">{{title}}</span>
+  </div>
+
 
 
   <div class="secondSection">
@@ -54,3 +115,4 @@
 
 
 </mat-toolbar>
+-->

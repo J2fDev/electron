@@ -29,6 +29,13 @@ export class LoginService extends ApiService {
 
   constructor(private http: HttpClient) {
     super(http);
+
+    if ( this.isElectron ) {
+      this.ipcRenderer.on("usbcertischange", (event, args) => {
+        console.log(event);
+        console.log(args);
+      });
+    }
   }
 
   async login(user: any) {

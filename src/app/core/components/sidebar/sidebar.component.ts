@@ -31,8 +31,14 @@ export class SidebarComponent implements OnInit {
     this.route.navigate([path]);
   }
 
-  itenSelection(item: string) {
+  itenSelection(item: string, path: string) {
     this.itenSelected = item;
     this.apiService.sectionTitle = item;
+
+    if ( path === "sair" ) {
+
+    } else {
+      this.route.navigate([path]);
+    }
   }
 }

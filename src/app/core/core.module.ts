@@ -21,7 +21,6 @@ import { CourtsService } from './services/courts.service';
 import {MatIconModule} from "@angular/material/icon";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatButtonModule} from "@angular/material/button";
-import {CertifyService} from "./services/certify.service";
 import {MatRippleModule} from "@angular/material/core";
 import {MatMenuModule} from "@angular/material/menu";
 
@@ -59,8 +58,7 @@ import {MatMenuModule} from "@angular/material/menu";
     LoginService,
     IbgeService,
     CourtsService,
-    ProcessService,
-    CertifyService
+    ProcessService
   ]
 })
 export class CoreModule { }

@@ -6,9 +6,7 @@ import {WithoutCertifyDialogComponent} from '../../dialog/without-certify-dialog
 import {ConfirmPinDialogComponent} from '../../dialog/confirm-pin-dialog/confirm-pin-dialog.component';
 import {RegisterPinDialogComponent} from '../../dialog/register-pin-dialog/register-pin-dialog.component';
 import {InstallCertifyDialogComponent} from '../../dialog/install-certify-dialog/install-certify-dialog.component';
-import {CertifyService} from "../../../core/services/certify.service";
-import {ElectronService} from "../../../core/services";
-import {ApiService} from "../../../core/services/api.service";
+import {LoginService} from "../../../core/services/login.service";
 
 @Component({
   selector: 'auth-certify',
@@ -40,7 +38,7 @@ export class CertifyComponent implements OnInit {
   isWeb: boolean = true;
 
   constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog,
-              private certifyService: CertifyService, private electronService: ElectronService) {
+              private loginService: LoginService) {
   }
 
   ngOnInit(): void {
@@ -51,7 +49,7 @@ export class CertifyComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(5)]],
     confirmPass: ['', [Validators.required, Validators.minLength(6)]],
     fileA1: [],
-  })
+  });
 
 
   validateFormsA1() {
@@ -89,7 +87,6 @@ export class CertifyComponent implements OnInit {
 
   implementsA1List() {
     this.listA1.push(this.a1Forms.value);
-    console.log('sadfasdfsadfsdf', this.listA1);
     this.addCertify = false;
   }
 
@@ -109,7 +106,7 @@ export class CertifyComponent implements OnInit {
 
   logout() {
     //this.certifyService.token = "";
-    this.certifyService.disconnectSocket();
+    this.loginService.disconnectSocket();
     this.router.navigate(["auth"]);
   }
 

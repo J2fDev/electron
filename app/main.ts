@@ -3,7 +3,10 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as url from 'url';
 
+var pkcs11js = require("pkcs11js");
 var usbDetect = require('usb-detection');
+var usbCertis = [];
+
 const jwt = require("jsonwebtoken");
 
 let folder = app.getPath("userData");
@@ -12,6 +15,8 @@ console.log(folder);
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
+
+
 
 function createWindow(): BrowserWindow {
 
@@ -66,12 +71,48 @@ function createWindow(): BrowserWindow {
 
   usbDetect.on('add', function (device) {
     console.log('add', device);
+    let certisLength = usbCertis.length;
+    if ( device.manufacturer === "SafeNet" ||  device.manufacturer === "Giesecke___Devrient_GmbH" ||
+      device.manufacturer === "Aladdin_Knowledge_Systems_Ltd." ) {
+      recoveryCerti(device);
+    }
+
+    if ( certisLength !== usbCertis.length ) {
+      console.log("EMITTING EVENT USB CHANGE");
+      console.log(usbCertis);
+      win.webContents.send("usbcertischange", usbCertis);
+    }
   });
   usbDetect.on('remove', function (device) {
     console.log('remove', device);
+
+    let certisLength = usbCertis.length;
+    if ( device.manufacturer === "SafeNet" ||  device.manufacturer === "Giesecke___Devrient_GmbH" ||
+      device.manufacturer === "Aladdin_Knowledge_Systems_Ltd." ) {
+      removeCerti(device);
+    }
+
+    if ( certisLength !== usbCertis.length ) {
+      console.log("EMITTING EVENT USB CHANGE");
+      console.log(usbCertis);
+      win.webContents.send("usbcertischange", usbCertis);
+    }
   });
   usbDetect.find(function (err, devices) {
     console.log('find', devices, err);
+
+    for ( let device of devices ) {
+      if ( device.manufacturer === "SafeNet" ||  device.manufacturer === "Giesecke & Devrient GmbH" ||
+        device.manufacturer === "Aladdin_Knowledge_Systems_Ltd." ) {
+        recoveryCerti(device);
+      }
+    }
+
+    if ( usbCertis.length > 0 ) {
+      console.log("EMITTING EVENT USB CHANGE");
+      console.log(usbCertis);
+      win.webContents.send("usbcertischange", usbCertis);
+    }
   });
 
   ipcMain.handle("teste", (event, data) => {
@@ -82,16 +123,138 @@ function createWindow(): BrowserWindow {
   });
 
   ipcMain.handle("validatetoken", async (event, token) => {
-    //console.log(event);
-    console.log(token);
     let resp = await verifyJWT(token);
-
-    console.log(resp);
 
     return resp;
   });
 
   return win;
+}
+
+/**
+ * Tentar recuperar os certificados em um dispositivo USB
+ */
+function recoveryCerti(device) {
+
+  var pkcs11 = new pkcs11js.PKCS11();
+  var opsys = process.platform;
+  let plataform : string = "";
+  if (opsys == "darwin") {
+    plataform = "MacOS";
+  } else if (opsys == "win32") {
+    plataform = "Windows";
+  } else if (opsys == "linux") {
+    plataform = "Linux";
+  }
+
+  device.deviceName = device.deviceName.replaceAll("&", " ").replaceAll(" ", "_");
+  device.manufacturer = device.manufacturer.replaceAll("&", " ").replaceAll(" ", "_");
+
+  // Verificar qual das bibliotecas deve carregar
+  if ( device.deviceName.indexOf("StarSign_CUT") >= 0 ) {
+    console.log("StarSign_CUT");
+    switch ( plataform ) {
+      case "MacOs":
+        console.log("MACOS");
+        break;
+      case "Windows":
+        console.log("WINDOWS");
+        break;
+      case "Linux":
+        pkcs11.load("/usr/lib/libaetpkss.so");
+        break;
+    }
+  } else if ( device.deviceName.indexOf("Token_JC") >= 0 ) {
+    console.log("Token_JC");
+    switch ( plataform ) {
+      case "MacOs":
+        console.log("MACOS");
+        break;
+      case "Windows":
+        console.log("WINDOWS");
+        break;
+      case "Linux":
+        pkcs11.load("/usr/lib/libeToken.so");
+        break;
+    }
+  } else if ( device.deviceName.indexOf("Token_4.28.1.1_2.7.195") >= 0 ) {
+    console.log("Token_4.28.1.1_2.7.195");
+    switch ( plataform ) {
+      case "MacOs":
+        console.log("MACOS");
+        break;
+      case "Windows":
+        console.log("WINDOWS");
+        break;
+      case "Linux":
+        pkcs11.load("/usr/lib/libaetpkss.so");
+        break;
+    }
+  } else {
+    console.log("NAO SUPORTADO");
+    console.log(device.deviceName);
+  }
+
+  try {
+    pkcs11.C_Initialize();
+
+    // Getting list of slots
+    var slots = pkcs11.C_GetSlotList(true);
+    var slot = slots[0];
+
+    var session = pkcs11.C_OpenSession(slot, pkcs11js.CKF_RW_SESSION | pkcs11js.CKF_SERIAL_SESSION);
+
+    pkcs11.C_FindObjectsInit(session, [{type: pkcs11js.CKA_CLASS, value: pkcs11js.CKO_PUBLIC_KEY}]);
+    var hObject = pkcs11.C_FindObjects(session);
+
+    while (hObject) {
+      var attrs = pkcs11.C_GetAttributeValue(session, hObject, [
+        {type: pkcs11js.CKA_CLASS},
+        {type: pkcs11js.CKA_TOKEN},
+        {type: pkcs11js.CKA_LABEL},
+      ]);
+      // Output info for objects from token only
+      if (attrs[1].value[0]) {
+        let name = attrs[2].value.toString();
+        if ( name.indexOf(":") > 0 ) {
+          console.log("ACEITO");
+          console.log(name);
+          let info =
+          usbCertis.push({
+            nome: name.substring(0, name.indexOf(":")),
+            doc: name.substring(name.indexOf(":") + 1, name.indexOf(":") + 1 + 11),
+            emissor: name.substring(name.indexOf(":") + 15),
+            device: device
+          });
+        } else {
+          console.log("NEGADO");
+          console.log(name);
+        }
+      }
+      hObject = pkcs11.C_FindObjects(session);
+    }
+
+    pkcs11.C_FindObjectsFinal(session);
+    pkcs11.C_CloseSession(session);
+  } catch ( e ) {
+    console.log("ERRO NA RECUPERACAO DOS CERTIFICADOS");
+    console.log(e);
+  }
+}
+
+function removeCerti(device) {
+  let newUsbCertis = [];
+
+  device.deviceName = device.deviceName.replaceAll("&", " ").replaceAll(" ", "_");
+  device.manufacturer = device.manufacturer.replaceAll("&", " ").replaceAll(" ", "_");
+
+  for ( let usbc of usbCertis ) {
+    if ( JSON.stringify(usbc.device) !== JSON.stringify(device) ) {
+      newUsbCertis.push(usbc);
+    }
+  }
+
+  usbCertis = newUsbCertis;
 }
 
 /**

@@ -8,7 +8,7 @@
     <span>Selecione um certificado para uso no Unico.</span>
   </div>-->
 
-  <app-alert *ngIf="!electronService.isElectron" title="Certificados A3 indisponiveis" type="info" class="alertBox"
+  <app-alert *ngIf="!loginService.isElectron" title="Certificados A3 indisponiveis" type="info" class="alertBox"
              message="Os certificados A3 só podem ser usados na versão desktop"
              link="https://google.com" linkText="Baixar versao desktop"
   ></app-alert>
