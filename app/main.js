@@ -48,10 +48,21 @@ var folder = electron_1.app.getPath("userData");
 console.log(folder);
 var win = null;
 var args = process.argv.slice(1), serve = args.some(function (val) { return val === '--serve'; });
+var opsys = process.platform;
+var plataform = "";
 function createWindow() {
     var _this = this;
     var electronScreen = electron_1.screen;
     var size = electronScreen.getPrimaryDisplay().workAreaSize;
+    if (opsys == "darwin") {
+        plataform = "MacOS";
+    }
+    else if (opsys == "win32") {
+        plataform = "Windows";
+    }
+    else if (opsys == "linux") {
+        plataform = "Linux";
+    }
     // Create the browser window.
     win = new electron_1.BrowserWindow({
         x: 0,
@@ -109,7 +120,7 @@ function createWindow() {
         console.log('remove', device);
         var certisLength = usbCertis.length;
         if (device.manufacturer === "SafeNet" || device.manufacturer === "Giesecke___Devrient_GmbH" ||
-            device.manufacturer === "Aladdin_Knowledge_Systems_Ltd.") {
+            device.manufacturer === "Aladdin_Knowledge_Systems_Ltd." || device.manufacturer === "Giesecke & Devrient GmbH") {
             removeCerti(device);
         }
         if (certisLength !== usbCertis.length) {
@@ -149,6 +160,11 @@ function createWindow() {
             }
         });
     }); });
+    electron_1.ipcMain.handle("listcertis", function (event) { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, usbCertis];
+        });
+    }); });
     return win;
 }
 /**
@@ -156,65 +172,71 @@ function createWindow() {
  */
 function recoveryCerti(device) {
     var pkcs11 = new pkcs11js.PKCS11();
-    var opsys = process.platform;
-    var plataform = "";
-    if (opsys == "darwin") {
-        plataform = "MacOS";
-    }
-    else if (opsys == "win32") {
-        plataform = "Windows";
-    }
-    else if (opsys == "linux") {
-        plataform = "Linux";
-    }
     device.deviceName = device.deviceName.replaceAll("&", " ").replaceAll(" ", "_");
     device.manufacturer = device.manufacturer.replaceAll("&", " ").replaceAll(" ", "_");
-    // Verificar qual das bibliotecas deve carregar
-    if (device.deviceName.indexOf("StarSign_CUT") >= 0) {
-        console.log("StarSign_CUT");
-        switch (plataform) {
-            case "MacOs":
-                console.log("MACOS");
-                break;
-            case "Windows":
-                console.log("WINDOWS");
-                break;
-            case "Linux":
-                pkcs11.load("/usr/lib/libaetpkss.so");
-                break;
+    var loadLib = false;
+    try {
+        // Verificar qual das bibliotecas deve carregar
+        if (device.deviceName.indexOf("StarSign_CUT") >= 0) {
+            console.log("StarSign_CUT");
+            switch (plataform) {
+                case "MacOs":
+                    console.log("MACOS");
+                    break;
+                case "Windows":
+                    console.log("WINDOWS");
+                    break;
+                case "Linux":
+                    loadLib = true;
+                    pkcs11.load("/usr/lib/libaetpkss.so");
+                    //pkcs11.load("/usr/lib/kkkkk.so");
+                    break;
+            }
+        }
+        else if (device.deviceName.indexOf("Token_JC") >= 0) {
+            console.log("Token_JC");
+            switch (plataform) {
+                case "MacOs":
+                    console.log("MACOS");
+                    break;
+                case "Windows":
+                    console.log("WINDOWS");
+                    break;
+                case "Linux":
+                    loadLib = true;
+                    pkcs11.load("/usr/lib/libeToken.so");
+                    break;
+            }
+        }
+        else if (device.deviceName.indexOf("Token_4.28.1.1_2.7.195") >= 0) {
+            console.log("Token_4.28.1.1_2.7.195");
+            switch (plataform) {
+                case "MacOs":
+                    console.log("MACOS");
+                    break;
+                case "Windows":
+                    console.log("WINDOWS");
+                    break;
+                case "Linux":
+                    loadLib = true;
+                    pkcs11.load("/usr/lib/libaetpkss.so");
+                    break;
+            }
+        }
+        else {
+            console.log("NAO SUPORTADO");
+            console.log(device.deviceName);
         }
     }
-    else if (device.deviceName.indexOf("Token_JC") >= 0) {
-        console.log("Token_JC");
-        switch (plataform) {
-            case "MacOs":
-                console.log("MACOS");
-                break;
-            case "Windows":
-                console.log("WINDOWS");
-                break;
-            case "Linux":
-                pkcs11.load("/usr/lib/libeToken.so");
-                break;
-        }
+    catch (e) {
+        console.log("--> Não foi possivel carregar a biblioteca <--");
+        // Enviar evento para abrir popup e perdir a pessoa para ver se o token esta corretamente cadastrado
+        return;
     }
-    else if (device.deviceName.indexOf("Token_4.28.1.1_2.7.195") >= 0) {
-        console.log("Token_4.28.1.1_2.7.195");
-        switch (plataform) {
-            case "MacOs":
-                console.log("MACOS");
-                break;
-            case "Windows":
-                console.log("WINDOWS");
-                break;
-            case "Linux":
-                pkcs11.load("/usr/lib/libaetpkss.so");
-                break;
-        }
-    }
-    else {
-        console.log("NAO SUPORTADO");
-        console.log(device.deviceName);
+    if (!loadLib) {
+        console.log("--> Não foi possivel localizar a biblioteca para o token <--");
+        // Enviar mensagem avisando que o token não e suportado
+        return;
     }
     try {
         pkcs11.C_Initialize();
@@ -252,6 +274,8 @@ function recoveryCerti(device) {
         }
         pkcs11.C_FindObjectsFinal(session);
         pkcs11.C_CloseSession(session);
+        pkcs11.C_Finalize();
+        pkcs11 = null;
     }
     catch (e) {
         console.log("ERRO NA RECUPERACAO DOS CERTIFICADOS");
@@ -260,11 +284,10 @@ function recoveryCerti(device) {
 }
 function removeCerti(device) {
     var newUsbCertis = [];
-    device.deviceName = device.deviceName.replaceAll("&", " ").replaceAll(" ", "_");
-    device.manufacturer = device.manufacturer.replaceAll("&", " ").replaceAll(" ", "_");
+    var achou = false;
     for (var _i = 0, usbCertis_1 = usbCertis; _i < usbCertis_1.length; _i++) {
         var usbc = usbCertis_1[_i];
-        if (JSON.stringify(usbc.device) !== JSON.stringify(device)) {
+        if (usbc.device.deviceAddress !== device.deviceAddress) {
             newUsbCertis.push(usbc);
         }
     }

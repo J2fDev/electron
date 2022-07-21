@@ -1,5 +1,3 @@
 export class User {
-    login: string = '';
-    password: string = '';
-    keepLoged: boolean = false;
+    doc: string = '06695189641';
 }

@@ -1,5 +1,5 @@
-<div class="loginForms">
-  <h1 class="title">Fazer Login</h1>
+<div class="loginBox">
+  <h1>Fazer Login</h1>
 
   <app-alert title="Falha no login" message="{{errorResponse}}"
              *ngIf="errorResponse.length > 0" type="{{errorType}}" style="width: 29rem;" canclose="false">
@@ -42,21 +42,21 @@
     </mat-slide-toggle>
   </form>
 
-  <button mat-raised-button [disabled]="!loginForm.valid" class="primaryButton" (click)="sendToServer()" color="primary">
+  <button mat-raised-button [disabled]="!loginForm.valid" class="fullwidth" (click)="sendToServer()" color="primary">
     Login
   </button>
 
-  <div class="loginLinks">
-    <a class="aLink" routerLink="/auth/forgotpass">
-      Esqueceu a senha
-      <img src="assets/svg/icons/icone_account.svg" style="width: 1.5rem; height: 1rem;" />
+  <div class="flexsb fullwidth loginLinks">
+    <a routerLink="/auth/forgotpass" class="uprblue">
+      Esqueci minha senha
+      <img src="assets/svg/icons/icone_account.svg" style="width: 1.7rem; height: 1.2rem;" />
     </a>
-    <button (click)="clearLocalStorage()">
+    <!--<button (click)="clearLocalStorage()">
       Limpar storage
-    </button>
-    <a routerLink="/register" class="register">
-      Ainda não tenho conta
-      <mat-icon class="footerIcon" color="primary">arrow_forward</mat-icon>
+    </button>-->
+    <a routerLink="/register" class="uprblue">
+      Não tenho conta
+      <mat-icon color="primary">arrow_forward</mat-icon>
     </a>
   </div>
 </div>

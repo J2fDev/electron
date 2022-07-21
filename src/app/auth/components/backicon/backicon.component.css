@@ -1,0 +1,24 @@
+.backIcon {
+  width: 100%;
+}
+
+.backIcon mat-icon {
+  border: 1px solid white;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0.3rem;
+  transition: 400ms;
+}
+
+.backIcon mat-icon:hover {
+  border: 1px solid blue;
+  border-radius: 50%;
+  background-color: #e1f2ff;
+  transition: 400ms;
+}
+
+.backIcon mat-icon {
+  float: left;
+  margin-top: 1.5rem;
+  color: #0059ff;
+}

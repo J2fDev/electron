@@ -6,6 +6,7 @@ import {ResetpassComponent} from "./components/resetpass/resetpass.component";
 import {CertifyComponent} from "./components/certify/certify.component";
 import { ListComponent } from './components/list/list.component';
 import { LoginGuardGuard } from '../shared/guards/login-guard.guard';
+import {CadcertiComponent} from "./components/cadcerti/cadcerti.component";
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'certify',
     component: CertifyComponent
+  },
+  {
+    path: 'cadcerti',
+    component: CadcertiComponent
   },
   {
     path: 'listtribunais',

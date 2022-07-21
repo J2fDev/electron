@@ -3,11 +3,6 @@
     <mat-icon (click)="logout()">arrow_back</mat-icon>
   </div>
 
-  <!--<div class="textList">
-    <h1>Certificado Digital</h1>
-    <span>Selecione um certificado para uso no Unico.</span>
-  </div>-->
-
   <app-alert *ngIf="!loginService.isElectron" title="Certificados A3 indisponiveis" type="info" class="alertBox"
              message="Os certificados A3 só podem ser usados na versão desktop"
              link="https://google.com" linkText="Baixar versao desktop"
@@ -54,34 +49,5 @@
         <mat-icon>admin_panel_settings</mat-icon>
       </button>
       <a href="" class="aNoCertify">Preciso de ajuda <mat-icon>help_outlined</mat-icon></a>
-  </div>
-</div>
-
-<!--  -->
-<div *ngIf="" class="adicionarA1Div">
-  <div class="h1AddCertify">
-    <div class="iconAdd">
-      <mat-icon>arrow_back</mat-icon>
-    </div>
-    <div class="h1Add">
-      <h1>Adicione o Certificado A1</h1>
-    </div>
-  </div>
-
-  <div [formGroup]="a1Forms" class="inputAdicionarA1">
-
-    <div class="dropzone">
-      <div class="dropContent">
-        <input (change)="installCertifyPassword()" formControlName="fileA1" type="file" #fileDropRef id="fileDropRef"
-               multiple/>
-        <mat-icon>cloud_done</mat-icon>
-        <div>
-          Arraste e solte seu arquivo aqui
-          <h3>-----ou-----</h3>
-        </div>
-        <label formControlName="fileA1" for="fileDropRef"> Escolha o arquivo </label>
-      </div>
-    </div>
-    <br>
   </div>
 </div>

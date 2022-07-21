@@ -6,13 +6,16 @@ import {ApiService} from "./api.service";
   providedIn: 'root'
 })
 export class LoginService extends ApiService {
-  private urlLogin = '/auth/login';
   private urlVerify = '/auth/verifymail';
   private urlFirstLogin = '/auth/fistlogin';
   private chargebeeUrl = '/chargebee/checkSubscription';
 
   private userAuth: boolean = false;
   private user: any;
+
+  //Variaveis relacionadas aos certificados
+  private certis: any[] = [];
+  private recivedCertEvent: boolean = false;
 
   set keepLogged(keep: boolean) {
     window.localStorage.setItem("kl", (keep) ? "S" : "N");
@@ -27,6 +30,36 @@ export class LoginService extends ApiService {
     }
   }
 
+  set doc(doc: string) {
+    window.localStorage.setItem("doc", doc);
+  }
+
+  get doc() {
+    let resp = window.localStorage.getItem("doc");
+    if ( resp === undefined || resp === null ) return "";
+    else return resp;
+  }
+
+  set nome(nome: string) {
+    window.localStorage.setItem("nome", nome);
+  }
+
+  get nome() {
+    let resp = window.localStorage.getItem("nome");
+    if ( resp === undefined || resp === null ) return "";
+    else return resp;
+  }
+
+  set oab(oab: string) {
+    window.localStorage.setItem("oab", oab);
+  }
+
+  get oab() {
+    let resp = window.localStorage.getItem("oab");
+    if ( resp === undefined || resp === null ) return "";
+    else return resp;
+  }
+
   constructor(private http: HttpClient) {
     super(http);
 
@@ -34,6 +67,17 @@ export class LoginService extends ApiService {
       this.ipcRenderer.on("usbcertischange", (event, args) => {
         console.log(event);
         console.log(args);
+        this.recivedCertEvent = true;
+        this.certis = args;
+      });
+    }
+  }
+
+  async getCertificates() {
+    if ( !this.recivedCertEvent ) {
+      this.ipcRenderer.invoke("listcertis").then((resp) => {
+        console.log(resp);
+        this.certis = resp;
       });
     }
   }
@@ -41,7 +85,18 @@ export class LoginService extends ApiService {
   async login(user: any) {
     this.keepLogged = user.keepLogged;
 
-    let data : any = await this.request("post", this.urlLogin, user, false);
+    let data : any = await this.request("post", '/auth/login', user, false);
+    if ( data.token !== null && data.token !== undefined ) {
+      this.token = data.token;
+    }
+
+    return data;
+  }
+
+  async forgot(user: any) {
+    console.log(user);
+    let data : any = await this.request("post", "/auth/forgot", user, false);
+    console.log(data);
     if ( data.token !== null && data.token !== undefined ) {
       this.token = data.token;
     }

@@ -15,6 +15,8 @@ import {NgxMaskModule} from "ngx-mask";
 import { ListComponent } from './components/list/list.component';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatDialogModule} from "@angular/material/dialog";
+import {CadcertiComponent} from "./components/cadcerti/cadcerti.component";
+import {BackiconComponent} from "./components/backicon/backicon.component";
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     ForgotpassComponent,
     ResetpassComponent,
     CertifyComponent,
+    CadcertiComponent,
+    BackiconComponent,
     AuthComponent,
     ConfirmInstallDialogComponent,
     ConfirmPinDialogComponent,

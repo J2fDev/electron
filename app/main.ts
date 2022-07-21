@@ -16,12 +16,21 @@ let win: BrowserWindow = null;
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
 
-
+let opsys = process.platform;
+let plataform : string = "";
 
 function createWindow(): BrowserWindow {
 
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
+
+  if (opsys == "darwin") {
+    plataform = "MacOS";
+  } else if (opsys == "win32") {
+    plataform = "Windows";
+  } else if (opsys == "linux") {
+    plataform = "Linux";
+  }
 
   // Create the browser window.
   win = new BrowserWindow({
@@ -88,7 +97,7 @@ function createWindow(): BrowserWindow {
 
     let certisLength = usbCertis.length;
     if ( device.manufacturer === "SafeNet" ||  device.manufacturer === "Giesecke___Devrient_GmbH" ||
-      device.manufacturer === "Aladdin_Knowledge_Systems_Ltd." ) {
+      device.manufacturer === "Aladdin_Knowledge_Systems_Ltd." ||  device.manufacturer === "Giesecke & Devrient GmbH" ) {
       removeCerti(device);
     }
 
@@ -128,6 +137,10 @@ function createWindow(): BrowserWindow {
     return resp;
   });
 
+  ipcMain.handle("listcertis", async (event) => {
+    return usbCertis;
+  });
+
   return win;
 }
 
@@ -135,80 +148,87 @@ function createWindow(): BrowserWindow {
  * Tentar recuperar os certificados em um dispositivo USB
  */
 function recoveryCerti(device) {
-
-  var pkcs11 = new pkcs11js.PKCS11();
-  var opsys = process.platform;
-  let plataform : string = "";
-  if (opsys == "darwin") {
-    plataform = "MacOS";
-  } else if (opsys == "win32") {
-    plataform = "Windows";
-  } else if (opsys == "linux") {
-    plataform = "Linux";
-  }
+  let pkcs11 = new pkcs11js.PKCS11();
 
   device.deviceName = device.deviceName.replaceAll("&", " ").replaceAll(" ", "_");
   device.manufacturer = device.manufacturer.replaceAll("&", " ").replaceAll(" ", "_");
 
-  // Verificar qual das bibliotecas deve carregar
-  if ( device.deviceName.indexOf("StarSign_CUT") >= 0 ) {
-    console.log("StarSign_CUT");
-    switch ( plataform ) {
-      case "MacOs":
-        console.log("MACOS");
-        break;
-      case "Windows":
-        console.log("WINDOWS");
-        break;
-      case "Linux":
-        pkcs11.load("/usr/lib/libaetpkss.so");
-        break;
+  let loadLib = false;
+  try {
+    // Verificar qual das bibliotecas deve carregar
+    if ( device.deviceName.indexOf("StarSign_CUT") >= 0 ) {
+      console.log("StarSign_CUT");
+      switch ( plataform ) {
+        case "MacOs":
+          console.log("MACOS");
+          break;
+        case "Windows":
+          console.log("WINDOWS");
+          break;
+        case "Linux":
+          loadLib = true;
+          pkcs11.load("/usr/lib/libaetpkss.so");
+          //pkcs11.load("/usr/lib/kkkkk.so");
+          break;
+      }
+    } else if ( device.deviceName.indexOf("Token_JC") >= 0 ) {
+      console.log("Token_JC");
+      switch ( plataform ) {
+        case "MacOs":
+          console.log("MACOS");
+          break;
+        case "Windows":
+          console.log("WINDOWS");
+          break;
+        case "Linux":
+          loadLib = true;
+          pkcs11.load("/usr/lib/libeToken.so");
+          break;
+      }
+    } else if ( device.deviceName.indexOf("Token_4.28.1.1_2.7.195") >= 0 ) {
+      console.log("Token_4.28.1.1_2.7.195");
+      switch ( plataform ) {
+        case "MacOs":
+          console.log("MACOS");
+          break;
+        case "Windows":
+          console.log("WINDOWS");
+          break;
+        case "Linux":
+          loadLib = true;
+          pkcs11.load("/usr/lib/libaetpkss.so");
+          break;
+      }
+    } else {
+      console.log("NAO SUPORTADO");
+      console.log(device.deviceName);
     }
-  } else if ( device.deviceName.indexOf("Token_JC") >= 0 ) {
-    console.log("Token_JC");
-    switch ( plataform ) {
-      case "MacOs":
-        console.log("MACOS");
-        break;
-      case "Windows":
-        console.log("WINDOWS");
-        break;
-      case "Linux":
-        pkcs11.load("/usr/lib/libeToken.so");
-        break;
-    }
-  } else if ( device.deviceName.indexOf("Token_4.28.1.1_2.7.195") >= 0 ) {
-    console.log("Token_4.28.1.1_2.7.195");
-    switch ( plataform ) {
-      case "MacOs":
-        console.log("MACOS");
-        break;
-      case "Windows":
-        console.log("WINDOWS");
-        break;
-      case "Linux":
-        pkcs11.load("/usr/lib/libaetpkss.so");
-        break;
-    }
-  } else {
-    console.log("NAO SUPORTADO");
-    console.log(device.deviceName);
+  } catch ( e ) {
+    console.log("--> Não foi possivel carregar a biblioteca <--");
+    // Enviar evento para abrir popup e perdir a pessoa para ver se o token esta corretamente cadastrado
+    return;
+  }
+
+  if ( !loadLib ) {
+    console.log("--> Não foi possivel localizar a biblioteca para o token <--");
+    // Enviar mensagem avisando que o token não e suportado
+    return;
   }
 
   try {
     pkcs11.C_Initialize();
 
     // Getting list of slots
-    var slots = pkcs11.C_GetSlotList(true);
-    var slot = slots[0];
+    let slots = pkcs11.C_GetSlotList(true);
+    let slot = slots[0];
 
-    var session = pkcs11.C_OpenSession(slot, pkcs11js.CKF_RW_SESSION | pkcs11js.CKF_SERIAL_SESSION);
+    let session = pkcs11.C_OpenSession(slot, pkcs11js.CKF_RW_SESSION | pkcs11js.CKF_SERIAL_SESSION);
 
     pkcs11.C_FindObjectsInit(session, [{type: pkcs11js.CKA_CLASS, value: pkcs11js.CKO_PUBLIC_KEY}]);
-    var hObject = pkcs11.C_FindObjects(session);
+    let hObject = pkcs11.C_FindObjects(session);
 
     while (hObject) {
-      var attrs = pkcs11.C_GetAttributeValue(session, hObject, [
+      let attrs = pkcs11.C_GetAttributeValue(session, hObject, [
         {type: pkcs11js.CKA_CLASS},
         {type: pkcs11js.CKA_TOKEN},
         {type: pkcs11js.CKA_LABEL},
@@ -236,6 +256,8 @@ function recoveryCerti(device) {
 
     pkcs11.C_FindObjectsFinal(session);
     pkcs11.C_CloseSession(session);
+    pkcs11.C_Finalize();
+    pkcs11 = null;
   } catch ( e ) {
     console.log("ERRO NA RECUPERACAO DOS CERTIFICADOS");
     console.log(e);
@@ -245,11 +267,10 @@ function recoveryCerti(device) {
 function removeCerti(device) {
   let newUsbCertis = [];
 
-  device.deviceName = device.deviceName.replaceAll("&", " ").replaceAll(" ", "_");
-  device.manufacturer = device.manufacturer.replaceAll("&", " ").replaceAll(" ", "_");
-
+  let achou = false;
   for ( let usbc of usbCertis ) {
-    if ( JSON.stringify(usbc.device) !== JSON.stringify(device) ) {
+    if ( usbc.device.deviceAddress !== device.deviceAddress
+    ) {
       newUsbCertis.push(usbc);
     }
   }

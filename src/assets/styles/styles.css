@@ -10,13 +10,58 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+h1 {
+  font-size: 1.5rem;
+  color: #161616;
+  line-height: 2rem
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1rem;
+}
+
+.subtitle2 {
+  font-size: 1rem;
+  color: #979797;
+  line-height: 1rem;
+}
+
+.loginBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-height: 26rem;
+  min-width: 25rem;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.274) 0px 5px 15px;;
+  background-color: #fff;
+  padding: 0rem 2rem 1rem 2rem;
+}
+
+.flexsb {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.linkIcon {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
 
 .mat-dialog-container {
   border-radius: 20px !important;
 }
 
 a {
-  color: #0059FF;
   text-decoration: none;
 }
 
@@ -31,14 +76,7 @@ a {
 .forms {
   display: flex;
   flex-direction: column;
-  width: 24rem;
-}
-
-h1 {
-  font-size: 1.5rem;
-  color: #161616;
-  margin-top: 2.5rem;
-  line-height: 2rem
+  width: 100%;
 }
 
 .primaryButton {
@@ -70,4 +108,26 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/*CORES DO UNICO*/
+
+.uprblue {
+  color: #0059FF;
+}
+
+.usvgprblue {
+  filter: invert(22%) sepia(67%) saturate(4845%) hue-rotate(217deg) brightness(100%) contrast(110%);
+}
+
+.ulgblue {
+  color: #0059FF;
+}
+
+.ubgprblue {
+  background-color: #0059FF;
+}
+
+.ubglgblue {
+  background-color: #0059FF;
 }
