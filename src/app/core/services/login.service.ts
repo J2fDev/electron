@@ -94,9 +94,7 @@ export class LoginService extends ApiService {
   }
 
   async forgot(user: any) {
-    console.log(user);
     let data : any = await this.request("post", "/auth/forgot", user, false);
-    console.log(data);
     if ( data.token !== null && data.token !== undefined ) {
       this.token = data.token;
     }

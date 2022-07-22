@@ -90,9 +90,12 @@ export class ForgotpassComponent implements OnInit {
     console.log(this.errorResponse);
 
     switch ( status ) {
-
+      case 0:
+        this.errorResponse = "Não foi possível conectar com nossos servidores.";
+        break;
       default:
-        console.log(status);
+        this.errorResponse = "Não foi possível processar a requisićão. <br />Tente novamente mais tarde." +
+          "<br />Se o problema persistir contate o suporte.";
     }
   }
 

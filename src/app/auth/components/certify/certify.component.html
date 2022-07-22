@@ -1,53 +1,47 @@
-<div class="noneCertDetec">
-  <div class="backIcon">
-    <mat-icon (click)="logout()">arrow_back</mat-icon>
-  </div>
+<div class="loginBox">
+  <auth-backicon class="fullwidth" (click)="logout()"></auth-backicon>
 
   <app-alert *ngIf="!loginService.isElectron" title="Certificados A3 indisponiveis" type="info" class="alertBox"
              message="Os certificados A3 só podem ser usados na versão desktop"
-             link="https://google.com" linkText="Baixar versao desktop"
+             link="https://google.com" linkText="Baixar versao desktop" canclose="true"
   ></app-alert>
 
-  <div *ngIf="reciveListA1.length == 0" class="noneDetectedImg">
+  <div *ngIf="certiList.length == 0" class="noneDetectedImg">
       <img src="assets/imgs/noneCertify.svg" alt="Nenhum certificado encontrado">
   </div>
 
-  <div *ngIf="reciveListA1.length == 0" class="noneDetectedText">
-    <h1>Não encontramos nenhum certificado! </h1>
-    <p>Certifique-se de ter plugado o token ou adicione um certificado válido</p>
-  </div>
+  <h1 *ngIf="certiList.length == 0">Não encontramos nenhum certificado! </h1>
+  <h1 *ngIf="certiList.length > 0" class="seletecTitle">Selecione o certificado digital</h1>
+  <p *ngIf="certiList.length == 0 && loginService.isElectron" class="subtitle">Certifique-se de ter plugado o token ou adicione um certificado válido</p>
+  <p *ngIf="certiList.length == 0 && !loginService.isElectron" class="subtitle">Adicione um certificado A1 ou continue sem certificado</p>
 
-  <div *ngIf="reciveListA1.length > 0" class="A1List">
-    <div (click)="openPinDialog()" class="A1Ables" *ngFor="let a1 of reciveListA1">
-      <div class="A1Certify">
-        <div class="iconCertify">
-          <mat-icon class="material-icons-outlined">cloud_done</mat-icon>
-        </div>
-        <div class="A1Name">
-          <!-- <mat-icon class="arrowBackIcon" color= "primary">dvr</mat-icon> -->
-          {{a1.name}}
-          <br>
-          <span class="A1Data"> Emissor: {{a1.emissor}}</span>
-          <span class="A1Data">Validade: {{a1.validade}}</span>
-        </div>
-      </div>
+  <div *ngIf="certiList.length > 0" class="certiListBlock">
+    <div (click)="openPinDialog(certi.type)" class="certiItem" *ngFor="let certi of certiList">
+      <mat-icon *ngIf="certi.type == 1" class="material-icons-outlined uprblue">cloud_done</mat-icon>
+      <img *ngIf="certi.type == 2" src="assets/svg/icons/usb-flash-drive-outline.svg" class="material-icons-outlined usvgprblue" />
+
+      <p class="certiName">{{certi.name}}</p>
+      <span class="certiData"> Emissor: {{certi.emissor}}</span>
+      <span class="certiData">Validade: {{certi.validade}}</span>
     </div>
   </div>
 
-  <button mat-raised-button (click)="addCertifyA1()" *ngIf="reciveListA1.length === 0" class="noneDetectedButton">
+  <button mat-raised-button (click)="addCertifyA1()" *ngIf="certiList.length === 0" class="noneDetectedButton uprblue">
     Adicione Certificado A1
     <img src="assets/svg/icons/cloud_ckeched.svg" />
   </button>
 
-  <div class="footer">
-      <button (click)="openDialog()" class="buttonNoCertify">
+  <div class="flexsb fullwidth">
+      <button (click)="withoutCertify()" class="buttonNoCertify uprblue">
         Entrar sem certificado
         <mat-icon>arrow_forward</mat-icon>
       </button>
-      <button (click)="openDialog()" class="buttonNoCertify">
+      <button (click)="usingLogin()" class="buttonNoCertify uprblue">
         Usando login e senha PJE
         <mat-icon>admin_panel_settings</mat-icon>
       </button>
-      <a href="" class="aNoCertify">Preciso de ajuda <mat-icon>help_outlined</mat-icon></a>
+      <button (click)="showHelp()" class="buttonNoCertify uprblue">
+        Preciso de ajuda <mat-icon>help_outlined</mat-icon>
+      </button>
   </div>
 </div>

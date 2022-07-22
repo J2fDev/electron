@@ -3,7 +3,10 @@
 
   <h1>Esqueci minha senha</h1>
   <span class="subtitle">Insira o seu CPF para continuar.</span>
-  <br /><br />
+  <br />
+  <app-alert title="Erro" message="{{errorResponse}}"
+             *ngIf="errorResponse.length > 0" type="error" class="fullwidth" canclose="false"></app-alert>
+  <br />
 
   <form name="loginForms" [formGroup]="loginForm" class="forms">
     <mat-form-field class="formField" appearance="outline" hideRequiredMarker>

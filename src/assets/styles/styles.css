@@ -34,7 +34,6 @@ h1 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  max-height: 26rem;
   min-width: 25rem;
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.274) 0px 5px 15px;;
@@ -130,4 +129,23 @@ h3 {
 
 .ubglgblue {
   background-color: #0059FF;
+}
+
+/*Scroll bar*/
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  border: solid 3px transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #92929d;
+  border-radius: 10px;
+  border: solid 3px transparent;
 }

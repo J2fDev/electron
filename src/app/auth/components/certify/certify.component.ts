@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmPinDialogComponent} from '../../dialog/confirm-pin-dialog/confirm-pin-dialog.component';
-import {RegisterPinDialogComponent} from '../../dialog/register-pin-dialog/register-pin-dialog.component';
 import {LoginService} from "../../../core/services/login.service";
 import {WithoutCertifyDialogComponent} from "../../dialog/without-certify-dialog/without-certify-dialog.component";
 
@@ -15,14 +14,13 @@ import {WithoutCertifyDialogComponent} from "../../dialog/without-certify-dialog
 
 export class CertifyComponent implements OnInit {
 
-  reciveListA1: any[] = [];
-  /*[{name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor:'CertifyDig', validade:'20/12/2021', ativo: true},
-  {name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor:'certifyDig', validade:'20/12/2021', ativo: true},
-  {name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
-  {name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
-  {name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
-  {name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
-  {name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
+  certiList: any[] = [{type: 1, name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor:'CertifyDig', validade:'20/12/2021', ativo: true},
+  {type: 1, name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor:'certifyDig', validade:'20/12/2021', ativo: true},
+  {type: 2, name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
+  {type: 1, name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
+  {type: 2, name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
+  {type: 2,name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
+  {type: 1,name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
   ];//*/
 
   constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog,
@@ -33,18 +31,7 @@ export class CertifyComponent implements OnInit {
 
   }
 
-  a1Forms: FormGroup = this.formBuilder.group({
-    password: ['', [Validators.required, Validators.minLength(5)]],
-    confirmPass: ['', [Validators.required, Validators.minLength(6)]],
-    fileA1: [],
-  });
-
-
-  selectCertify() {
-    console.log(this.a1Forms.value);
-  }
-
-  openDialog() {
+  withoutCertify() {
     const dialogRef = this.dialog.open(WithoutCertifyDialogComponent, {
       width: '500px',
     });
@@ -53,13 +40,36 @@ export class CertifyComponent implements OnInit {
     });
   }
 
-  openPinDialog() {
-    const dialogRef = this.dialog.open(ConfirmPinDialogComponent, {
+  usingLogin() {
+    const dialogRef = this.dialog.open(WithoutCertifyDialogComponent, {
       width: '500px',
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  showHelp() {
+    console.log("help");
+  }
+
+  openPinDialog(type: number) {
+    if ( type === 1) {
+      const dialogRef = this.dialog.open(ConfirmPinDialogComponent, {
+        width: '500px',
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    } else {
+      const dialogRef = this.dialog.open(ConfirmPinDialogComponent, {
+        width: '500px',
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    }
+
   }
 
   addCertifyA1() {
