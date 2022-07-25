@@ -14,7 +14,8 @@ import {WithoutCertifyDialogComponent} from "../../dialog/without-certify-dialog
 
 export class CertifyComponent implements OnInit {
 
-  certiList: any[] = [{type: 1, name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor:'CertifyDig', validade:'20/12/2021', ativo: true},
+  certiList: any[] = [];
+    /*[{type: 1, name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor:'CertifyDig', validade:'20/12/2021', ativo: true},
   {type: 1, name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor:'certifyDig', validade:'20/12/2021', ativo: true},
   {type: 2, name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
   {type: 1, name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},

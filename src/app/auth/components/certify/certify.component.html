@@ -1,5 +1,5 @@
 <div class="loginBox">
-  <auth-backicon class="fullwidth" (click)="logout()"></auth-backicon>
+  <auth-backicon style="align-self: start" (click)="logout()"></auth-backicon>
 
   <app-alert *ngIf="!loginService.isElectron" title="Certificados A3 indisponiveis" type="info" class="alertBox"
              message="Os certificados A3 só podem ser usados na versão desktop"

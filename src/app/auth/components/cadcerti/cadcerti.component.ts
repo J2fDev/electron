@@ -16,28 +16,17 @@ import {LoginService} from "../../../core/services/login.service";
 
 export class CadcertiComponent implements OnInit {
 
-  ableButtonA1: boolean = true;
-  hideForm: boolean = false;
-  hideList: boolean = true;
-  reciveListA1: any[] = [];
-  /*[{name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor:'CertifyDig', validade:'20/12/2021', ativo: true},
-  {name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor:'certifyDig', validade:'20/12/2021', ativo: true},
-  {name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
-  {name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
-  {name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
-  {name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
-  {name:'J2F Sistemas Inteligentes LTDA 44.97.907', emissor: 'certifyDig', validade:'20/12/2021', ativo: true},
-  ];//*/
-
-  listA1: any[] = [];
-  detectedA3: boolean = false;
-  addCertify: boolean = true;
-  formA1If: boolean = false;
-  listA1If: boolean = true;
-  liberaLista: boolean = false;
-
+  addStage: number = 4;
+  title: string = "Instalacão do Certificado";
   dragAreaClass: string;
   errorMessage: string = "";
+  filename : string = "J2F_Sistemas_Inteligentes.pfx";
+  hide: boolean = true;
+  certi : any = {
+    name: "J2F Sistemas Inteligentes LTDA: 44688671000162",
+    emissor: "AC Certisign RFB G4",
+    validade: "22/11/2021 ~ 22/11/2023"
+  };
 
   constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog,
               private loginService: LoginService) {
@@ -80,6 +69,7 @@ export class CadcertiComponent implements OnInit {
     else {
       this.errorMessage = "";
       console.log(files[0].size,files[0].name,files[0].type);
+      this.addStage = 2;
     }
   }
 
@@ -89,13 +79,6 @@ export class CadcertiComponent implements OnInit {
     fileA1: [],
   });
 
-
-  validateFormsA1() {
-    if (this.a1Forms.valid) {
-      this.ableButtonA1 = false;
-    }
-  }
-
   openDialog() {
     const dialogRef = this.dialog.open(WithoutCertifyDialogComponent, {
       width: '500px',
@@ -103,10 +86,6 @@ export class CadcertiComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
-  }
-
-  addCertifyA1() {
-    this.addCertify == false ? this.addCertify = true : this.addCertify = false;
   }
 
   selectCertify() {
@@ -123,15 +102,6 @@ export class CadcertiComponent implements OnInit {
     });
   }
 
-  implementsA1List() {
-    this.listA1.push(this.a1Forms.value);
-    this.addCertify = false;
-  }
-
-  callAddCertify() {
-    this.addCertify == false ? this.addCertify = true : this.addCertify = false;
-  }
-
   registerPinDIalog() {
     const dialogRef = this.dialog.open(RegisterPinDialogComponent, {
       width: '500px',
@@ -142,13 +112,20 @@ export class CadcertiComponent implements OnInit {
     });
   }
 
-  logout() {
-    if ( this.addCertify ) {
-      this.addCertify = false;
+  return() {
+    if ( this.addStage <= 1 ) {
+      this.router.navigate(["auth/certify"]);
     } else {
-      //this.certifyService.token = "";
-      this.loginService.disconnectSocket();
-      this.router.navigate(["auth"]);
+      this.addStage -= 1;
+    }
+  }
+
+  next() {
+    if ( this.addStage === 3 ) {
+      this.addStage = 4;
+      this.title = "Cadastrar Senha CSU";
+    } else {
+      this.addStage += 1;
     }
   }
 
@@ -161,10 +138,5 @@ export class CadcertiComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
-  }
-
-  pushLista1() {
-    this.listA1.push(1)
-    this.addCertify = false;
   }
 }

@@ -1,147 +1,16 @@
-/*Codigo relaciado a DIV do componente */
-.noneCertDetec{
-  /*width: 50vw;*/ /*Testar o tamanho das divs com as informacoes do certificado com tamanho dinamico*/
-  width: 42rem;
-  display: flex;
-  flex-direction: column;
-  /*align-items: center;
-  text-align: center;*/
-  border-radius: 16px;
-  box-shadow: rgba(0, 0, 0, 0.274) 0px 5px 15px;
-  background-color: rgb(246, 246, 246);
-  overflow: hidden;
+.loginBox {
+  min-width: 30rem;
+  max-width: 38rem;
 }
-
-/*Bloco para a exibicao dos certificados*/
-.listCert {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.alertBox {
-  width: 30rem;
-  margin-top: -2rem;
-}
-
-.backIcon {
-  width: 100%;
-  margin-left: 2rem;
-}
-
-.backIcon mat-icon {
-  border: 1px solid rgb(246, 246, 246);
-  cursor: pointer;
-  border-radius: 50%;
-  padding: 0.3rem;
-  transition: 400ms;
-}
-
-.backIcon mat-icon:hover {
-  border: 1px solid blue;
-  border-radius: 50%;
-  background-color: #e1f2ff;
-  transition: 400ms;
-}
-
-.backIcon mat-icon {
-  float: left;
-  margin-top: 1.5rem;
-  color: #0059ff;
-}
-
-.noneDetectedImg{
-  width: 12rem;
-  height: 11rem;
-  margin-top: 1rem;
-}
-
-.noneDetectedText p {
-  color: #666;
-}
-
-.noneDetectedButton {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  border: 1px solid #0059FF;
-  border-radius: 8px;
-  padding: 0rem 2rem;
-  transition: 0.5s;
-  color: #0059FF;
-  font-size: 1rem;
-  font-weight: bold;
-  height: 3rem;
-  width: 18rem;
-}
-
-.noneDetectedButton:hover{
-  background-color: #e1f2ff;
-}
-
-.noneDetectedButton img {
-  margin-top: -5px;
-  width: 1.5rem;
-  height: 1.3rem;
-  filter: invert(21%) sepia(89%) saturate(5018%) hue-rotate(219deg) brightness(103%) contrast(104%);
-}
-
-.footer{
-  margin-bottom: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.aNoCertify {
-  color: #0059FF;
-  text-decoration: none;
-  margin-right: 1.5rem;
-  display: flex;
-  align-items: center;
-}
-
-.aNoCertify mat-icon {
-  margin-left: 5px;
-}
-
-.buttonNoCertify {
-  color: #0059FF;
-  background-color: #0059ff00;
-  border: none;
-  cursor: pointer;
-  margin-left: 1.5rem;
-  display: flex;
-  align-items: center;
-}
-/*Fim do bloco da exibicao do certificado*/
 
 /*Bloco da primeira pagina da adicao de certificado A1*/
-.adicionarA1Div {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-}
-
-.adicionarA1Div h1 {
-  margin-top: -25px;
+h1 {
+  margin-top: -2rem;
   font-size: 1.5rem;
 }
 
-.inputAdicionarA1 {
-  width: 90%;
-}
-
-.dropzone{
-  width: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-radius: 10px;
-  position: relative;
-  margin: 0 auto;
+.dropzone {
+  padding: 2rem 0rem;
 }
 
 .dragarea {
@@ -154,10 +23,6 @@
   border: dashed 2.5px #0059ff;
 }
 
-.dropContent{
-  margin-bottom: 2rem;
-}
-
 .dropContent button {
   width: 16rem;
 }
@@ -166,7 +31,66 @@
   width: 3.5rem;
   height: 2.5rem;
   filter: invert(22%) sepia(91%) saturate(5120%) hue-rotate(219deg) brightness(103%) contrast(103%);
-  margin-top: 1.5rem;
+}
+
+/*Senha do certificado*/
+.buttonNoCertify {
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  float: right;
+}
+
+/*Pagina de confirmacao de certificado*/
+.certiHeader {
+  background-color: #eaeaea;
+  border: 1px solid #dadada;
+  height: 4rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.certiHeader img {
+  margin-left: 1rem;
+}
+
+.certiHeader p {
+  margin-left: 0.5rem;
+  font-weight: bold;
+  color: #666;
+}
+
+.certiItem {
+  border: 0.5px solid #dadada;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1.5rem 0rem;
+}
+
+.certiItem mat-icon {
+  margin-left: 2rem;
+}
+
+.certiName {
+  width: 80%;
+  text-align: left;
+  margin: 0px;
+  margin-left: 1rem;
+  font-size: 1rem;
+}
+
+.certiData {
+  font-size: 0.75rem;
+  width: 90%;
+  text-align: left;
+  margin-left: 4.5rem;
 }
 /*Fim do bloco da adicao do A1*/
 
