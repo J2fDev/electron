@@ -46,7 +46,7 @@ export class LoginService extends ApiService {
 
   get nome() {
     let resp = window.localStorage.getItem("nome");
-    if ( resp === undefined || resp === null ) return "";
+    if ( resp === undefined || resp === null ) return "Marina Silva Santos";
     else return resp;
   }
 
@@ -56,7 +56,7 @@ export class LoginService extends ApiService {
 
   get oab() {
     let resp = window.localStorage.getItem("oab");
-    if ( resp === undefined || resp === null ) return "";
+    if ( resp === undefined || resp === null ) return "OAB MG - 12345";
     else return resp;
   }
 

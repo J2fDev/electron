@@ -23,6 +23,9 @@ import {MatBadgeModule} from "@angular/material/badge";
 import {MatButtonModule} from "@angular/material/button";
 import {MatRippleModule} from "@angular/material/core";
 import {MatMenuModule} from "@angular/material/menu";
+import {AvatarComponent} from "./components/avatar/avatar.component";
+import {SharedModule} from "../shared/shared.module";
+import {CommonModule} from "@angular/common";
 
 
 @NgModule({
@@ -30,9 +33,11 @@ import {MatMenuModule} from "@angular/material/menu";
     FooterComponent,
     HeaderComponent,
     SidebarComponent,
+    AvatarComponent,
     CoreComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
@@ -45,12 +50,15 @@ import {MatMenuModule} from "@angular/material/menu";
     MatBadgeModule,
     MatButtonModule,
     MatRippleModule,
-    MatMenuModule,
-
+    MatMenuModule
   ],
   exports: [
     CoreComponent,
-    RouterModule
+    RouterModule,
+    FooterComponent,
+    SidebarComponent,
+    HeaderComponent,
+    AvatarComponent
   ],
   providers: [
     LocalStorageService,

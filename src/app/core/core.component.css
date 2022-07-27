@@ -1,7 +1,42 @@
 .core {
+  display: flex;
+
+  height: calc(100vh - 1.5rem);
+  width: 100vw;
+  margin: auto;
+
+  min-width: 1150px;
+  max-width: 1920px;
+  min-height: 602px;
+  max-height: 1080px;
+}
+
+.sidebar {
+  height: 100%;
+  width: 3.5rem;
+  margin-bottom: 2rem;
+}
+
+.main {
+  width: calc(100% - 3.5rem);
+  height: calc(100%);
+  margin-bottom: 2rem;
+}
+
+.content {
+  padding: 0;
+  margin: 0;
+  height: calc(100% - 3rem);
+  overflow: scroll;
+  scroll-padding: 0px;
+}
+
+
+/*
+.core {
   display:flex;
-  flex-wrap: wrap;
   flex-direction:row;
+  flex-wrap: wrap;
   align-items:flex-start;
   height:100%;
   width:100%;
@@ -17,15 +52,13 @@
   display:flex;
   flex-direction:column;
   align-items:flex-start;
-  max-height: 97vh;
+  height: 97%;
   min-width: 4rem;
   max-width: 4rem;
 }
 
 .main {
   width: 100%;
-  margin-left: 4rem;
-  margin-top: -0.70rem;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -38,13 +71,9 @@
 
 .content {
   flex: 1;
-  /* margin-left: 2rem; */
-  /* margin-right: 1rem; */
   overflow: auto;
-  overflow-x: hidden;
   min-height: 500px;
 }
-
 .content::-webkit-scrollbar {
   width:0px;
 }
@@ -62,6 +91,9 @@
 
   background-color: #0031cb;
   color: rgb(255, 255, 255);
-
 }
+
+
+*/
+
 

@@ -1,0 +1,76 @@
+.iconImg{
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid white;
+    margin-right: 0.5rem;
+}
+
+.iconImg img{
+    height: 100%;
+}
+
+/*
+.iconText{
+    margin-right: 0.5rem;
+    color: white;
+    border-radius: 50%;
+}
+
+.purple{
+    background-color: blueviolet;
+}
+
+.red{
+    background-color: crimson;
+}
+
+.yellow{
+    background-color: gold;
+}
+
+.green{
+    background-color: green;
+}
+
+.black{
+    background-color: black;
+}
+
+.pink{
+    background-color: rgb(255, 97, 124);
+}
+
+*/
+
+.smaller{
+  height: 1.5rem;
+  width: 1.5rem;
+  font-size: 0.6rem;
+}
+
+.small{
+  height: 2rem;
+  width: 2rem;
+  font-size: 0.8rem;
+
+}
+
+.medium{
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.normal{
+  height: 3rem;
+  width: 3rem;
+}
+
+.large{
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+.larger{
+  height: 4rem;
+  width: 4rem;
+}

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {onSideNavChange} from '../../animations/sidebar';
-import {ApiService} from '../../services/api.service';
+import {LoginService} from "../../services/login.service";
 
 @Component({
   animations: [
@@ -16,10 +16,11 @@ export class SidebarComponent implements OnInit {
   isOpen: boolean = false;
   itenSelected: string = "";
 
-  constructor(private route: Router, private apiService: ApiService) {
+  constructor(private route: Router, private loginService: LoginService) {
   }
 
   ngOnInit(): void {
+    console.log("Item selecionado: " + this.itenSelected);
   }
 
   thisIsOpen() {
@@ -27,13 +28,11 @@ export class SidebarComponent implements OnInit {
     console.log("OI")
   }
 
-  sendTo(path: string) {
-    this.route.navigate([path]);
-  }
-
   itenSelection(item: string, path: string) {
     this.itenSelected = item;
-    this.apiService.sectionTitle = item;
+    this.loginService.sectionTitle = item;
+
+    console.log("Clicou no menu: " + this.itenSelected);
 
     if ( path === "sair" ) {
 

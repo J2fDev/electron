@@ -1,14 +1,28 @@
-
-.toolBar{
+.toolBar {
   background-color: #0031cb;
   padding: 0;
   display: flex;
   height: 3.5rem;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 
-.searchSection{
+.titleSection {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1;
+  text-align: left;
+  color: #fff;
+  margin-left: 1rem;
+}
+
+.secondSection {
+  display: flex;
+  align-items: center;
+}
+
+.searchSection {
   border: 1px solid white;
   margin-right: 1.5rem;
   display: flex;
@@ -17,37 +31,11 @@
   border-radius: 0.5rem;
 }
 
-.icon{
+.icon {
   padding-left: 0.5rem;
 }
 
-.search{
-  filter:invert(100%) sepia(98%) saturate(0%) hue-rotate(349deg) brightness(102%) contrast(106%);
-}
-
-.calendar{
-  filter: invert(18%) sepia(64%) saturate(6145%) hue-rotate(221deg) brightness(106%) contrast(107%);
-}
-
-textarea:focus, input:focus, select:focus {
-  outline: 0;
-}
-
-.titleSection{
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1;
-  text-align: left;
-  color: #fff;
-}
-.firstSection{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-left: 1rem;
-}
-
-.searchInput{
+.searchInput {
   background: none;
   color: #ffff;
   border: none;
@@ -55,38 +43,41 @@ textarea:focus, input:focus, select:focus {
   height: 1.8rem;
 }
 
-.searchInput::placeholder{
-  color: #ffffff;
+.searchInput::-webkit-input-placeholder { /* Edge */
+  color: white;
 }
 
-.time{
+.searchInput:focus {
+  outline: 0;
+}
+
+.time {
   height: 2rem;
   width: 13rem;
-  background-color:#f4f7fc ;
+  background-color: #f4f7fc;
   font-size: 0.75rem;
   text-align: center;
   border-radius: 8px;
   margin-right: 1rem;
-  color:#979797 ;
+  color: #979797;
 }
 
-
-.secondSection{
-  display: flex;
-  align-items: center;
-  margin-right: 2rem;
+.calendar {
+  filter: invert(18%) sepia(64%) saturate(6145%) hue-rotate(221deg) brightness(106%) contrast(107%);
 }
 
-.trialPeriod{
+.trialPeriod {
   display: flex;
 }
-.buttonToContract{
+
+.buttonToContract {
   margin-right: 0.5rem;
   height: 2rem;
   width: 7.5rem;
   line-height: 1rem;
 }
-.timeTrial{
+
+.timeTrial {
   height: 2rem;
   width: 2rem;
   align-items: center;
@@ -96,7 +87,7 @@ textarea:focus, input:focus, select:focus {
 }
 
 
-.timeTrial span{
+.timeTrial span {
   position: absolute;
   font-size: 1rem;
   color: #ffff;
@@ -106,23 +97,89 @@ textarea:focus, input:focus, select:focus {
   stroke: #36b5ff;
 }
 
-.pTrial{
+.pTrial {
   font-size: 0.65rem;
   line-height: 1rem;
   color: #ffffff;
   font-weight: 600;
 }
 
-
-.Icon{
+.Icon {
   color: white;
 }
 
+.profileSection {
+  border: 1px solid red;
+  margin-left: 1.5rem;
+  color: #ffffff;
+  width: 300px;
+}
+
+.profileName {
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.OAB {
+  font-size: 0.625rem;
+}
+
+.tokenArea {
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  background-color: #36b5ff;
+  margin-left: 1rem;
+  transition: 0.5s;
+}
+
+.tokenArea:hover {
+  background-color: #0031cb;
+}
+
+/*
 
 
-.iconButton{
-  background:none;
-  border:none;
+
+.profileInfo {
+  line-height: 1rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.OAB {
+  width: 4.938rem;
+  height: 0.938rem;
+  font-size: 0.625rem;
+}
+
+.arrowDown {
+  color: #ffffff;
+  font-size: 1.2rem;
+  line-height: 1rem;
+}
+
+.firstSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.secondSection {
+  display: flex;
+  align-items: center;
+  !* margin-right: 2rem; *!
+}
+
+.iconButton {
+  background: none;
+  border: none;
   width: 2rem;
   height: 2rem;
   cursor: pointer;
@@ -131,15 +188,10 @@ textarea:focus, input:focus, select:focus {
 
 }
 
-.profileSection{
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-left: 1.5rem;
-}
 
 
-.clientPhoto{
+
+.clientPhoto {
   height: 2rem;
   width: 2rem;
   margin-right: 0.5rem;
@@ -151,174 +203,14 @@ textarea:focus, input:focus, select:focus {
   align-items: center;
 }
 
-.clientPhoto img{
+.clientPhoto img {
   height: 100%;
 }
 
 
-.profileInfo{
-  line-height: 1rem;
-  display: flex;
-  flex-direction: column;
-  font-size: 0.75rem;
-  color: #ffffff;
-  font-weight: 600;
-}
-.OAB{
-  width: 4.938rem;
-  height: 0.938rem;
-  font-size: 0.625rem;
-}
-.arrowDown{
-  color: #ffffff;
-  font-size: 1.2rem;
-  line-height: 1rem;
-}
-
-
-/*
-.toolBar{
-    background-color: #0031cb;
-    padding: 0;
-    display: flex;
-    height: 3.5rem;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.titleSection{
-    font-size: 1.5rem;
-    font-weight: 500;
-    line-height: 1;
-    text-align: left;
-    color: #fff;
-}
-.firstSection{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-left: 2rem;
-}
-
-.searchInput{
-    background: none;
-    color: #ffff;
-    border: none;
-    width: 13rem;
-     height: 1.8rem;
-     margin-right: 1.5rem;
-    border-radius: 8px;
-     border: solid 0.5px #fff;
-}
-
-.searchInput::placeholder{
-    color: #ffffff;
-}
-
-.time{
-    height: 2rem;
-    width: 13rem;
-    background-color:#f4f7fc ;
-    font-size: 0.75rem;
-    text-align: center;
-    border-radius: 8px;
-    margin-right: 1rem;
-    color:#979797 ;
-}
-
-
-.secondSection{
-    display: flex;
-    align-items: center;
-    margin-right: 2rem;
-}
-
-.trialPeriod{
-    display: flex;
-}
-.buttonToContract{
-    margin-right: 0.5rem;
-    height: 2rem;
-    width: 7.5rem;
-    line-height: 1rem;
-}
-.timeTrial{
-    height: 2rem;
-    width: 2rem;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    margin-right: 0.3rem;
-}
-
-
-.timeTrial span{
-    position: absolute;
-    font-size: 1rem;
-    color: #ffff;
-}
-
-:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
-    stroke: #36b5ff;
-}
-
-.pTrial{
-    font-size: 0.65rem;
-    line-height: 1rem;
-    color: #ffffff;
-    font-weight: 600;
-}
-
-
-.Icon{
-    color: white;
-    margin-left: 1.3rem;
-}
 
 
 
-.iconButton{
-    background:none;
-    border:none;
-    width: 2rem;
-    height: 2rem;
-    cursor: pointer;
-    border-radius: 50%;
-    background-color: #18181a;
 
-}
 
-.profileSection{
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-left: 1.5rem;
-}
-
-.profileSection img{
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    margin-right: 0.5rem;
-    border: solid 2px #fff;
-}
-
-.profileInfo{
-    line-height: 1rem;
-    display: flex;
-    flex-direction: column;
-    font-size: 0.75rem;
-    color: #ffffff;
-    font-weight: 600;
-}
-.OAB{
-    width: 4.938rem;
-    height: 0.938rem;
-    font-size: 0.625rem;
-}
-.arrowDown{
-    color: #ffffff;
-    font-size: 1.2rem;
-    line-height: 1rem;
-}
 */

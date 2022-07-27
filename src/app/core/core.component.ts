@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class CoreComponent {
   title = 'Único';
-  fullScreen = true;
-
-
-  changeToFullScreen(){
-    this.fullScreen === true ? this.fullScreen = false : this.fullScreen = true;
-  }
 }

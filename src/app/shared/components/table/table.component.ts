@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import { ProcessService } from 'src/app/core/services/process.service';
+import {ProcessService} from "../../../core/services/process.service";
 
 @Component({
   selector: 'app-table',
@@ -9,29 +9,30 @@ import { ProcessService } from 'src/app/core/services/process.service';
 })
 export class TableComponent implements OnInit {
 
-  constructor(private processService: ProcessService) { }
+  constructor(private processService: ProcessService) {
+  }
 
   ngOnInit(): void {
   }
 
-  addEvent(){
+  addEvent() {
   }
 
-  selectedCss: string = 'Meus Processos'
-  arrayOfProcess= this.processService.arrayOfProcess
+  selectedCss: string = 'Meus Processos';
+  arrayOfProcess = this.processService.arrayOfProcess;
 
-   
-  closeTab(tabName: any){
-this.processService.closeTab(tabName)
-console.log(tabName);
+
+  closeTab(tabName: any) {
+    this.processService.closeTab(tabName);
+    console.log(tabName);
 
   }
 
 
-   logAll(nome: string){
+  logAll(nome: string) {
     // console.log(nome);
     this.processService.whoIsOpen(nome)
-   }
+  }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.arrayOfProcess, event.previousIndex, event.currentIndex);

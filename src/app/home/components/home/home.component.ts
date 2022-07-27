@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginService} from "../../../core/services/login.service";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  cf: string = "";
+
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
+    this.loginService.request("get", "/law/getcf", null, false).then((resp : any) => {
+      this.cf = resp;
+    })
   }
 
 }

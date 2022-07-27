@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
+import {LoginService} from "../../services/login.service";
 
 
 @Component({
@@ -9,11 +9,15 @@ import { ApiService } from '../../services/api.service';
 })
 export class HeaderComponent implements OnInit {
 
-  public get title() {
-    return this.apiService.sectionTitle;
+  get onTrial() {
+    return true;
   }
 
-  constructor(private apiService: ApiService) { }
+  get hasCerti() {
+    return false;
+  }
+
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
 

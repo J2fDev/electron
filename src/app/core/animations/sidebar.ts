@@ -4,12 +4,12 @@ import { trigger, state, style, transition, animate, animateChild, query } from 
 export const onSideNavChange = trigger('onSideNavChange', [
   state('close',
     style({
-      'max-width':  '4rem',
+      'max-width':  '3.5rem',
     })
   ),
   state('open',
     style({
-      'max-width':  '13.5rem',
+      'max-width':  '11.5rem',
     })
   ),
   transition('close => open', animate('250ms ease-in')),

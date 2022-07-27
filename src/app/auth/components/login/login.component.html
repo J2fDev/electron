@@ -2,7 +2,7 @@
   <h1>Fazer Login</h1>
 
   <app-alert title="Falha no login" message="{{errorResponse}}"
-             *ngIf="errorResponse.length > 0" type="{{errorType}}" style="width: 29rem;" canclose="false">
+             *ngIf="errorResponse !== undefined &&  errorResponse.length > 0" type="{{errorType}}" style="width: 29rem;" canclose="false">
 
   </app-alert>
 

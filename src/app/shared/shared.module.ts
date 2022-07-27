@@ -19,6 +19,8 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
 import {NgxMaskModule} from "ngx-mask";
 import {MatOptionModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
+import {AvatarComponent} from "../core/components/avatar/avatar.component";
+import {TableComponent} from "./components/table/table.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import {MatInputModule} from "@angular/material/input";
     ListTribunaisComponent,
     FiltrarTribunaisPipe,
     OrganizePipe,
-    NewCertifyComponent
+    NewCertifyComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
@@ -50,6 +53,7 @@ import {MatInputModule} from "@angular/material/input";
     AlertComponent,
     AdressFormsComponent,
     ListTribunaisComponent,
+    TableComponent,
     CommonModule,
     MatDividerModule,
     MatTabsModule,
