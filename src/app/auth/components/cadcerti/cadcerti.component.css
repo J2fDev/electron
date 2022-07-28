@@ -11,6 +11,7 @@ h1 {
 
 .dropzone {
   padding: 2rem 0rem;
+  border-radius: 10px;
 }
 
 .dragarea {

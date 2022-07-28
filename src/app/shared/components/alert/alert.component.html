@@ -2,7 +2,7 @@
   <div class="listra {{type}}-bgcolor"></div>
   <mat-icon *ngIf="type === 'error'" class="icon {{type}}-color">error_outline</mat-icon>
   <mat-icon *ngIf="type === 'info'" class="icon {{type}}-color">info_outline</mat-icon>
-  <mat-icon *ngIf="type === 'warn'" class="icon {{type}}-color">warning_outline</mat-icon>
+  <mat-icon *ngIf="type === 'warn'" class="icon material-icons-outlined {{type}}-color">warning_outline</mat-icon>
   <mat-icon *ngIf="type === 'success'" class="icon {{type}}-color">check_circle_outline</mat-icon>
   <div class="divText" *ngIf="title.length > 0">
     <h3 class="{{type}}-color">{{title}}</h3>

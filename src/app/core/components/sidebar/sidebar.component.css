@@ -12,7 +12,6 @@
 }
 
 .iconArea {
-  background-color: #0059ff;
   height: 3.5rem;
 }
 
@@ -27,12 +26,20 @@
   border-right: 5px solid blue;
 }
 
-.checked img {
-  filter: invert(28%) sepia(76%) saturate(7066%) hue-rotate(219deg) brightness(104%) contrast(105%);
+.bottomOptions {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
-.bottomOptions {
-  margin-top: calc(100vh - 480px);
+.bottomOptions li {
+  height: 2.5rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  overflow: hidden;
+  white-space: nowrap;;
+  width: calc(100% - 5px);
 }
 
 ul {
@@ -42,7 +49,6 @@ ul {
 
 li {
   height: 2.5rem;
-  /*width: 11rem;*/
   cursor: pointer;
   font-size: 0.75rem;
   line-height: 1rem;
@@ -73,20 +79,9 @@ li:hover .icon {
 
 
 /*
-
-
-
-
-
-
-
-
 .sideNav::-webkit-scrollbar {
   width: 0px;
 }
-
-
-
 
 .finalList {
   bottom: 0rem;
@@ -97,21 +92,17 @@ li mat-icon {
   margin-left: 1.2rem;
 }
 
-
-
 mat-icon {
   color: #92929dad;
   font-size: 1.4rem;
 }
 
-
 li:hover {
   background-color: #dbeefd;
   color: black;
-}*/
+}
 
-
-/* .sideNavUl:hover{
+.sideNavUl:hover{
         width: 14rem;
 }
 

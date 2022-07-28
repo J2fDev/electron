@@ -16,13 +16,13 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
+  },
+  {
     path: 'main',
     component: CoreComponent,
     children: [
-      {
-        path: 'register',
-        loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
-      },
       {
         path:  '',
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule)

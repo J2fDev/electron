@@ -116,7 +116,8 @@ h3 {
 }
 
 .usvgprblue {
-  filter: invert(22%) sepia(67%) saturate(4845%) hue-rotate(217deg) brightness(100%) contrast(110%);
+  /*filter: invert(22%) sepia(67%) saturate(4845%) hue-rotate(217deg) brightness(100%) contrast(110%);*/
+  filter: invert(28%) sepia(76%) saturate(7066%) hue-rotate(219deg) brightness(104%) contrast(105%);
 }
 
 .ulgblue {

@@ -7,6 +7,7 @@ import {ConfirmPinDialogComponent} from '../../dialog/confirm-pin-dialog/confirm
 import {RegisterPinDialogComponent} from '../../dialog/register-pin-dialog/register-pin-dialog.component';
 import {InstallCertifyDialogComponent} from '../../dialog/install-certify-dialog/install-certify-dialog.component';
 import {LoginService} from "../../../core/services/login.service";
+import {CsuDialogComponent} from "../../dialog/csu-dialog/csu-dialog.component";
 
 @Component({
   selector: 'auth-cadcerti',
@@ -16,8 +17,8 @@ import {LoginService} from "../../../core/services/login.service";
 
 export class CadcertiComponent implements OnInit {
 
-  addStage: number = 4;
-  title: string = "Instalacão do Certificado";
+  addStage: number = 1;
+  title: string = "Adicione um Certificado A1";
   dragAreaClass: string;
   errorMessage: string = "";
   filename : string = "J2F_Sistemas_Inteligentes.pfx";
@@ -68,8 +69,19 @@ export class CadcertiComponent implements OnInit {
     if (files.length > 1) this.errorMessage = "Só é possível enviar um certificado por vez.";
     else {
       this.errorMessage = "";
+      if ( files[0].size/1024 > 500 ) {
+        this.errorMessage = "O arquivo é grande demais";
+        return;
+      }
+      if ( files[0].type !== "image/png" ) {
+        this.errorMessage = "Tipo de arquivo não suportado.";
+        return;
+      }
+      this.filename = files[0].name;
       console.log(files[0].size,files[0].name,files[0].type);
+
       this.addStage = 2;
+      this.alterTitle();
     }
   }
 
@@ -118,25 +130,55 @@ export class CadcertiComponent implements OnInit {
     } else {
       this.addStage -= 1;
     }
+    this.alterTitle();
   }
 
   next() {
     if ( this.addStage === 3 ) {
       this.addStage = 4;
-      this.title = "Cadastrar Senha CSU";
     } else {
       this.addStage += 1;
     }
+    this.alterTitle();
   }
 
-  installCertifyPassword(e) {
+  alterTitle() {
+    this.errorMessage = "";
+    switch ( this.addStage ) {
+      case 1:
+        this.title = "Adicione um Certificado A1";
+        break;
+      case 2:
+        this.title = "Instalação do Certificado";
+        break;
+      case 3:
+        this.title = "Instalação do Certificado";
+        break;
+      case 4:
+        this.title = "Cadastrar Senha CSU";
+        break;
+      case 5:
+        this.title = "Informar Senha CSU";
+        break;
+    }
+  }
 
-    const dialogRef = this.dialog.open(InstallCertifyDialogComponent, {
+  openCerti(pass) {
+    if ( pass === "123456" ) {
+      this.errorMessage = "A senha informada é inválida";
+    } else {
+      this.addStage = 3;
+      this.alterTitle();
+    }
+  }
+
+  csuinfo() {
+    const dialogRef = this.dialog.open(CsuDialogComponent, {
       width: '500px',
       panelClass: 'custom-modalbox'
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+
     });
   }
 }

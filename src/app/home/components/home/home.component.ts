@@ -18,4 +18,24 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  seekart(e) {
+    if ( e.length < 3 ) {
+      // Faz nada pois tem pouca informacao
+      return;
+    }
+    if ( e.length === 0 ) {
+      this.loginService.request("get", "/law/getcf", null, false).then((resp : any) => {
+        this.cf = resp;
+      })
+    }
+
+    if ( e.toUpperCase().indexOf("CF") !== 0 ) {
+      this.cf = " APENAS CF e suportado no momento";
+    } else {
+      this.loginService.request("post", "/law/cita", {parse: e}, false).then((resp : any) => {
+        this.cf = resp;
+      })
+    }
+  }
+
 }

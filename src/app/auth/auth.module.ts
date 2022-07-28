@@ -17,6 +17,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatDialogModule} from "@angular/material/dialog";
 import {CadcertiComponent} from "./components/cadcerti/cadcerti.component";
 import {BackiconComponent} from "./components/backicon/backicon.component";
+import {CsuDialogComponent} from "./dialog/csu-dialog/csu-dialog.component";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {BackiconComponent} from "./components/backicon/backicon.component";
     RegisterPinDialogComponent,
     WithoutCertifyDialogComponent,
     ListComponent,
+    CsuDialogComponent
   ],
   imports: [
     SharedModule,

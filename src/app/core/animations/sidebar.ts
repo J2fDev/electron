@@ -19,16 +19,16 @@ export const onSideNavChange = trigger('onSideNavChange', [
 export const onLiChange = trigger('onLiChange', [
   state('close',
     style({
-      'width':  '3.5rem',
+      'width':  '3.2rem',
     })
   ),
   state('open',
     style({
-      'width':  '11.5rem',
+      'width':  '11.2rem',
     })
   ),
-  transition('close => open', animate('250ms ease-in')),
-  transition('open => close', animate('250ms ease-in')),
+  transition('close => open', animate('250ms ease-in-out')),
+  transition('open => close', animate('250ms ease-in-out')),
 ]);
 
 

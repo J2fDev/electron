@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {onSideNavChange} from '../../animations/sidebar';
+import {onLiChange, onSideNavChange} from '../../animations/sidebar';
 import {LoginService} from "../../services/login.service";
 
 @Component({
   animations: [
-    onSideNavChange
+    onSideNavChange,
+    onLiChange
   ],
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -20,7 +21,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Item selecionado: " + this.itenSelected);
+
   }
 
   thisIsOpen() {
@@ -30,8 +31,6 @@ export class SidebarComponent implements OnInit {
   itenSelection(item: string, path: string) {
     this.itenSelected = item;
     this.loginService.sectionTitle = item;
-
-    console.log("Clicou no menu: " + this.itenSelected);
 
     if ( path === "sair" ) {
 

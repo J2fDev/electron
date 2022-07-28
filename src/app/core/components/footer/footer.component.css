@@ -3,6 +3,7 @@
   height: 1.5rem;
   background-color: #0059ff;
   margin: auto;
+  min-width: 1150px;
   max-width: 1920px;
 
   display: flex;
