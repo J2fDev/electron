@@ -8,6 +8,7 @@
   background-color: #ffff;
   height: calc(100% - 1.5rem);
   min-height: 600px;
+  max-height: 1080px;
 }
 
 .iconArea {
@@ -22,11 +23,16 @@
 }
 
 .checked {
+  font-weight: bold;
+  border-right: 5px solid blue;
+}
+
+.checked img {
   filter: invert(28%) sepia(76%) saturate(7066%) hue-rotate(219deg) brightness(104%) contrast(105%);
-  margin-left: 1rem;
-  margin-right: 1.6rem;
-  width: 1rem;
-  height: 1rem;
+}
+
+.bottomOptions {
+  margin-top: calc(100vh - 480px);
 }
 
 ul {
@@ -36,18 +42,25 @@ ul {
 
 li {
   height: 2.5rem;
-  width: 14rem;
+  /*width: 11rem;*/
   cursor: pointer;
-  color: #161616;
   font-size: 0.75rem;
   line-height: 1rem;
-  transition: 1s;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+li img {
+  margin-top: 10px;
+}
+
+li:hover {
+  background-color: aliceblue;
 }
 
 .icon {
-  margin-left: 0.8rem;
-  margin-right: 0.5rem;
-  margin-top: 0.75rem;
+  margin-left: 10px;
+  margin-right: 20px;
   width: 2rem;
   height: 1rem;
 }
@@ -56,9 +69,7 @@ li:hover .icon {
   filter: invert(28%) sepia(76%) saturate(7066%) hue-rotate(219deg) brightness(104%) contrast(105%);
 }
 
-.bottomOptions {
-  float: bottom;
-}
+
 
 
 /*

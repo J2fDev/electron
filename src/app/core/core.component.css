@@ -24,11 +24,11 @@
 }
 
 .content {
-  padding: 0;
-  margin: 0;
-  height: calc(100% - 3rem);
-  overflow: scroll;
-  scroll-padding: 0px;
+  padding: 0px;
+  margin: 0px;
+  height: calc(100% - 3.5rem);
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 

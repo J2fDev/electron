@@ -19,14 +19,12 @@
         Contratar
       </button>
 
-      <div class="timeTrial">
-        <mat-progress-spinner mode="determinate" value="90" [diameter]="32" color="#36b5ff">
-        </mat-progress-spinner>
-        <span class="restingDays">9</span>
-      </div>
+      <mat-progress-spinner mode="determinate" value="90" [diameter]="32" color="#36b5ff">
+      </mat-progress-spinner>
+      <span class="restingDays">9</span>
+
       <p class="pTrial">dias restantes</p>
     </div>
-
 
     <button mat-icon-button>
       <mat-icon class="Icon">notifications_none</mat-icon>
@@ -34,20 +32,20 @@
 
     <div class="profileSection">
       <app-avatar sizeSelected="small"></app-avatar>
-      <span class="profileName">{{loginService.nome}}</span>
-      <br/>
-      <span class="OAB">{{loginService.oab}}</span>
-      <button matRipple class="matIconButton" [matMenuTriggerFor]="menu">
-        <span style="color: #ffffff;" class="material-icons-outlined">
-        expand_circle_down
-        </span>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>Conta</button>
-        <button mat-menu-item>Plano</button>
-        <button mat-menu-item>Sair</button>
-      </mat-menu>
+      <span class="profileName">
+        {{loginService.nome}}
+        <span class="OAB">{{loginService.oab}}</span>
+      </span>
     </div>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon class="Icon">expand_circle_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Conta</button>
+      <button mat-menu-item>Plano</button>
+      <button mat-menu-item>Sair</button>
+    </mat-menu>
 
     <div *ngIf="!hasCerti" class="tokenArea" matTooltipPosition="left" matTooltip="Clique pra sair do modo sem certificado">
       <span style="color: white;" class="material-icons-outlined">

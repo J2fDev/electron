@@ -8,7 +8,7 @@ import {LoginService} from "../../../core/services/login.service";
 })
 export class HomeComponent implements OnInit {
 
-  cf: string = "";
+  cf: string = "<p>asdasdasdada</p>";
 
   constructor(private loginService: LoginService) { }
 

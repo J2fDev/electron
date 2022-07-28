@@ -25,7 +25,6 @@ export class SidebarComponent implements OnInit {
 
   thisIsOpen() {
     this.isOpen = !this.isOpen;
-    console.log("OI")
   }
 
   itenSelection(item: string, path: string) {

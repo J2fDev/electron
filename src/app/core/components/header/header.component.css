@@ -1,9 +1,9 @@
 .toolBar {
   background-color: #0031cb;
-  padding: 0;
+  padding: 0px;
   display: flex;
-  height: 3.5rem;
   align-items: center;
+  height: 3.5rem;
   justify-content: space-between;
   width: 100%;
 }
@@ -11,8 +11,6 @@
 .titleSection {
   font-size: 1rem;
   font-weight: bold;
-  line-height: 1;
-  text-align: left;
   color: #fff;
   margin-left: 1rem;
 }
@@ -43,7 +41,7 @@
   height: 1.8rem;
 }
 
-.searchInput::-webkit-input-placeholder { /* Edge */
+.searchInput::-webkit-input-placeholder {
   color: white;
 }
 
@@ -68,6 +66,8 @@
 
 .trialPeriod {
   display: flex;
+  align-items: center;
+  margin-right: 1rem;
 }
 
 .buttonToContract {
@@ -77,18 +77,11 @@
   line-height: 1rem;
 }
 
-.timeTrial {
-  height: 2rem;
-  width: 2rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  margin-right: 0.3rem;
+.restingDays {
+  margin-left: -20px;
 }
 
-
-.timeTrial span {
-  position: absolute;
+.trialPeriod span {
   font-size: 1rem;
   color: #ffff;
 }
@@ -102,6 +95,7 @@
   line-height: 1rem;
   color: #ffffff;
   font-weight: 600;
+  margin-left: 1rem;
 }
 
 .Icon {
@@ -109,18 +103,21 @@
 }
 
 .profileSection {
-  border: 1px solid red;
-  margin-left: 1.5rem;
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
   color: #ffffff;
-  width: 300px;
 }
 
 .profileName {
+  display: flex;
+  flex-direction: column;
   font-size: 0.75rem;
   font-weight: bold;
 }
 
 .OAB {
+  margin-top: -15px;
   font-size: 0.625rem;
 }
 
