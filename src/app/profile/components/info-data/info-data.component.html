@@ -1,0 +1,75 @@
+<form action="" [formGroup]="profileForm">
+    <div class="firstDiv margin-top">
+
+        <mat-form-field class="tam48 Input firstIten" appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input formControlName="fullName" matInput placeholder="pat@example.com">
+            <mat-error *ngIf="true"></mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="tam12 Input" appearance="outline">
+            <mat-label>Número OAB</mat-label>
+            <input formControlName="oab" matInput placeholder="pat@example.com">
+
+            <!-- <mat-error *ngIf=""></mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field class="tam10e5 Input" appearance="outline">
+            <mat-label>Seccional Uf</mat-label>
+            <!--<input matInput placeholder="pat@example.com">-->
+            <mat-select formControlName="oabuf">
+                <mat-option *ngFor="let uf of ibgeService.ufs" [value]="uf.sigla">{{uf.sigla}}</mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf=""></mat-error> -->
+        </mat-form-field>
+        
+        <label  for="fileInput">
+        <div class="flex clientPhoto">
+            <input type="file" id="fileInput">
+                <app-avatar sizeSelected="large"></app-avatar>
+                <mat-icon class="iconEditAvatar" color="primary">border_color</mat-icon>
+            </div>
+        </label>
+        </div>
+
+    <div class="firstDiv">
+
+        <mat-form-field class="tam23 Input firstIten" appearance="outline">
+            <mat-label>CPF</mat-label>
+            <input formControlName="doc" [disabled]="true" mask="000.000.000-00" matInput placeholder="000.000.000-00">
+            <mat-error *ngIf="true"></mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="tam23 Input" appearance="outline">
+            <mat-label>Whatsapp</mat-label>
+            <input formControlName="whatsapp" type="celphone" mask="(00)00000-0000" matInput
+                placeholder="pat@example.com">
+
+            <!-- <mat-error *ngIf=""></mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field class="tam31 Input" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input type="email" formControlName="email" matInput placeholder="pat@example.com">
+            <!-- <mat-error *ngIf=""></mat-error> -->
+        </mat-form-field>
+
+        <div class="clientPhoto">
+            <!-- <img src="../../../assets/imgs/marinasilva.jpg" alt=""> -->
+        </div>
+
+    </div>
+
+
+</form>
+
+<div class="endereçoDiv">
+    <mat-divider style="width:63% ;">Endereço</mat-divider>
+    <app-adress-forms [(values)]="newAdress"></app-adress-forms>
+</div>
+
+
+<div class="buttonsProfile">
+    <button [disabled]="!profileForm.valid" mat-raised-button class="buttonWhite" (click)="saveInfo()">save</button>
+    <button mat-raised-button class="buttonWhite">cancel</button>
+</div>

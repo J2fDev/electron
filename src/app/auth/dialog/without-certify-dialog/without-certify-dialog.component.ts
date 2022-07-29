@@ -16,7 +16,7 @@ export class WithoutCertifyDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  closeDialog(): void {
+  closeDialog(accept: boolean): void {
     this.dialogRef.close();
   }
 }

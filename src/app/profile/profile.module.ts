@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import {ProfileComponent} from "./profile.component";
 import {SharedModule} from "../shared/shared.module";
 import {ProfileRoutingModule} from "./profile-routing.module";
 import {MatTabsModule} from "@angular/material/tabs";
@@ -7,35 +6,38 @@ import {ManagerProfileComponent} from "./components/manager-profile/manager-prof
 import { ManagerCourtsComponent } from './components/manager-courts/manager-courts.component';
 import { TwoFacDialogComponent } from './dialogs/two-fac-dialog/two-fac-dialog.component';
 import { CertifyComponent } from './components/certify/certify.component';
-import { NgxMaskModule } from 'ngx-mask';
-import {MatDividerModule} from "@angular/material/divider";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatDialogModule} from "@angular/material/dialog";
-
+import { InfoDataComponent } from './components/info-data/info-data.component';
+import { PlanDataComponent } from './components/plan-data/plan-data.component';
+import { SecurityDataComponent } from './components/security-data/security-data.component';
+import {NgxMaskModule} from "ngx-mask";
+import {AvatarComponent} from "../core/components/avatar/avatar.component";
 
 @NgModule({
   declarations: [
-    ProfileComponent,
     ManagerProfileComponent,
     ManagerCourtsComponent,
+    InfoDataComponent,
+    PlanDataComponent,
     TwoFacDialogComponent,
-    CertifyComponent
+    SecurityDataComponent,
+    CertifyComponent,
   ],
   imports: [
     SharedModule,
     ProfileRoutingModule,
     MatTabsModule,
-    MatDividerModule,
     MatToolbarModule,
     MatSlideToggleModule,
     MatStepperModule,
+    MatDialogModule,
     NgxMaskModule.forChild(),
-    MatDialogModule
   ],
   providers: [
-
+    AvatarComponent
   ]
 })
 export class ProfileModule { }

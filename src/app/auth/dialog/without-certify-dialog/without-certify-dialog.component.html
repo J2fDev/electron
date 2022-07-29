@@ -1,14 +1,14 @@
 <div class="alertDiv" mat-dialog-content>
   <mat-icon class="errorIcon errorOutline">error_outline</mat-icon>
   <h1>Atenção!</h1>
-  <p>Sem um certificado não será possível atualizar processos ou realizar peticionamentos.</p>
+  <p>Sem um certificado não será possível atualizar os processos e publicações ou realizar peticionamentos.</p>
 
-  <div class="buttons">
-    <button mat-raised-button color="primary" (click)="closeDialog()">
-      Cancelar
+  <div class="flexsb fullwidth">
+    <button mat-raised-button color="primary" (click)="closeDialog(false)">
+      Usar um certificado
     </button>
-    <button mat-raised-button color="primary" (click)="closeDialog()">
-      Entrar assim mesmo.
+    <button mat-raised-button color="primary" (click)="closeDialog(true)">
+      Entrar assim mesmo
     </button>
   </div>
 </div>

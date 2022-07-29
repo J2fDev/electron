@@ -104,17 +104,29 @@ function createWindow() {
     });
     usbDetect.startMonitoring();
     usbDetect.on('add', function (device) {
-        console.log('add', device);
-        var certisLength = usbCertis.length;
-        if (device.manufacturer === "SafeNet" || device.manufacturer === "Giesecke___Devrient_GmbH" ||
-            device.manufacturer === "Aladdin_Knowledge_Systems_Ltd.") {
-            recoveryCerti(device);
-        }
-        if (certisLength !== usbCertis.length) {
-            console.log("EMITTING EVENT USB CHANGE");
-            console.log(usbCertis);
-            win.webContents.send("usbcertischange", usbCertis);
-        }
+        return __awaiter(this, void 0, void 0, function () {
+            var certisLength;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log('add', device);
+                        certisLength = usbCertis.length;
+                        if (!(device.manufacturer === "SafeNet" || device.manufacturer === "Giesecke___Devrient_GmbH" ||
+                            device.manufacturer === "Aladdin_Knowledge_Systems_Ltd.")) return [3 /*break*/, 2];
+                        return [4 /*yield*/, recoveryCerti(device)];
+                    case 1:
+                        _a.sent();
+                        _a.label = 2;
+                    case 2:
+                        if (certisLength !== usbCertis.length) {
+                            console.log("EMITTING EVENT USB CHANGE");
+                            console.log(usbCertis);
+                            win.webContents.send("usbcertischange", usbCertis);
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
     });
     usbDetect.on('remove', function (device) {
         console.log('remove', device);
@@ -130,19 +142,36 @@ function createWindow() {
         }
     });
     usbDetect.find(function (err, devices) {
-        console.log('find', devices, err);
-        for (var _i = 0, devices_1 = devices; _i < devices_1.length; _i++) {
-            var device = devices_1[_i];
-            if (device.manufacturer === "SafeNet" || device.manufacturer === "Giesecke & Devrient GmbH" ||
-                device.manufacturer === "Aladdin_Knowledge_Systems_Ltd.") {
-                recoveryCerti(device);
-            }
-        }
-        if (usbCertis.length > 0) {
-            console.log("EMITTING EVENT USB CHANGE");
-            console.log(usbCertis);
-            win.webContents.send("usbcertischange", usbCertis);
-        }
+        return __awaiter(this, void 0, void 0, function () {
+            var _i, devices_1, device;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log('find', devices, err);
+                        _i = 0, devices_1 = devices;
+                        _a.label = 1;
+                    case 1:
+                        if (!(_i < devices_1.length)) return [3 /*break*/, 4];
+                        device = devices_1[_i];
+                        if (!(device.manufacturer === "SafeNet" || device.manufacturer === "Giesecke & Devrient GmbH" ||
+                            device.manufacturer === "Aladdin_Knowledge_Systems_Ltd.")) return [3 /*break*/, 3];
+                        return [4 /*yield*/, recoveryCerti(device)];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        _i++;
+                        return [3 /*break*/, 1];
+                    case 4:
+                        if (usbCertis.length > 0) {
+                            console.log("EMITTING EVENT USB CHANGE");
+                            console.log(usbCertis);
+                            win.webContents.send("usbcertischange", usbCertis);
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
     });
     electron_1.ipcMain.handle("teste", function (event, data) {
         //console.log(event);
@@ -171,116 +200,152 @@ function createWindow() {
  * Tentar recuperar os certificados em um dispositivo USB
  */
 function recoveryCerti(device) {
-    var pkcs11 = new pkcs11js.PKCS11();
-    device.deviceName = device.deviceName.replaceAll("&", " ").replaceAll(" ", "_");
-    device.manufacturer = device.manufacturer.replaceAll("&", " ").replaceAll(" ", "_");
-    var loadLib = false;
-    try {
-        // Verificar qual das bibliotecas deve carregar
-        if (device.deviceName.indexOf("StarSign_CUT") >= 0) {
-            console.log("StarSign_CUT");
-            switch (plataform) {
-                case "MacOs":
-                    console.log("MACOS");
-                    break;
-                case "Windows":
-                    console.log("WINDOWS");
-                    break;
-                case "Linux":
-                    loadLib = true;
-                    pkcs11.load("/usr/lib/libaetpkss.so");
-                    //pkcs11.load("/usr/lib/kkkkk.so");
-                    break;
+    return __awaiter(this, void 0, void 0, function () {
+        var pkcs11, loadLib, slots, totalLoops, slot, session, hObject, attrs, name_1, info, e_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    pkcs11 = new pkcs11js.PKCS11();
+                    device.deviceName = device.deviceName.replaceAll("&", " ").replaceAll(" ", "_");
+                    device.manufacturer = device.manufacturer.replaceAll("&", " ").replaceAll(" ", "_");
+                    loadLib = false;
+                    try {
+                        // Verificar qual das bibliotecas deve carregar
+                        if (device.deviceName.indexOf("StarSign_CUT") >= 0) {
+                            console.log("StarSign_CUT");
+                            switch (plataform) {
+                                case "MacOs":
+                                    console.log("MACOS");
+                                    break;
+                                case "Windows":
+                                    console.log("WINDOWS");
+                                    break;
+                                case "Linux":
+                                    loadLib = true;
+                                    pkcs11.load("/usr/lib/libaetpkss.so");
+                                    //pkcs11.load("/usr/lib/kkkkk.so");
+                                    break;
+                            }
+                        }
+                        else if (device.deviceName.indexOf("Token_JC") >= 0) {
+                            console.log("Token_JC");
+                            switch (plataform) {
+                                case "MacOs":
+                                    console.log("MACOS");
+                                    break;
+                                case "Windows":
+                                    console.log("WINDOWS");
+                                    break;
+                                case "Linux":
+                                    loadLib = true;
+                                    pkcs11.load("/usr/lib/libeToken.so");
+                                    break;
+                            }
+                        }
+                        else if (device.deviceName.indexOf("Token_4.28.1.1_2.7.195") >= 0) {
+                            console.log("Token_4.28.1.1_2.7.195");
+                            switch (plataform) {
+                                case "MacOs":
+                                    console.log("MACOS");
+                                    break;
+                                case "Windows":
+                                    console.log("WINDOWS");
+                                    break;
+                                case "Linux":
+                                    loadLib = true;
+                                    pkcs11.load("/usr/lib/libaetpkss.so");
+                                    break;
+                            }
+                        }
+                        else {
+                            console.log("NAO SUPORTADO");
+                            console.log(device.deviceName);
+                        }
+                    }
+                    catch (e) {
+                        console.log("--> Não foi possivel carregar a biblioteca <--");
+                        console.log(e);
+                        // Enviar evento para abrir popup e perdir a pessoa para ver se o token esta corretamente cadastrado
+                        return [2 /*return*/];
+                    }
+                    if (!loadLib) {
+                        console.log("--> Não foi possivel localizar a biblioteca para o token <--");
+                        // Enviar mensagem avisando que o token não e suportado
+                        return [2 /*return*/];
+                    }
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 5, , 6]);
+                    pkcs11.C_Initialize();
+                    slots = pkcs11.C_GetSlotList(true);
+                    totalLoops = 0;
+                    _a.label = 2;
+                case 2:
+                    if (!(slots.length === 0 && totalLoops < 4)) return [3 /*break*/, 4];
+                    console.log("Aguardando um pouco para tentar novamente");
+                    return [4 /*yield*/, sleep(500)];
+                case 3:
+                    _a.sent();
+                    console.log("Tentando novamente");
+                    slots = pkcs11.C_GetSlotList(true);
+                    totalLoops++;
+                    return [3 /*break*/, 2];
+                case 4:
+                    if (slots.length === 0) {
+                        console.log("Não foi possível abri conexao com o token");
+                        return [2 /*return*/];
+                    }
+                    console.log(slots);
+                    slot = slots[0];
+                    console.log("F");
+                    console.log(slot);
+                    session = pkcs11.C_OpenSession(slot, pkcs11js.CKF_RW_SESSION | pkcs11js.CKF_SERIAL_SESSION);
+                    console.log("G");
+                    pkcs11.C_FindObjectsInit(session, [{ type: pkcs11js.CKA_CLASS, value: pkcs11js.CKO_PUBLIC_KEY }]);
+                    hObject = pkcs11.C_FindObjects(session);
+                    console.log("H");
+                    while (hObject) {
+                        attrs = pkcs11.C_GetAttributeValue(session, hObject, [
+                            { type: pkcs11js.CKA_CLASS },
+                            { type: pkcs11js.CKA_TOKEN },
+                            { type: pkcs11js.CKA_LABEL },
+                        ]);
+                        // Output info for objects from token only
+                        if (attrs[1].value[0]) {
+                            name_1 = attrs[2].value.toString();
+                            if (name_1.indexOf(":") > 0) {
+                                console.log("ACEITO");
+                                console.log(name_1);
+                                info = usbCertis.push({
+                                    nome: name_1.substring(0, name_1.indexOf(":")),
+                                    doc: name_1.substring(name_1.indexOf(":") + 1, name_1.indexOf(":") + 1 + 11),
+                                    emissor: name_1.substring(name_1.indexOf(":") + 15),
+                                    device: device
+                                });
+                            }
+                            else {
+                                console.log("NEGADO");
+                                console.log(name_1);
+                            }
+                        }
+                        hObject = pkcs11.C_FindObjects(session);
+                    }
+                    console.log("M");
+                    pkcs11.C_FindObjectsFinal(session);
+                    pkcs11.C_CloseSession(session);
+                    pkcs11.C_Finalize();
+                    pkcs11 = null;
+                    console.log("N");
+                    return [3 /*break*/, 6];
+                case 5:
+                    e_1 = _a.sent();
+                    console.log("ERRO NA RECUPERACAO DOS CERTIFICADOS");
+                    console.log(e_1);
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
             }
-        }
-        else if (device.deviceName.indexOf("Token_JC") >= 0) {
-            console.log("Token_JC");
-            switch (plataform) {
-                case "MacOs":
-                    console.log("MACOS");
-                    break;
-                case "Windows":
-                    console.log("WINDOWS");
-                    break;
-                case "Linux":
-                    loadLib = true;
-                    pkcs11.load("/usr/lib/libeToken.so");
-                    break;
-            }
-        }
-        else if (device.deviceName.indexOf("Token_4.28.1.1_2.7.195") >= 0) {
-            console.log("Token_4.28.1.1_2.7.195");
-            switch (plataform) {
-                case "MacOs":
-                    console.log("MACOS");
-                    break;
-                case "Windows":
-                    console.log("WINDOWS");
-                    break;
-                case "Linux":
-                    loadLib = true;
-                    pkcs11.load("/usr/lib/libaetpkss.so");
-                    break;
-            }
-        }
-        else {
-            console.log("NAO SUPORTADO");
-            console.log(device.deviceName);
-        }
-    }
-    catch (e) {
-        console.log("--> Não foi possivel carregar a biblioteca <--");
-        // Enviar evento para abrir popup e perdir a pessoa para ver se o token esta corretamente cadastrado
-        return;
-    }
-    if (!loadLib) {
-        console.log("--> Não foi possivel localizar a biblioteca para o token <--");
-        // Enviar mensagem avisando que o token não e suportado
-        return;
-    }
-    try {
-        pkcs11.C_Initialize();
-        // Getting list of slots
-        var slots = pkcs11.C_GetSlotList(true);
-        var slot = slots[0];
-        var session = pkcs11.C_OpenSession(slot, pkcs11js.CKF_RW_SESSION | pkcs11js.CKF_SERIAL_SESSION);
-        pkcs11.C_FindObjectsInit(session, [{ type: pkcs11js.CKA_CLASS, value: pkcs11js.CKO_PUBLIC_KEY }]);
-        var hObject = pkcs11.C_FindObjects(session);
-        while (hObject) {
-            var attrs = pkcs11.C_GetAttributeValue(session, hObject, [
-                { type: pkcs11js.CKA_CLASS },
-                { type: pkcs11js.CKA_TOKEN },
-                { type: pkcs11js.CKA_LABEL },
-            ]);
-            // Output info for objects from token only
-            if (attrs[1].value[0]) {
-                var name_1 = attrs[2].value.toString();
-                if (name_1.indexOf(":") > 0) {
-                    console.log("ACEITO");
-                    console.log(name_1);
-                    var info = usbCertis.push({
-                        nome: name_1.substring(0, name_1.indexOf(":")),
-                        doc: name_1.substring(name_1.indexOf(":") + 1, name_1.indexOf(":") + 1 + 11),
-                        emissor: name_1.substring(name_1.indexOf(":") + 15),
-                        device: device
-                    });
-                }
-                else {
-                    console.log("NEGADO");
-                    console.log(name_1);
-                }
-            }
-            hObject = pkcs11.C_FindObjects(session);
-        }
-        pkcs11.C_FindObjectsFinal(session);
-        pkcs11.C_CloseSession(session);
-        pkcs11.C_Finalize();
-        pkcs11 = null;
-    }
-    catch (e) {
-        console.log("ERRO NA RECUPERACAO DOS CERTIFICADOS");
-        console.log(e);
-    }
+        });
+    });
 }
 function removeCerti(device) {
     var newUsbCertis = [];
@@ -292,6 +357,13 @@ function removeCerti(device) {
         }
     }
     usbCertis = newUsbCertis;
+}
+function sleep(ms) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, new Promise(function (resolve) { return setTimeout(resolve, ms); })];
+        });
+    });
 }
 /**
  * Verifica a validade do token retornando a informacao guardado no mesmo

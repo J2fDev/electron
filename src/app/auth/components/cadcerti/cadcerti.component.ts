@@ -2,10 +2,6 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
-import {WithoutCertifyDialogComponent} from '../../dialog/without-certify-dialog/without-certify-dialog.component';
-import {ConfirmPinDialogComponent} from '../../dialog/confirm-pin-dialog/confirm-pin-dialog.component';
-import {RegisterPinDialogComponent} from '../../dialog/register-pin-dialog/register-pin-dialog.component';
-import {InstallCertifyDialogComponent} from '../../dialog/install-certify-dialog/install-certify-dialog.component';
 import {LoginService} from "../../../core/services/login.service";
 import {CsuDialogComponent} from "../../dialog/csu-dialog/csu-dialog.component";
 
@@ -91,37 +87,9 @@ export class CadcertiComponent implements OnInit {
     fileA1: [],
   });
 
-  openDialog() {
-    const dialogRef = this.dialog.open(WithoutCertifyDialogComponent, {
-      width: '500px',
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
   selectCertify() {
     console.log(this.a1Forms.value);
 
-  }
-
-  openPinDialog() {
-    const dialogRef = this.dialog.open(ConfirmPinDialogComponent, {
-      width: '500px',
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
-  registerPinDIalog() {
-    const dialogRef = this.dialog.open(RegisterPinDialogComponent, {
-      width: '500px',
-      panelClass: 'custom-modalbox'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
 
   return() {
@@ -172,7 +140,7 @@ export class CadcertiComponent implements OnInit {
     }
   }
 
-  csuinfo() {
+  csuhelp() {
     const dialogRef = this.dialog.open(CsuDialogComponent, {
       width: '500px',
       panelClass: 'custom-modalbox'

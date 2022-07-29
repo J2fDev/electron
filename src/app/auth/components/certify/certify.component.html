@@ -1,4 +1,4 @@
-<div class="loginBox">
+<div class="loginBox" *ngIf="!selected">
   <auth-backicon style="align-self: start" (click)="logout()"></auth-backicon>
 
   <app-alert *ngIf="!loginService.isElectron" title="Certificados A3 indisponiveis" type="info" class="alertBox"
@@ -16,7 +16,7 @@
   <p *ngIf="certiList.length == 0 && !loginService.isElectron" class="subtitle">Adicione um certificado A1 ou continue sem certificado</p>
 
   <div *ngIf="certiList.length > 0" class="certiListBlock">
-    <div (click)="openPinDialog(certi.type)" class="certiItem" *ngFor="let certi of certiList">
+    <div (click)="selectItem(certi)" class="certiItem" *ngFor="let certi of certiList">
       <mat-icon *ngIf="certi.type == 1" class="material-icons-outlined uprblue">cloud_done</mat-icon>
       <img *ngIf="certi.type == 2" src="assets/svg/icons/usb-flash-drive-outline.svg" class="material-icons-outlined usvgprblue" />
 
@@ -43,5 +43,41 @@
       <button (click)="showHelp()" class="buttonNoCertify uprblue">
         Preciso de ajuda <mat-icon>help_outlined</mat-icon>
       </button>
+  </div>
+</div>
+<div class="loginBox" *ngIf="selected">
+  <auth-backicon style="align-self: start" (click)="deselect()"></auth-backicon>
+  <h1 *ngIf="selectedItem.type === 1" style="margin-top: -2rem">Insera a senha CSU</h1>
+  <h1 *ngIf="selectedItem.type === 2" style="margin-top: -2rem">Informe o PIN do certificado</h1>
+  <div class="certiListBlock">
+    <div class="certiItemSelected">
+      <mat-icon *ngIf="selectedItem.type == 1" class="material-icons-outlined uprblue">cloud_done</mat-icon>
+      <img *ngIf="selectedItem.type == 2" src="assets/svg/icons/usb-flash-drive-outline.svg" class="material-icons-outlined usvgprblue" />
+
+      <p class="certiName">{{selectedItem.name}}</p>
+      <span class="certiData"> Emissor: {{selectedItem.emissor}}</span>
+      <span class="certiData">Validade: {{selectedItem.validade}}</span>
+    </div>
+  </div>
+  <div class="flexsb fullwidth">
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input #passCerti matInput [type]=" hide ? 'password' : 'text'" required style="width: 18rem;" />
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+              [attr.aria-pressed]="hide">
+        <mat-icon>
+          {{hide ? 'visibility_off' : 'visibility'}}
+        </mat-icon>
+      </button>
+    </mat-form-field>
+    <button mat-raised-button color="primary"(click)="confirmPin(passCerti.value)"
+            style="width: 18rem; height: 3.5rem; margin-top: 5px; margin-right: 5px">
+      Confirmar
+    </button>
+  </div>
+  <div class="fullwidth">
+    <button (click)="showHelp()" class="buttonNoCertify uprblue" style="float: right">
+      Preciso de ajuda <mat-icon>help_outlined</mat-icon>
+    </button>
   </div>
 </div>

@@ -144,6 +144,8 @@ export class ApiService extends ElectronService {
 
       let request = null;
 
+      if ( url[0] !== '/' ) url = "/" + url;
+
       switch ( type.toLocaleLowerCase() ) {
         case "post":
           request = this.req.post(this.urlBase + url , data , httpOptions);

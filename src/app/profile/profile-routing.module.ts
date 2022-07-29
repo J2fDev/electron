@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListComponent } from '../auth/components/list/list.component';
 import { CertifyComponent } from './components/certify/certify.component';
 import { ManagerCourtsComponent } from './components/manager-courts/manager-courts.component';
 import {ManagerProfileComponent} from "./components/manager-profile/manager-profile.component";

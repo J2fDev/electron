@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {RoutesService} from "../../../core/services/routes.service";
 import {CourtsService} from "../../../core/services/courts.service";
-import {ProfileService} from "../../../core/services/profile.service";
+import {ApiService} from "../../../core/services/api.service";
 
 @Component({
   selector: 'app-list-tribunais',
@@ -33,12 +33,12 @@ export class ListTribunaisComponent implements OnInit {
   selectedList: any[] = [];
   preSelectedList: any[] = [];
   disableButton: boolean = false;
-  preList: any[] = []
+  preList: any[] = [];
 
   constructor(public http: HttpClient,
     private router: RoutesService,
     private courtsService: CourtsService,
-    private profileService: ProfileService,) { }
+    private apiService: ApiService) { }
 
 
   // retorna a lista de tribunais
@@ -55,16 +55,14 @@ export class ListTribunaisComponent implements OnInit {
   }
 
   generatePreSelectList() {
-    let userAttributes = (JSON.stringify(this.profileService.userAttributes()));
+    this.maxSelections = 5;
 
-    this.maxSelections = (JSON.parse(userAttributes).manyCourts);
-
-    this.preList = (JSON.parse(userAttributes).courtsPreSelect);
+    this.preList = [];
     this.result.forEach((court: any) => {
       if (this.preList.includes(court.id))
         this.preCourts.push(court);
       this.preCourtsChange.emit(this.preCourts)
-    })
+    });
     this.preList.forEach((newCourt) => {
       this.result.splice(this.result.findIndex((item: any) => item.id == newCourt), 1)
     })

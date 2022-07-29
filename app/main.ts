@@ -78,12 +78,12 @@ function createWindow(): BrowserWindow {
 
   usbDetect.startMonitoring();
 
-  usbDetect.on('add', function (device) {
+  usbDetect.on('add', async function (device) {
     console.log('add', device);
     let certisLength = usbCertis.length;
     if ( device.manufacturer === "SafeNet" ||  device.manufacturer === "Giesecke___Devrient_GmbH" ||
       device.manufacturer === "Aladdin_Knowledge_Systems_Ltd." ) {
-      recoveryCerti(device);
+      await recoveryCerti(device);
     }
 
     if ( certisLength !== usbCertis.length ) {
@@ -107,13 +107,13 @@ function createWindow(): BrowserWindow {
       win.webContents.send("usbcertischange", usbCertis);
     }
   });
-  usbDetect.find(function (err, devices) {
+  usbDetect.find(async function (err, devices) {
     console.log('find', devices, err);
 
     for ( let device of devices ) {
       if ( device.manufacturer === "SafeNet" ||  device.manufacturer === "Giesecke & Devrient GmbH" ||
         device.manufacturer === "Aladdin_Knowledge_Systems_Ltd." ) {
-        recoveryCerti(device);
+        await recoveryCerti(device);
       }
     }
 
@@ -147,7 +147,7 @@ function createWindow(): BrowserWindow {
 /**
  * Tentar recuperar os certificados em um dispositivo USB
  */
-function recoveryCerti(device) {
+async function recoveryCerti(device) {
   let pkcs11 = new pkcs11js.PKCS11();
 
   device.deviceName = device.deviceName.replaceAll("&", " ").replaceAll(" ", "_");
@@ -205,6 +205,7 @@ function recoveryCerti(device) {
     }
   } catch ( e ) {
     console.log("--> Não foi possivel carregar a biblioteca <--");
+    console.log(e);
     // Enviar evento para abrir popup e perdir a pessoa para ver se o token esta corretamente cadastrado
     return;
   }
@@ -220,12 +221,32 @@ function recoveryCerti(device) {
 
     // Getting list of slots
     let slots = pkcs11.C_GetSlotList(true);
+    let totalLoops = 0;
+    while ( slots.length === 0 && totalLoops < 4 ) {
+      console.log("Aguardando um pouco para tentar novamente");
+      await sleep(500);
+      console.log("Tentando novamente");
+      slots = pkcs11.C_GetSlotList(true);
+      totalLoops++;
+    }
+    if ( slots.length === 0 ) {
+      console.log("Não foi possível abri conexao com o token");
+      return;
+    }
+    console.log(slots);
     let slot = slots[0];
+
+    console.log("F");
+    console.log(slot);
 
     let session = pkcs11.C_OpenSession(slot, pkcs11js.CKF_RW_SESSION | pkcs11js.CKF_SERIAL_SESSION);
 
+    console.log("G");
+
     pkcs11.C_FindObjectsInit(session, [{type: pkcs11js.CKA_CLASS, value: pkcs11js.CKO_PUBLIC_KEY}]);
     let hObject = pkcs11.C_FindObjects(session);
+
+    console.log("H");
 
     while (hObject) {
       let attrs = pkcs11.C_GetAttributeValue(session, hObject, [
@@ -254,10 +275,14 @@ function recoveryCerti(device) {
       hObject = pkcs11.C_FindObjects(session);
     }
 
+    console.log("M");
+
     pkcs11.C_FindObjectsFinal(session);
     pkcs11.C_CloseSession(session);
     pkcs11.C_Finalize();
     pkcs11 = null;
+
+    console.log("N");
   } catch ( e ) {
     console.log("ERRO NA RECUPERACAO DOS CERTIFICADOS");
     console.log(e);
@@ -276,6 +301,10 @@ function removeCerti(device) {
   }
 
   usbCertis = newUsbCertis;
+}
+
+async function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 /**

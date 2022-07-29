@@ -1,0 +1,84 @@
+<div class="securityDiv">
+    <div class="umFaDiv">
+        <div class="first login">
+            <mat-toolbar class="toolBarHeader"> <span>Senha de Login </span></mat-toolbar>
+            <mat-form-field class="inputSecurity  Input" appearance="outline">
+                <mat-label>Digite sua Senha</mat-label>
+                <input matInput [type]=" hide ? 'password' : 'text'" required />
+                <button mat-icon-button matSuffix (click)="hide = !hide"
+                    [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
+                    <mat-icon>
+                        {{hide ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                </button>
+                <mat-error *ngIf="">
+                    A senha deve conter Maiúsculas, Minúsculas e número.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="inputSecurity Input" appearance="outline">
+                <mat-label>Digite sua Senha</mat-label>
+                <input matInput [type]=" hide ? 'password' : 'text'" required />
+                <button mat-icon-button matSuffix (click)="hide = !hide"
+                    [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
+                    <mat-icon>
+                        {{hide ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                </button>
+                <mat-error *ngIf="">
+                    A senha deve conter Maiúsculas, Minúsculas e número.
+                </mat-error>
+            </mat-form-field>
+            <span class="informSpan">Mínimo de 6 caracteres e conter 1 número e 1 letra.</span>
+            <div class="saveButton">
+                <button mat-raised-button color="primary" [disabled]="true">Salvar</button>
+            </div>
+        </div>
+        <div class="login">
+            <mat-toolbar class="toolBarHeader">  <span>Senha CSU <mat-icon color="primary">info_outline</mat-icon> </span></mat-toolbar>
+            <mat-form-field class="inputSecurity  Input" appearance="outline">
+                <mat-label>Digite sua Senha</mat-label>
+                <input matInput [type]=" hide ? 'password' : 'text'" required />
+                <button mat-icon-button matSuffix (click)="hide = !hide"
+                    [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
+                    <mat-icon>
+                        {{hide ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                </button>
+                <mat-error *ngIf="">
+                    A senha deve conter Maiúsculas, Minúsculas e número.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="inputSecurity  Input" appearance="outline">
+                <mat-label>Digite sua Senha</mat-label>
+                <input matInput [type]=" hide ? 'password' : 'text'" required />
+                <button mat-icon-button matSuffix (click)="hide = !hide"
+                    [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
+                    <mat-icon>
+                        {{hide ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                </button>
+                <mat-error *ngIf="">
+                    A senha deve conter Maiúsculas, Minúsculas e número.
+                </mat-error>
+            </mat-form-field>
+            <span class="informSpan">Mínimo de 6 caracteres e conter 1 número e 1 letra.</span>
+            <div class="saveButton">
+                <button mat-raised-button color="primary" [disabled]="true">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="doisFaDiv">
+    <div class="headerAutenticacao">
+        <mat-slide-toggle (change)="open2fDialog()" color="primary"></mat-slide-toggle>
+        <span class="h1">Autenticação de 2 fatores (2FA)</span>
+        <span class="symbol">recomendavel</span>
+    </div>
+    <div class="text">
+        A Autenticação de 2 Fatores (2FA) é uma importante camada de segurança para
+        sua conta que, <br> apesar de opcional  é altamente recomendável mantê-la ativa.
+    </div>
+</div>

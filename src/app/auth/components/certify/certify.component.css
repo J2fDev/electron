@@ -69,6 +69,15 @@
   position: relative;
 }
 
+.certiItemSelected {
+  border: 0.5px solid #dadada;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1.5rem;
+}
+
 .certiItem {
   cursor: pointer;
   border: 0.5px solid #dadada;
@@ -84,10 +93,6 @@
 .certiItem:hover {
   border: 0.5px solid #0059FF;
   background-color: #bfe2ff;
-}
-
-.certiItem mat-icon {
-
 }
 
 .certiName {

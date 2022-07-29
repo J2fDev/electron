@@ -1,212 +1,24 @@
-<!-- <app-back-board> -->
-    <div class="profileSection">
+<mat-tab-group>
+  <mat-tab label="Perfil">
+    <app-info-data></app-info-data>
+  </mat-tab>
 
-        <mat-tab-group >
-            <mat-tab class="firstTab" label="Perfil">
-                <form action="" [formGroup]="profileForm">
-                <div class="firstDiv margin-top">
+  <mat-tab label=" Plano">
+    <app-plan-data></app-plan-data>
+  </mat-tab>
 
+  <mat-tab label="Senhas">
+    <app-security-data></app-security-data>
+  </mat-tab>
 
+  <mat-tab label="Tribunais">
+    <app-manager-courts></app-manager-courts>
+  </mat-tab>
 
-                        <mat-form-field class="tam48 Input firstIten" appearance="outline">
-                            <mat-label>Nome</mat-label>
-                            <input formControlName="fullName" matInput placeholder="pat@example.com">
-                            <mat-error *ngIf="true"></mat-error>
-                        </mat-form-field>
+  <mat-tab label="Certificados">
+    <app-manager-process></app-manager-process>
+  </mat-tab>
 
-                        <mat-form-field class="tam17 Input" appearance="outline">
-                            <mat-label>Número OAB</mat-label>
-                            <input formControlName="oab" matInput placeholder="pat@example.com">
-                            
-                            <!-- <mat-error *ngIf=""></mat-error> -->
-                        </mat-form-field>
-                        
-                        <mat-form-field class="tam12 Input" appearance="outline">
-                            <mat-label>Seccional Uf</mat-label>
-                            <!--<input matInput placeholder="pat@example.com">-->
-                            <mat-select formControlName="oabuf" >
-                                <mat-option  *ngFor="let uf of ibgeService.ufs" [value]="uf.sigla">{{uf.sigla}}</mat-option>
-                            </mat-select>
-                            <!-- <mat-error *ngIf=""></mat-error> -->
-                        </mat-form-field>
-                        
-                        <div class="clientPhoto">
-                            <img src="../../../../assets/imgs/marinasilva.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="firstDiv">
-                        
-                    <mat-form-field class="tam23 Input firstIten" appearance="outline">
-                        <mat-label>CPF</mat-label>
-                        <input formControlName="doc" [disabled]="true" mask="000.000.000-00"  matInput placeholder="000.000.000-00">
-                        <mat-error *ngIf="true"></mat-error>
-                    </mat-form-field>
-                    
-                    <mat-form-field class="tam23 Input" appearance="outline">
-                        <mat-label>Whatsapp</mat-label>
-                        <input formControlName="whatsapp" type="celphone"  mask="(00)00000-0000" matInput placeholder="pat@example.com">
-                        
-                        <!-- <mat-error *ngIf=""></mat-error> -->
-                    </mat-form-field>
-                    
-                    <mat-form-field class="tam31 Input" appearance="outline">
-                        <mat-label>Email</mat-label>
-                        <input type="email" formControlName="email" matInput placeholder="pat@example.com">
-                        <!-- <mat-error *ngIf=""></mat-error> -->
-                    </mat-form-field>
-                    
-                    <div class="clientPhoto">
-                        <!-- <img src="../../../assets/imgs/marinasilva.jpg" alt=""> -->
-                    </div>
-                    
-                </div>
-                
-                
-            </form>
-                
-                <div class="endereçoDiv">
-                    <mat-divider style="width:63% ;">Endereço</mat-divider>
-                    <app-adress-forms [(values)]="newAdress" ></app-adress-forms>
-                </div>
-                
-                
-                <div class="buttons">
-                    <button (click)="saveInfo()">save</button>
-                    <button>cancel</button>
-                </div>
-
-            </mat-tab>
-            <mat-tab label=" Plano">
-                <div class="planSection">
-                    
-                    <div class="myPlanDiv">
-                        <div class="headerPlan">
-                            <mat-icon class="firstCheckIcon">check_circle</mat-icon>
-                            <span class="titleHeader">Plano Completo</span> <span class="priceHeader">79$</span> <span
-                            class="frequencyHeader">/ por mês</span>
-                        </div>
-                        <div class="listItens">
-                            <ul style="list-style: none;">
-                                <li>Busca de processos automática <mat-icon class="checkIcon">check_circle</mat-icon>
-                                </li>
-                                <li>5 jurisdições de atuaçãoo <mat-icon class="checkIcon">check_circle</mat-icon>
-                                </li>
-                                <li>1 usário <mat-icon class="checkIcon">check_circle</mat-icon>
-                                </li>
-                                <li>Processos ilimitados <mat-icon class="checkIcon">check_circle</mat-icon>
-                                </li>
-                                <li>Gestão de equipes <mat-icon class="cancelIcon">cancel</mat-icon>
-                                </li>
-                                <li>Controle de honorários<mat-icon class="cancelIcon">cancel</mat-icon>
-                                </li>
-                                <li>Créditos ilimtados<mat-icon class="cancelIcon">cancel</mat-icon>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="buttonPlan">
-                        <button mat-raised-button color="primary">Gestão de Plano</button>
-                    </div>
-                </div>
-            </mat-tab>
-            
-            
-            <mat-tab label="Senhas">
-                
-                <div class="securityDiv">
-                    <div class="umFaDiv">
-                        <div class="first login">
-                            <mat-toolbar class="toolBarHeader"> <span>Senha de Login </span></mat-toolbar>
-                            <mat-form-field class="inputSecurity" appearance="outline">
-                                <mat-label>Digite sua Senha</mat-label>
-                                <input matInput [type]=" hide ? 'password' : 'text'" required />
-                                <button mat-icon-button matSuffix (click)="hide = !hide"
-                                    [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
-                                    <mat-icon>
-                                        {{hide ? 'visibility_off' : 'visibility'}}
-                                    </mat-icon>
-                                </button>
-                                <mat-error *ngIf="">
-                                    A senha deve conter Maiúsculas, Minúsculas e número.
-                                </mat-error>
-                            </mat-form-field>
-
-                            <mat-form-field class="inputSecurity" appearance="outline">
-                                <mat-label>Digite sua Senha</mat-label>
-                                <input matInput [type]=" hide ? 'password' : 'text'" required />
-                                <button mat-icon-button matSuffix (click)="hide = !hide"
-                                    [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
-                                    <mat-icon>
-                                        {{hide ? 'visibility_off' : 'visibility'}}
-                                    </mat-icon>
-                                </button>
-                                <mat-error *ngIf="">
-                                    A senha deve conter Maiúsculas, Minúsculas e número.
-                                </mat-error>
-                            </mat-form-field>
-                            <span class="informSpan">Mínimo de 6 caracteres e conter 1 número e 1 letra.</span>
-                            <div class="saveButton">
-                                <button mat-raised-button color="primary" [disabled]="true">Salvar</button>
-                            </div>
-                        </div>
-                        <div class="login">
-                            <mat-toolbar class="toolBarHeader">  <span>Senha CSU <mat-icon color="primary">info_outline</mat-icon> </span></mat-toolbar>
-                            <mat-form-field class="inputSecurity" appearance="outline">
-                                <mat-label>Digite sua Senha</mat-label>
-                                <input matInput [type]=" hide ? 'password' : 'text'" required />
-                                <button mat-icon-button matSuffix (click)="hide = !hide"
-                                    [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
-                                    <mat-icon>
-                                        {{hide ? 'visibility_off' : 'visibility'}}
-                                    </mat-icon>
-                                </button>
-                                <mat-error *ngIf="">
-                                    A senha deve conter Maiúsculas, Minúsculas e número.
-                                </mat-error>
-                            </mat-form-field>
-
-                            <mat-form-field class="inputSecurity" appearance="outline">
-                                <mat-label>Digite sua Senha</mat-label>
-                                <input matInput [type]=" hide ? 'password' : 'text'" required />
-                                <button mat-icon-button matSuffix (click)="hide = !hide"
-                                    [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
-                                    <mat-icon>
-                                        {{hide ? 'visibility_off' : 'visibility'}}
-                                    </mat-icon>
-                                </button>
-                                <mat-error *ngIf="">
-                                    A senha deve conter Maiúsculas, Minúsculas e número.
-                                </mat-error>
-                            </mat-form-field>
-                            <span class="informSpan">Mínimo de 6 caracteres e conter 1 número e 1 letra.</span>
-                            <div class="saveButton">
-                                <button mat-raised-button color="primary" [disabled]="true">Salvar</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="doisFaDiv">
-                    <div class="header">
-                        <mat-slide-toggle (change)="open2fDialog()" color="primary"></mat-slide-toggle>
-                        <span class="h1">Autenticação de 2 fatores (2FA)</span>
-                        <span class="symbol">recomendavel</span>
-                    </div>
-                    <div class="text">
-                        A Autenticação de 2 Fatores (2FA) é uma importante camada de segurança para
-                        sua conta que, <br> apesar de opcional  é altamente recomendável mantê-la ativa.
-                    </div>
-                </div>
-
-            </mat-tab>
-
-            <mat-tab label="Tribunais">
-                <app-manager-courts></app-manager-courts>
-            </mat-tab>
-
-            <mat-tab label="Certificados">
-                <!-- <app-manager-process></app-manager-process> -->
-            </mat-tab>
-        </mat-tab-group>
-    </div>
-<!-- </app-back-board> -->
+  <mat-tab label="Notificaćões">
+  </mat-tab>
+</mat-tab-group>

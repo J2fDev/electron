@@ -5,7 +5,7 @@ export class Profile {
     avatar: string='';
     doc: string = '';
     whatsapp: string = '' ;
-    whatsverified: boolean = false
+    whatsverified: boolean = false;
     email: string = '';
     verified:boolean=false;
 }

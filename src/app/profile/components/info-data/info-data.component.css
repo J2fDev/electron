@@ -1,0 +1,89 @@
+
+.firstDiv{
+    width: 70vw;
+    display: flex;
+}
+
+.Input{
+    font-size: 0.8rem;
+    max-height: 1rem;
+    margin-right: 1rem;
+}
+
+.tam48{
+    width: 48%;
+}
+
+.tam17{
+    width: 17%;
+}
+
+.tam10e5{
+
+width: 10.5%;
+}
+
+.tam12{
+    width: 12%;
+}
+
+.tam23{
+    width: 23.2%;
+}
+
+.tam31{
+    width: 31%;
+}
+
+.clientPhoto{
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #ffff;
+    transition: 0.3s;
+}
+
+.clientPhoto:hover{
+    opacity: 0.5;
+}
+
+.iconEditAvatar{
+    position: absolute;
+    font-size: 0rem;
+    transition: 0.3s;
+}
+
+.clientPhoto:hover .iconEditAvatar{
+    font-size: 1.5rem;
+    position: absolute;
+}
+
+
+.clientPhoto img{
+    height: 100%;
+}
+
+.buttonsProfile{
+    float: right;
+    margin-right: 8.8rem;
+    margin-top: 9vh;
+    display: flex;
+}
+
+.buttonWhite{
+    display: flex;
+    justify-content: center;
+    border: 1px solid #0059ff;
+    margin-left: 1rem;
+}
+
+.endereçoDiv{
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+
+
+
+

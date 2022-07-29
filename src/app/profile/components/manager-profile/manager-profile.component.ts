@@ -4,7 +4,6 @@ import { TwoFacDialogComponent } from '../../dialogs/two-fac-dialog/two-fac-dial
 import { IbgeService } from "../../../core/services/ibge.service";
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { Profile } from './profileClass';
-import {ProfileService} from "../../../core/services/profile.service";
 import {ApiService} from "../../../core/services/api.service";
 
 @Component({
@@ -21,13 +20,11 @@ export class ManagerProfileComponent implements OnInit {
   userEmail = '';
   newAdress: any = [];
   urlProfile = '/profile/profile';
-  constructor(public dialog: MatDialog, private profileService: ProfileService,
-    private apiService: ApiService, public ibgeService: IbgeService, private formBuilder: FormBuilder) { }
+
+  constructor(public dialog: MatDialog, private apiService: ApiService, public ibgeService: IbgeService, private formBuilder: FormBuilder) { }
 
 
   ngOnInit(): void {
-    this.token = this.profileService.token
-    console.log(this.profileService.token);
     this.createForm(new Profile());
     this.profileForm.controls['doc'].disable();
   }
@@ -49,7 +46,7 @@ export class ManagerProfileComponent implements OnInit {
     console.log(this.profileForm.value);
     console.log(this.token);
     console.log(this.newAdress);
-    const request = await this.apiService.request('put',  this.urlProfile, this.profileForm.value)
+    const request = await this.apiService.request('put',  this.urlProfile, this.profileForm.value);
     console.log(request);
 
   }
