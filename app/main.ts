@@ -19,6 +19,23 @@ const args = process.argv.slice(1),
 let opsys = process.platform;
 let plataform : string = "";
 
+function formatUsbName(usbName: string) {
+  let temp = usbName;
+
+  let count = 0 ;
+  while ( temp.indexOf("&") >= 0 ) {
+    temp = temp.replace("&", " ");
+    if ( count > 10 ) break;
+  }
+  count = 0;
+  while ( temp.indexOf(" ") >= 0 ) {
+    temp = temp.replace(" ", "_");
+    if ( count > 10 ) break;
+  }
+
+  return temp;
+}
+
 function createWindow(): BrowserWindow {
 
   const electronScreen = screen;
@@ -81,8 +98,10 @@ function createWindow(): BrowserWindow {
   usbDetect.on('add', async function (device) {
     console.log('add', device);
     let certisLength = usbCertis.length;
-    if ( device.manufacturer === "SafeNet" ||  device.manufacturer === "Giesecke___Devrient_GmbH" ||
-      device.manufacturer === "Aladdin_Knowledge_Systems_Ltd." ) {
+    let manufacturer = formatUsbName(device.manufacturer);
+
+    if ( manufacturer === "SafeNet" ||  manufacturer === "Giesecke___Devrient_GmbH" ||
+      manufacturer === "Aladdin_Knowledge_Systems_Ltd." ) {
       await recoveryCerti(device);
     }
 
@@ -96,8 +115,10 @@ function createWindow(): BrowserWindow {
     console.log('remove', device);
 
     let certisLength = usbCertis.length;
-    if ( device.manufacturer === "SafeNet" ||  device.manufacturer === "Giesecke___Devrient_GmbH" ||
-      device.manufacturer === "Aladdin_Knowledge_Systems_Ltd." ||  device.manufacturer === "Giesecke & Devrient GmbH" ) {
+    let manufacturer = formatUsbName(device.manufacturer);
+
+    if ( manufacturer === "SafeNet" ||  manufacturer === "Giesecke___Devrient_GmbH" ||
+      manufacturer === "Aladdin_Knowledge_Systems_Ltd." ) {
       removeCerti(device);
     }
 
@@ -111,8 +132,10 @@ function createWindow(): BrowserWindow {
     console.log('find', devices, err);
 
     for ( let device of devices ) {
-      if ( device.manufacturer === "SafeNet" ||  device.manufacturer === "Giesecke & Devrient GmbH" ||
-        device.manufacturer === "Aladdin_Knowledge_Systems_Ltd." ) {
+      let manufacturer = formatUsbName(device.manufacturer);
+
+      if ( manufacturer === "SafeNet" ||  manufacturer === "Giesecke___Devrient_GmbH" ||
+        manufacturer === "Aladdin_Knowledge_Systems_Ltd." ) {
         await recoveryCerti(device);
       }
     }
@@ -150,13 +173,62 @@ function createWindow(): BrowserWindow {
 async function recoveryCerti(device) {
   let pkcs11 = new pkcs11js.PKCS11();
 
-  device.deviceName = device.deviceName.replaceAll("&", " ").replaceAll(" ", "_");
-  device.manufacturer = device.manufacturer.replaceAll("&", " ").replaceAll(" ", "_");
+  device.deviceName = formatUsbName(device.deviceName);
+  device.manufacturer = formatUsbName(device.manufacturer);
 
   let loadLib = false;
   try {
+    switch ( device.manufacturer ) {
+      case "SafeNet":
+        switch ( plataform ) {
+          case "MacOs":
+
+            break;
+          case "Windows":
+
+            break;
+          case "Linux":
+            loadLib = true;
+            pkcs11.load("/usr/lib/libeToken.so");
+            break;
+        }
+        break;
+      case "Giesecke___Devrient_GmbH":
+        switch ( plataform ) {
+          case "MacOs":
+
+            break;
+          case "Windows":
+
+            break;
+          case "Linux":
+            loadLib = true;
+            pkcs11.load("/usr/lib/libaetpkss.so");
+            break;
+        }
+        break;
+      case "Aladdin_Knowledge_Systems_Ltd.":
+        switch ( plataform ) {
+          case "MacOs":
+
+            break;
+          case "Windows":
+            loadLib = true;
+            pkcs11.load("C:\\Windows\\system32\\etpkcs11.dll");
+            break;
+          case "Linux":
+
+            break;
+        }
+        break;
+      default:
+        console.log("NAO SUPORTADO");
+        console.log(device.deviceName);
+        console.log(device.manufacturer);
+    }
+
     // Verificar qual das bibliotecas deve carregar
-    if ( device.deviceName.indexOf("StarSign_CUT") >= 0 ) {
+    /*if ( device.deviceName.indexOf("StarSign_CUT") >= 0 ) {
       console.log("StarSign_CUT");
       switch ( plataform ) {
         case "MacOs":
@@ -202,7 +274,7 @@ async function recoveryCerti(device) {
     } else {
       console.log("NAO SUPORTADO");
       console.log(device.deviceName);
-    }
+    }*/
   } catch ( e ) {
     console.log("--> Não foi possivel carregar a biblioteca <--");
     console.log(e);
@@ -236,24 +308,21 @@ async function recoveryCerti(device) {
     console.log(slots);
     let slot = slots[0];
 
-    console.log("F");
-    console.log(slot);
-
     let session = pkcs11.C_OpenSession(slot, pkcs11js.CKF_RW_SESSION | pkcs11js.CKF_SERIAL_SESSION);
 
-    console.log("G");
-
     pkcs11.C_FindObjectsInit(session, [{type: pkcs11js.CKA_CLASS, value: pkcs11js.CKO_PUBLIC_KEY}]);
+    //pkcs11.C_FindObjectsInit(session, [{type: pkcs11js.CKA_CLASS, value: pkcs11js.CKO_CERTIFICATE}]);
     let hObject = pkcs11.C_FindObjects(session);
 
-    console.log("H");
-
     while (hObject) {
+      console.log("H");
+
       let attrs = pkcs11.C_GetAttributeValue(session, hObject, [
         {type: pkcs11js.CKA_CLASS},
         {type: pkcs11js.CKA_TOKEN},
-        {type: pkcs11js.CKA_LABEL},
+        {type: pkcs11js.CKA_LABEL}
       ]);
+
       // Output info for objects from token only
       if (attrs[1].value[0]) {
         let name = attrs[2].value.toString();
