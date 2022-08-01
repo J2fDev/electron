@@ -24,7 +24,6 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatRippleModule} from "@angular/material/core";
 import {MatMenuModule} from "@angular/material/menu";
 import {AvatarComponent} from "./components/avatar/avatar.component";
-import {SharedModule} from "../shared/shared.module";
 import {CommonModule} from "@angular/common";
 
 

@@ -17,6 +17,6 @@ export class WithoutCertifyDialogComponent implements OnInit {
   }
 
   closeDialog(accept: boolean): void {
-    this.dialogRef.close();
+    this.dialogRef.close(accept);
   }
 }

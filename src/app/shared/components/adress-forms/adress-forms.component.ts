@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output,  EventEmitter, AfterViewInit  } from 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import {IbgeService} from "../../../core/services/ibge.service";
 import { Adress } from './adressClass';
+import {ApiService} from "../../../core/services/api.service";
 
 @Component({
   selector: 'app-adress-forms',
@@ -11,16 +12,16 @@ import { Adress } from './adressClass';
 export class AdressFormsComponent implements OnInit {
 
   @Input()
-  type: any
+  type: any;
   @Input()
-  values: Adress[] = []
+  values: Adress[] = [];
   @Output()
-  valuesChange: any = new EventEmitter<any>()
+  valuesChange: any = new EventEmitter<any>();
 
-  cidades: any[] = []
+  cidades: any[] = [];
   adressForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, public ibgeService: IbgeService) { }
+  constructor(private apiService: ApiService, private formBuilder: FormBuilder, public ibgeService: IbgeService) { }
 
     ngOnInit(): void {
       this.createForm(new Adress() )
@@ -39,11 +40,11 @@ export class AdressFormsComponent implements OnInit {
         tipo: [adress.tipo, [Validators.required, Validators.minLength(3), ]],
         logradouro: [adress.logradouro, [Validators.required, Validators.minLength(3)]],
         bairro:[adress.bairro, [Validators.required, Validators.minLength(3)]],
-        cep: [adress.cep, [Validators.required, Validators.minLength(3)]],
-        numero: [adress.numero, [Validators.required, Validators.minLength(3)]],
+        cep: [adress.cep, [Validators.required, Validators.minLength(5)]],
+        numero: [adress.numero, [Validators.required, Validators.minLength(1)]],
         complemento: [adress.complemento, [Validators.required, Validators.minLength(1)]],
         estado: [adress.estado, [Validators.required, Validators.minLength(1)]],
-        cidade: [adress.cidade,],
+        cidade: [adress.cidade, [Validators.required, Validators.minLength(1)]],
       })
     }
 
@@ -57,13 +58,18 @@ export class AdressFormsComponent implements OnInit {
     this.addAdress = false;
    this.valuesChange.emit(this.values);
    console.log(this.values);
+   console.log(this.adressForm.valid);
+    this.adressForm.reset()
   }
 
 
 
  async setCitie(evento: any){
 
-   this.cidades = await this.ibgeService.getCities(evento)
+   const cidad = await this.ibgeService.getCities(evento)
+   cidad.forEach((cidade : any) => {
+    this.cidades.push(cidade.nome)
+   })
    console.log(this.cidades);
    console.log(this.adressForm.value);
 

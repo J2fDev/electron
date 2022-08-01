@@ -15,6 +15,7 @@ export class LoginService extends ApiService {
 
   //Variaveis relacionadas aos certificados
   private certis: any[] = [];
+  private selectedCerti : any = null;
   private recivedCertEvent: boolean = false;
 
   set keepLogged(keep: boolean) {
@@ -46,7 +47,17 @@ export class LoginService extends ApiService {
 
   get nome() {
     let resp = window.localStorage.getItem("nome");
-    if ( resp === undefined || resp === null ) return "Marina Silva Santos";
+    if ( resp === undefined || resp === null ) return "Nome não informaod";
+    else return resp;
+  }
+
+  set avatar(avatar: string) {
+    window.localStorage.setItem("avatar", avatar);
+  }
+
+  get avatar() {
+    let resp = window.localStorage.getItem("avatar");
+    if ( resp === undefined || resp === null ) return "";
     else return resp;
   }
 
@@ -58,6 +69,11 @@ export class LoginService extends ApiService {
     let resp = window.localStorage.getItem("oab");
     if ( resp === undefined || resp === null ) return "OAB MG - 12345";
     else return resp;
+  }
+
+  get hasCerti() {
+    if ( this.selectedCerti === null ) return false;
+    return true;
   }
 
   constructor(private http: HttpClient) {
@@ -88,9 +104,28 @@ export class LoginService extends ApiService {
     let data : any = await this.request("post", '/auth/login', user, false);
     if ( data.token !== null && data.token !== undefined ) {
       this.token = data.token;
+      this.nome = data.fullName;
+      this.doc = data.doc;
+
+      if ( data.profile.oab !== null && data.profile.oab !== undefined && data.profile.oab !== "" ) {
+        this.oab = "OAB " + data.profile.oabuf.toUpperCase() + "-" + data.profile.oab;
+      } else {
+        this.oab = "OAB";
+      }
+
     }
 
     return data;
+  }
+
+  async logout() {
+    this.token = "";
+    this.nome = "";
+    this.oab = "";
+    this.doc = "";
+
+    // Avisar quem tiver que avisar para deslogar
+    this.disconnectSocket();
   }
 
   async forgot(user: any) {

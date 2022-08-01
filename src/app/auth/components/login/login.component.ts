@@ -15,7 +15,6 @@ import * as moment from "moment";
 export class LoginComponent implements OnInit {
 
   hidePassword: boolean = true;
-  token: any;
   errorResponse: string = '';
   errorType: string = "error";
   disableButton: boolean = true;
@@ -42,7 +41,7 @@ export class LoginComponent implements OnInit {
               this.loginService.token = resp.token;
               this.loginService.connectSocket();
 
-              this.loginService.checkAuth(this.token);
+              this.loginService.checkAuth(this.loginService.token);
               this.errorType = "info";
               this.errorResponse = "Login ainda é valido direcionar para a pagina prinipal do sistema";
               //this.router.navigate(['/auth/certify']);
@@ -179,10 +178,9 @@ export class LoginComponent implements OnInit {
   }
 
   sucessTreatment(res: any) {
-    this.token = res.token;
     this.loginService.connectSocket();
 
-    this.loginService.checkAuth(this.token);
+    this.loginService.checkAuth(this.loginService.token);
     this.router.navigate(['/auth/certify']);
   }
 
@@ -196,7 +194,7 @@ export class LoginComponent implements OnInit {
         "Problemas com a conexão com o servidor, atualize sua versão e se persistir o problema, entre em contato com o suporte";
       this.errorType = "error";
     } else if ( status === 401 ) {
-      this.token = "";
+      this.loginService.token = "";
     } else if ( status === 0 ) {
       this.errorResponse = "Não foi possível contactar o servidor. Verifique sua conexão com a internet e se necessário entre em contato com o suporte."
       this.errorType = "error";

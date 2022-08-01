@@ -14,7 +14,6 @@ import { InfoDataComponent } from './components/info-data/info-data.component';
 import { PlanDataComponent } from './components/plan-data/plan-data.component';
 import { SecurityDataComponent } from './components/security-data/security-data.component';
 import {NgxMaskModule} from "ngx-mask";
-import {AvatarComponent} from "../core/components/avatar/avatar.component";
 
 @NgModule({
   declarations: [
@@ -24,7 +23,7 @@ import {AvatarComponent} from "../core/components/avatar/avatar.component";
     PlanDataComponent,
     TwoFacDialogComponent,
     SecurityDataComponent,
-    CertifyComponent,
+    CertifyComponent
   ],
   imports: [
     SharedModule,
@@ -34,10 +33,10 @@ import {AvatarComponent} from "../core/components/avatar/avatar.component";
     MatSlideToggleModule,
     MatStepperModule,
     MatDialogModule,
-    NgxMaskModule.forChild(),
+    NgxMaskModule.forChild()
   ],
   providers: [
-    AvatarComponent
+
   ]
 })
 export class ProfileModule { }

@@ -1,98 +1,112 @@
-<div class="loginBox">
-  <auth-backicon style="align-self: start;" (click)="return()"></auth-backicon>
-  <h1>{{title}}</h1>
+<div class="cadcert">
+  <auth-backicon style="align-self: end; margin-top: -40px; margin-right: -20px; z-index: 2000;" (click)="return()" icon="close"></auth-backicon>
+  <mat-stepper linear #stepper style="margin-top: -3rem;">
+    <mat-step [completed]="step1" editable="false">
+      <ng-template matStepLabel>Arquivo</ng-template>
+      <!--<h1>{{title}}</h1>-->
+      <app-alert *ngIf="errorMessage.length > 0" message="{{errorMessage}}" type="error" class="fullwidth" ></app-alert>
 
-  <div *ngIf="addStage== 1" class="fullwidth">
-    <app-alert *ngIf="errorMessage.length > 0" message="{{errorMessage}}" type="error" class="fullwidth" ></app-alert>
-
-    <div class="dropzone fullwidth" [formGroup]="a1Forms" draggable="true" ngClass="{{dragAreaClass}}">
-      <input (change)="saveFiles(fileDropRef.files)" type="file" #fileDropRef id="fileDropRef"
-             multiple="false" style="display: none;">
-      <img src="assets/svg/icons/cloud_up.svg" class="cloudIcon" />
-      <br />
-      <span>Arraste e solte o arquivo aqui.</span>
+      <div class="dropzone fullwidth" [formGroup]="a1Forms" draggable="true" ngClass="{{dragAreaClass}}">
+        <input (change)="saveFiles(fileDropRef.files)" type="file" #fileDropRef id="fileDropRef"
+               multiple="false" style="display: none;">
+        <img src="assets/svg/icons/cloud_up.svg" class="cloudIcon" />
+        <br />
+        <span>Arraste e solte o arquivo aqui.</span>
         <h3>----- ou -----</h3>
-      <button mat-raised-button color="primary" (click)="fileDropRef.click()" style="width: 16rem;">Escolha o arquivo</button>
-      <!--<label formControlName="fileA1" for="fileDropRef"> Escolha o arquivo </label>-->
-    </div>
-  </div>
-  <div *ngIf="addStage == 2" class="fullwidth">
-    <p class="subtitle">
-      Insira a senha de instalação desse certificado
-    </p>
-    <app-alert *ngIf="errorMessage.length > 0" message="{{errorMessage}}" type="error" class="fullwidth" ></app-alert>
-    <mat-form-field appearance="outline" class="fullwidth">
-      <mat-label>Senha</mat-label>
-      <input #certinst matInput [type]=" hide ? 'password' : 'text'" required />
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
-              [attr.aria-pressed]="hide">
-        <mat-icon>
-          {{hide ? 'visibility_off' : 'visibility'}}
-        </mat-icon>
-      </button>
-    </mat-form-field>
-    <button mat-raised-button color="primary" class="fullwidth" (click)="openCerti(certinst.value)">Confirmar</button>
-    <br /><br />
-    <button class="buttonNoCertify uprblue">
-      Preciso de ajuda <mat-icon>help_outlined</mat-icon>
-    </button>
-  </div>
-  <div *ngIf="addStage == 3" class="fullwidth">
-    <p class="subtitle">
-      Confira os dados do seu certificado para continuar.
-    </p>
+        <button mat-raised-button color="primary" (click)="fileDropRef.click()" style="width: 16rem;">Escolha o arquivo</button>
+        <!--<label formControlName="fileA1" for="fileDropRef"> Escolha o arquivo </label>-->
+      </div>
+    </mat-step>
+    <mat-step [completed]="step2" editable="false">
+      <ng-template matStepLabel>Instalação</ng-template>
+      <!--<h1>{{title}}</h1>-->
+      <div class="fullwidth" *ngIf="addStage == 2">
+        <p class="subtitle">
+          Insira a senha de instalação desse certificado
+        </p>
+        <app-alert *ngIf="errorMessage.length > 0" message="{{errorMessage}}" type="error" class="fullwidth" ></app-alert>
+        <div class="certiHeader fullwidth">
+          <img src="assets/svg/icons/Textbox Add.svg" class="material-icons-outlined usvgprblue" />
+          <p>{{filename}}</p>
+        </div>
+        <mat-form-field appearance="outline" class="fullwidth">
+          <mat-label>Senha</mat-label>
+          <input #certinst matInput [type]=" hide ? 'password' : 'text'" required />
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+                  [attr.aria-pressed]="hide">
+            <mat-icon>
+              {{hide ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+          </button>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="fullwidth" (click)="openCerti(certinst.value)">Confirmar</button>
 
-    <div class="certiHeader fullwidth">
-      <img src="assets/svg/icons/Textbox Add.svg" class="material-icons-outlined usvgprblue" />
-      <p>{{filename}}</p>
-    </div>
-    <div class="certiItem fullwidth">
-      <mat-icon class="material-icons-outlined uprblue">cloud_done</mat-icon>
+      </div>
 
-      <p class="certiName">{{certi.name}}</p>
-      <span class="certiData"> Emissor: {{certi.emissor}}</span>
-      <span class="certiData">Validade: {{certi.validade}}</span>
-    </div>
-    <br />
+      <div class="fullwidth" *ngIf="addStage == 3">
+        <p class="subtitle">
+          Confira os dados do seu certificado para continuar.
+        </p>
 
-    <button mat-raised-button color="primary" class="fullwidth" (click)="next()">Confirmar</button>
-  </div>
-  <div *ngIf="addStage == 4" class="fullwidth">
-    <app-alert title="Não esqueça sua senha CSU" type="warn" class="fullwidth"
-               message="Se isso acontecer, você deverá recadastrar seus certificados A1 e reimportar todos os seus processos em segredo de justiça"></app-alert>
-    <mat-form-field appearance="outline" class="fullwidth">
-      <mat-label>Senha</mat-label>
-      <input matInput [type]=" hide ? 'password' : 'text'" required />
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
-              [attr.aria-pressed]="hide">
-        <mat-icon>
-          {{hide ? 'visibility_off' : 'visibility'}}
-        </mat-icon>
-      </button>
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="fullwidth">
-      <mat-label>Confirmar Senha</mat-label>
-      <input matInput [type]=" hide ? 'password' : 'text'" required />
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
-              [attr.aria-pressed]="hide">
-        <mat-icon>
-          {{hide ? 'visibility_off' : 'visibility'}}
-        </mat-icon>
-      </button>
-    </mat-form-field>
-    <button mat-raised-button color="primary" class="fullwidth" (click)="addStage = 4">Cadastrar</button>
-    <br /><br />
-    <div class="flexsb fullwidth">
-      <button class="buttonNoCertify uprblue" (click)="csuhelp()">
-        O que é o CSU <mat-icon>help_outlined</mat-icon>
-      </button>
+        <div class="certiHeader fullwidth">
+          <img src="assets/svg/icons/Textbox Add.svg" class="material-icons-outlined usvgprblue" />
+          <p>{{filename}}</p>
+        </div>
+        <div class="certiItem fullwidth">
+          <mat-icon class="material-icons-outlined uprblue">cloud_done</mat-icon>
+
+          <p class="certiName">{{certi.name}}</p>
+          <span class="certiData"> Emissor: {{certi.emissor}}</span>
+          <span class="certiData">Validade: {{certi.validade}}</span>
+        </div>
+        <br />
+
+        <button mat-raised-button color="primary" class="fullwidth" (click)="lastSteep()">Confirmar</button>
+      </div>
+      <br /><br />
       <button class="buttonNoCertify uprblue">
         Preciso de ajuda <mat-icon>help_outlined</mat-icon>
       </button>
-    </div>
-
-  </div>
-  <div *ngIf="addStage == 5" class="fullwidth">
-  </div>
-
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>CSU</ng-template>
+      <!--<h1>{{title}}</h1>-->
+      <div *ngIf="addStage == 4" class="fullwidth">
+        <app-alert title="Não esqueça sua senha CSU" type="warn" class="fullwidth"
+                   message="Se isso acontecer, você deverá recadastrar seus certificados A1 e reimportar todos os seus processos em segredo de justiça"></app-alert>
+        <mat-form-field appearance="outline" class="fullwidth">
+          <mat-label>Senha</mat-label>
+          <input matInput [type]=" hide ? 'password' : 'text'" required />
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+                  [attr.aria-pressed]="hide">
+            <mat-icon>
+              {{hide ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="fullwidth">
+          <mat-label>Confirmar Senha</mat-label>
+          <input matInput [type]=" hide ? 'password' : 'text'" required />
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+                  [attr.aria-pressed]="hide">
+            <mat-icon>
+              {{hide ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+          </button>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="fullwidth" (click)="finish()">Cadastrar</button>
+        <br /><br />
+        <div class="flexsb fullwidth">
+          <button class="buttonNoCertify uprblue" (click)="csuhelp()">
+            O que é o CSU <mat-icon>info_outlined</mat-icon>
+          </button>
+          <button class="buttonNoCertify uprblue">
+            Preciso de ajuda <mat-icon>help_outlined</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="addStage == 5" class="fullwidth">
+      </div>
+    </mat-step>
+  </mat-stepper>
 </div>

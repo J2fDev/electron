@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'auth-backicon',
@@ -6,6 +6,9 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./backicon.component.css']
 })
 export class BackiconComponent implements OnInit {
+
+  @Input()
+  icon: string = "";
 
   constructor() {
   }

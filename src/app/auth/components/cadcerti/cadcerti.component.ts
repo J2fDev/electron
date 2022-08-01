@@ -1,7 +1,7 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {LoginService} from "../../../core/services/login.service";
 import {CsuDialogComponent} from "../../dialog/csu-dialog/csu-dialog.component";
 
@@ -24,9 +24,13 @@ export class CadcertiComponent implements OnInit {
     emissor: "AC Certisign RFB G4",
     validade: "22/11/2021 ~ 22/11/2023"
   };
+  step1 : boolean = false;
+  step2 : boolean = false;
+
+  @ViewChild('stepper') stepper;
 
   constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog,
-              private loginService: LoginService) {
+              private loginService: LoginService, public dialogRef: MatDialogRef<CadcertiComponent>) {
   }
 
   ngOnInit(): void {
@@ -60,7 +64,7 @@ export class CadcertiComponent implements OnInit {
     }
   }
 
-  saveFiles(files: FileList) {
+  async saveFiles(files: FileList) {
 
     if (files.length > 1) this.errorMessage = "Só é possível enviar um certificado por vez.";
     else {
@@ -76,8 +80,13 @@ export class CadcertiComponent implements OnInit {
       this.filename = files[0].name;
       console.log(files[0].size,files[0].name,files[0].type);
 
-      this.addStage = 2;
-      this.alterTitle();
+      this.step1 = true;
+      setTimeout(() => {
+        this.addStage = 2;
+        this.alterTitle();
+        this.stepper.next();
+      }, 500) // resolves after 100,000ms
+
     }
   }
 
@@ -93,21 +102,13 @@ export class CadcertiComponent implements OnInit {
   }
 
   return() {
-    if ( this.addStage <= 1 ) {
-      this.router.navigate(["auth/certify"]);
-    } else {
-      this.addStage -= 1;
-    }
-    this.alterTitle();
+    //this.router.navigate(["auth/certify"]);
+    this.dialogRef.close();
   }
 
-  next() {
-    if ( this.addStage === 3 ) {
-      this.addStage = 4;
-    } else {
-      this.addStage += 1;
-    }
-    this.alterTitle();
+  lastSteep() {
+    this.addStage = 4;
+    this.stepper.next();
   }
 
   alterTitle() {
@@ -135,6 +136,7 @@ export class CadcertiComponent implements OnInit {
     if ( pass === "123456" ) {
       this.errorMessage = "A senha informada é inválida";
     } else {
+      this.step2 = true;
       this.addStage = 3;
       this.alterTitle();
     }
@@ -148,5 +150,9 @@ export class CadcertiComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
     });
+  }
+
+  finish() {
+
   }
 }

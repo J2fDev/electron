@@ -1,3 +1,4 @@
 <div class="backIcon">
-  <mat-icon>arrow_back</mat-icon>
+  <mat-icon *ngIf="icon === ''">arrow_back</mat-icon>
+  <mat-icon *ngIf="icon !== ''">{{icon}}</mat-icon>
 </div>

@@ -5,15 +5,18 @@
   margin-right: 0.5rem;
 }
 
+.flex {
+  display: flex;
+}
+
 .iconImg img {
   height: 100%;
 }
 
 .iconText {
-  margin-right: 0.5rem;
   border-radius: 50%;
-  border: 2px solid white;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
   font-size: 1.5rem;
   color: white;
@@ -53,7 +56,6 @@
   height: 2rem;
   width: 2rem;
   font-size: 0.8rem;
-
 }
 
 .medium {
@@ -69,9 +71,11 @@
 .large {
   height: 3.5rem;
   width: 3.5rem;
+  font-size: 1.5rem;
 }
 
 .larger {
   height: 4rem;
   width: 4rem;
+  font-size: 2rem;
 }

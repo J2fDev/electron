@@ -19,8 +19,9 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
 import {NgxMaskModule} from "ngx-mask";
 import {MatOptionModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
-import {AvatarComponent} from "../core/components/avatar/avatar.component";
 import {TableComponent} from "./components/table/table.component";
+import {MatStepperModule} from "@angular/material/stepper";
+import {AvatarComponent} from "./components/avatar/avatar.component";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {TableComponent} from "./components/table/table.component";
     FiltrarTribunaisPipe,
     OrganizePipe,
     NewCertifyComponent,
-    TableComponent
+    TableComponent,
+    AvatarComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +50,7 @@ import {TableComponent} from "./components/table/table.component";
     MatTabsModule,
     DragDropModule,
     NgxMaskModule.forRoot(),
+    MatStepperModule
   ],
   exports: [
     AlertComponent,
@@ -55,6 +58,7 @@ import {TableComponent} from "./components/table/table.component";
     ListTribunaisComponent,
     TableComponent,
     CommonModule,
+    AvatarComponent,
     MatDividerModule,
     MatTabsModule,
     FormsModule,
@@ -66,6 +70,7 @@ import {TableComponent} from "./components/table/table.component";
     MatOptionModule,
     MatInputModule,
     MatSelectModule,
+    MatStepperModule
   ]
 })
 export class SharedModule {}

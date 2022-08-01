@@ -5,6 +5,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ConfirmPinDialogComponent} from '../../dialog/confirm-pin-dialog/confirm-pin-dialog.component';
 import {LoginService} from "../../../core/services/login.service";
 import {WithoutCertifyDialogComponent} from "../../dialog/without-certify-dialog/without-certify-dialog.component";
+import {CadcertiComponent} from "../cadcerti/cadcerti.component";
 
 @Component({
   selector: 'auth-certify',
@@ -94,7 +95,9 @@ export class CertifyComponent implements OnInit {
       width: '500px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if ( result ) {
+        this.router.navigate(["main"]);
+      }
     });
   }
 
@@ -122,7 +125,14 @@ export class CertifyComponent implements OnInit {
   }
 
   addCertifyA1() {
-    this.router.navigate(["auth/cadcerti"]);
+    //this.router.navigate(["auth/cadcerti"]);
+    const dialogRef = this.dialog.open(CadcertiComponent, {
+      width: '500px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Chama novamente a funcao que retorna a lista de certificados
+    });
   }
 
   confirmPin(pin: string) {

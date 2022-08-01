@@ -1,0 +1,7 @@
+<div *ngIf="imgUrl"  [ngClass]="sizeSelected" class="flex iconImg">
+    <img [src]="imgUrl" alt="Imagem do perfil" />
+</div>
+
+<div [ngClass]="randomColor" *ngIf="!imgUrl"  [ngClass]="cssClass"  class="flex iconText">
+    {{initials}}
+</div>
