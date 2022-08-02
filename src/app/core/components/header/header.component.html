@@ -33,18 +33,18 @@
     <div class="profileSection">
       <header-avatar sizeSelected="small" [nameString]="loginService.nome" [imgUrl]="loginService.avatar"></header-avatar>
       <span class="profileName">
-        {{loginService.nome}}
+        {{loginService.nome.substring(0, loginService.nome.indexOf(" ", loginService.nome.indexOf(" ") + 1)).substring(0, 16)}}
         <span class="OAB">{{loginService.oab}}</span>
       </span>
     </div>
 
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" (click)="state = 'rotated'">
       <mat-icon [@rotatedState]='state' class="Icon material-icons-outlined">expand_circle_down</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>Conta</button>
-      <button mat-menu-item>Plano</button>
-      <button mat-menu-item>Sair</button>
+    <mat-menu #menu (closed)="state = 'default'">
+      <button mat-menu-item (click)="toConfiguration()">Conta</button>
+      <button mat-menu-item (click)="toConfiguration()">Plano</button>
+      <button mat-menu-item (click)="leave()">Sair</button>
     </mat-menu>
 
     <div *ngIf="!hasCerti" class="tokenArea" matTooltipPosition="left" matTooltip="Clique pra sair do modo sem certificado">

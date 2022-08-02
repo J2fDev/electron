@@ -1,191 +1,166 @@
-
-
-.profileSection{
-    width: auto;
-    height: 100%;
+.firstDiv {
+  display: flex;
+  flex-wrap: wrap;
+  height: 4rem;
 }
 
-
-.firstDiv{
-    width: 70vw;
-    display: flex;
-}
-.margin-top{
-    margin-top: 1rem;
+.Input {
+  font-size: 0.8rem;
+  max-height: 1rem;
+  margin-right: 1rem;
 }
 
-.Input{
-    font-size: 0.8rem;
-    max-height: 1rem;
-    margin-right: 1rem;
-}
-.tam10p5{
-    width: 17.6%;
+.tam10p5 {
+  width: 21%;
 }
 
-.tam18{    
-    width: 30.2%;
+.tam18 {
+  width: 37%;
 }
 
-.tam6p2{
-    width: 10.5%;
+.tam6p2 {
+  width: 13%;
 }
 
-
-.clientPhoto{
-    height: 3.5rem;
-    width: 3.5rem;
+.roundIcon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
-.clientPhoto img{
-    height: 88%;
-    width: 100%;
-    border-radius: 50%;
+.iconRes {
+  background-color: #e1f2ff;
+  font-size: 1.3rem;
 }
 
-.adressDiv{
-    width: 90%;
-    max-height: 6rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    padding: 0.7rem;
-    border: solid 1px #dadada;
+.editIcon {
+  background-color: #e1f2ff;
+  color: #0059ff;
+  border: 1px solid #0059ff;
 }
 
-.adressesDiv{
-    margin-top: 1rem;
-    margin-left: 1rem;
-    max-height: 30vh;
-    width: 56vw;
-    overflow-y: scroll;
-    /* border: 1px solid black; */
-}
-.infoAdress{
-    display: flex;
-}
-.infoText{
-    margin-left: 1rem;
-    font-size: 0.8rem;
-}
-
-.tipoAdress{
-    color: #92929d;
-    font-size: 1rem;
-    line-height: 2;
-}
-
-.iconsAdress{
-    width: 12%;
-    margin-right: 1rem;
-    display: flex;
-    justify-content: space-between;
-}
-
-.editIcon{
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background-color: #e1f2ff;
-    color: #0059ff;
-    font-size: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
-.editIcon:hover{
-    background-color: #0059ff;
-    color: #e1f2ff;
+.editIcon:hover {
+  background-color: #0059ff;
+  color: #e1f2ff;
 }
 
 .addIcon {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background-color: #e1f2ff;
-    color: #0059ff;
-    border: 1px solid #0059ff;
-    font-size: 1.7rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.5s;
+  background-color: #e1f2ff;
+  color: #0059ff;
+  border: 1px solid #0059ff;
+  font-size: 1.7rem;
+  margin-left: 1rem;
 }
 
-.addIcon:hover{
-    color: #e1f2ff ;
-    background-color: #0059ff;
+.addIcon:hover {
+  color: #e1f2ff;
+  background-color: #0059ff;
 }
 
-.closeIcon{
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background-color: #fdeceb;
-    color: #f44336;
-    border: 1px solid #f44336;
-    font-size: 1.7rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.5s;
+.closeIcon {
+  background-color: #fdeceb;
+  color: #f44336;
+  border: 1px solid #f44336;
+  font-size: 1.7rem;
 }
 
-.closeIcon:hover{
-    background-color: #f44336;
-    color: #fdeceb;
+.closeIcon:hover {
+  background-color: #f44336;
+  color: #fdeceb;
 }
 
-.excludeIcon{
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background-color: #fdeceb;
-    color: #f44336;
-    font-size: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.5s;
+.excludeIcon {
+  background-color: #fdeceb;
+  color: #f44336;
+  border: 1px solid #f44336;
 }
 
-.excludeIcon:hover{
-    background-color: #f44336;
-    color: #fdeceb;
+.excludeIcon:hover {
+  background-color: #f44336;
+  color: #fdeceb;
 }
 
-.addAdressButtons{
-    display: flex;
-    width: 60%;
-    align-items: center;
-    justify-content:center;
-    height: 3rem;
+.addressArea {
+  max-height: calc(100% - 15rem);
+  overflow: scroll;
 }
 
-.closeAdress{
-    color: #ffffff;
-    margin-left: 2rem;
+.iconDisabled {
+  background-color: #92929d;
+  color: #161616;
+  border: 1px solid #161616;
 }
 
-.addAdress{
-    margin-top: 0.2rem;
+.iconDisabled:hover {
+  background-color: #92929d;
+  color: #161616;
+  border: 1px solid #161616;
 }
 
+.itemAddress {
+  margin-top: 1rem;
+  width: 95%;
+  max-height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  padding: 0.7rem;
+  border: solid 1px #dadada;
+}
+
+.infoAdress {
+  display: flex;
+}
+
+.infoText {
+  margin-left: 1rem;
+  font-size: 0.8rem;
+}
+
+.tipoAdress {
+  color: #92929d;
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.iconsAdress {
+  width: 12%;
+  margin-right: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.addAdressButtons {
+  display: flex;
+  align-items: end;
+  justify-content: left;
+  height: 3rem;
+  width: 100%;
+}
+
+.closeAdress {
+  color: #ffffff;
+  margin-left: 2rem;
+}
+
+.addAdress {
+  margin-top: 0.2rem;
+}
 
 
 .adressesDiv::-webkit-scrollbar {
-    width: 4px;               /* width of the entire scrollbar */
-  }
-  
+  width: 4px; /* width of the entire scrollbar */
+}
+
 .adressesDiv::-webkit-scrollbar-thumb {
-    background-color: #0059ff;    /* color of the scroll thumb */
-    border-radius: 20px;       /* roundness of the scroll thumb */
-  }
+  background-color: #0059ff; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+}

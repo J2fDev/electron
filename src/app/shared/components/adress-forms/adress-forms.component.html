@@ -1,8 +1,6 @@
 <form (onSubmit)="save()" action="" [formGroup]="adressForm">
-  <div *ngIf="addAdress" class="firstDiv margin-top">
-
-
-    <mat-form-field class="tam10p5 Input firstIten" appearance="outline">
+  <div *ngIf="addAdress" class="firstDiv">
+    <mat-form-field class="tam10p5 Input" appearance="outline">
       <mat-label>Tipo</mat-label>
       <input formControlName="tipo" type="string" matInput placeholder="Escritório">
       <mat-error *ngIf="true"></mat-error>
@@ -26,9 +24,6 @@
       <input formControlName="numero" matInput placeholder="123">
       <!-- <mat-error *ngIf=""></mat-error> -->
     </mat-form-field>
-
-    <div class="clientPhoto">
-    </div>
   </div>
   <div *ngIf="addAdress" class="firstDiv">
 
@@ -45,7 +40,7 @@
     </mat-form-field>
 
     <mat-form-field class="tam6p2 Input" appearance="outline">
-      <mat-label>Uf</mat-label>
+      <mat-label>UF</mat-label>
       <!--<input matInput placeholder="pat@example.com">-->
       <mat-select (valueChange)="setCitie($event)" formControlName="estado">
         <mat-option *ngFor="let uf of ibgeService.ufs" [value]="uf.sigla">{{uf.sigla}}</mat-option>
@@ -62,51 +57,37 @@
       </mat-select>
       <!-- <mat-error *ngIf=""></mat-error> -->
     </mat-form-field>
-
-    <div class="clientPhoto">
-      <!-- <img src="../../../assets/imgs/marinasilva.jpg" alt=""> -->
-    </div>
-
   </div>
 </form>
 <div *ngIf="addAdress" class="addAdressButtons">
-  <button (click)="addAdress === true ? addAdress = false : addAdress = true" style="border:none; background: none; ">
-    <mat-icon class="closeIcon">close</mat-icon>
-  </button>
-  <button *ngIf="adressForm.valid" [disabled]="!adressForm.valid" (click)="save()" class="addAdress"
-          style="border:none; background: none; ">
-    <mat-icon class="addIcon">done</mat-icon>
-  </button>
+  <mat-icon (click)="addAdress === true ? addAdress = false : addAdress = true; adressForm.reset();"
+            matTooltip="Cancelar" class="roundIcon closeIcon">close</mat-icon>
+  <mat-icon [ngClass]="!adressForm.valid ? 'iconDisabled' : ''" (click)="saveAddress(adressForm.valid)"
+            class="roundIcon addIcon">done</mat-icon>
 </div>
 
-
-<div *ngIf="!addAdress" class="adressesDiv">
-
-  <div *ngFor="let adress of values" class="adresses">
-    <div class="adressDiv">
-      <div class="infoAdress">
-        <mat-icon color="primary">location_on</mat-icon>
-        <div class="infoText">
-          <span class="tipoAdress"> {{adress.tipo}}</span>
-          <br>
-          <span>{{adress.logradouro}}, {{adress.numero}}, {{adress.complemento}} - {{adress.bairro}}</span>
-          <br>
-          <span>{{adress.cep}} - {{adress.cidade}} - {{adress.estado}}</span>
-        </div>
+<div class="addressArea fullwidth " *ngIf="!addAdress">
+  <div *ngFor="let adress of values" class="itemAddress fullwidth">
+    <div class="infoAdress fullwidth">
+      <mat-icon class="roundIcon iconRes" color="primary">where_to_vote</mat-icon>
+      <div class="infoText">
+        <span class="tipoAdress"> {{adress.tipo}}</span>
+        <br>
+        <span>{{adress.logradouro}}, {{adress.numero}}, {{adress.complemento}} - {{adress.bairro}}</span>
+        <br>
+        <span>{{adress.cep}} - {{adress.cidade}} - {{adress.estado}}</span>
       </div>
+    </div>
 
-      <div class="iconsAdress">
-        <mat-icon class="editIcon" color="primary">edit</mat-icon>
-        <mat-icon class="excludeIcon" color="warn">close</mat-icon>
-      </div>
+    <div class="iconsAdress">
+      <mat-icon class="roundIcon editIcon" color="primary" matTooltip="Editar">edit</mat-icon>
+      <mat-icon class="roundIcon excludeIcon" color="warn" matTooltip="Remover">delete</mat-icon>
     </div>
   </div>
 </div>
 
 <div *ngIf="!addAdress" class="addAdressButtons">
-  <button (click)="addAdress === false ? addAdress = true : addAdress = false" style="border: none; background: none; ">
-    <mat-icon class="addIcon">add</mat-icon>
-  </button>
+  <mat-icon (click)="addAdress === false ? addAdress = true : addAdress = false" class="roundIcon addIcon">add</mat-icon>
 </div>
 
 

@@ -22,6 +22,7 @@ import {MatInputModule} from "@angular/material/input";
 import {TableComponent} from "./components/table/table.component";
 import {MatStepperModule} from "@angular/material/stepper";
 import {AvatarComponent} from "./components/avatar/avatar.component";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {AvatarComponent} from "./components/avatar/avatar.component";
     MatTabsModule,
     DragDropModule,
     NgxMaskModule.forRoot(),
-    MatStepperModule
+    MatStepperModule,
+    MatTooltipModule
   ],
   exports: [
     AlertComponent,
@@ -70,7 +72,8 @@ import {AvatarComponent} from "./components/avatar/avatar.component";
     MatOptionModule,
     MatInputModule,
     MatSelectModule,
-    MatStepperModule
+    MatStepperModule,
+    MatTooltipModule
   ]
 })
 export class SharedModule {}

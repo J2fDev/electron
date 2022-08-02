@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../../services/login.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -12,7 +13,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
     trigger('rotatedState', [
       state('default', style({ transform: 'rotate(0)' })),
       state('rotated', style({ transform: 'rotate(-180deg)' })),
-      transition('rotated => default', animate('1500ms ease-out')),
+      transition('rotated => default', animate('400ms ease-out')),
       transition('default => rotated', animate('400ms ease-in'))
     ])
   ]
@@ -29,10 +30,19 @@ export class HeaderComponent implements OnInit {
     return this.loginService.hasCerti;
   }
 
-  constructor(private loginService: LoginService) { }
+  constructor(private route: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
 
+  }
+
+  toConfiguration() {
+    this.route.navigate(["main/profile"]);
+  }
+
+  leave() {
+    this.loginService.logout();
+    this.route.navigate(["auth"]);
   }
 
 }

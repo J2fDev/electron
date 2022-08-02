@@ -43,3 +43,6 @@ Linux
 A instaćão do ngx-electron está gerando um problema. Para corrigir seguir os passos
 
 Go to the node_modules/ngx-electron/lib/electron.service.d.ts and comment the line -> readonly remote: Electron.Remote;
+
+# POP Ups
+https://userguiding.com/blog/angular-tooltip/

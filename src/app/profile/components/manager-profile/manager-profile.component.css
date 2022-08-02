@@ -1,21 +1,30 @@
-::ng-deep .mat-tab-label-content {
+:host ::ng-deep .mat-tab-label-content {
   font-size: 0.7rem;
   font-weight: bold;
   color: #0059FF;;
 }
 
-::ng-deep .mat-tab-header {
+:host ::ng-deep .mat-tab-header {
   height: 2rem;
 }
 
-::ng-deep .mat-tab-label {
+:host ::ng-deep .mat-tab-label {
   height: 2rem !important;
   border-bottom: 1px solid #0059FF;
   min-width: 0px !important;
   margin-left: 2px;
+  background-color: #f4f7fc;
 }
 
-::ng-deep .mat-tab-label-active {
+:host ::ng-deep .mat-tab-label-active {
   background-color: #e1f2ff;
+}
+
+.mat-tab-group {
+  height: 100%;
+}
+
+:host ::ng-deep .mat-tab-body-wrapper {
+  height: 100%;
 }
 

@@ -32,8 +32,30 @@ export class InfoDataComponent implements OnInit {
       this.profileForm.controls["doc"].setValue(resp.doc);
       this.profileForm.controls["whatsapp"].setValue(resp.whatsapp);
       this.profileForm.controls["email"].setValue(resp.email);
-      this.profileForm.controls["addresses"].setValue(resp.address || []);
+      //this.profileForm.controls["addresses"].setValue(resp.address || [{
+      this.profileForm.controls["addresses"].setValue([{
+        id: 1,
+        tipo: 'Residencia',
+        logradouro: '',
+        bairro: '',
+        cep: '',
+        numero: '',
+        complemento: '',
+        cidade: '',
+        estado: ''
+      }]);
 
+      this.newAdress = [{
+        id: 1,
+        tipo: 'Residencia',
+        logradouro: 'aa',
+        bairro: 'bb',
+        cep: 'vv',
+        numero: 'dd',
+        complemento: 'ee',
+        cidade: 'gg',
+        estado: 'hh'
+      }];
 
     });
 

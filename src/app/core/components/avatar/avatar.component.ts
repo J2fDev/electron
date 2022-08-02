@@ -24,7 +24,7 @@ export class AvatarComponent implements OnInit {
 
   ngOnInit(): void {
       this.initials = this.nameString.split(" ").map((n)=>n[0]).join("");
-      if ( this.initials.length > 3 ) this.initials = this.initials.substring(0, 3);
+      if ( this.initials.length > 2 ) this.initials = this.initials.substring(0, 2);
       this.getRandomColor();
       this.cssClass.push(this.sizeSelected);
   }

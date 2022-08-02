@@ -3,11 +3,12 @@
   margin-left: 1rem;
   width: 70vw;
   max-width: 1600px;
-  min-width: 1100px;
+  min-width: 800px;
+  height: calc(100% - 1rem);
 }
 
 .tam48{
-  width: 48%;
+  width: 55%;
 }
 
 .tam17{
@@ -15,20 +16,19 @@
 }
 
 .tam10e5{
-
-  width: 10.5%;
+  width: 15%;
 }
 
 .tam12{
-  width: 12%;
+  width: 17%;
 }
 
 .tam23{
-  width: 23.2%;
+  width: 26.5%;
 }
 
 .tam31{
-  width: 31%;
+  width: 41%;
 }
 
 .Input{
@@ -37,11 +37,17 @@
   margin-right: 1rem;
 }
 
-::ng-deep .mat-input-element {
+:host ::ng-deep .mat-input-element {
   color: #0059ff !important;
+  font-size: 1rem;
 }
 
-::ng-deep .mat-input-element:disabled {
+:host ::ng-deep .mat-select-value-text {
+  color: #0059ff !important;
+  font-size: 1rem;
+}
+
+:host ::ng-deep .mat-input-element:disabled {
   color: #92929d !important;
 }
 
@@ -94,71 +100,32 @@
   display: none;
   align-items: center;
   justify-content: center;
+  transition: 1s;
 }
 
 .changeAvatar mat-icon {
   color: white;
 }
 
-/*
-
-
-.firstDiv{
-    width: 70vw;
-    display: flex;
+.buttonWhite {
+  width: 11rem;
+  border: 1px solid #0059ff;
+  position: absolute;
+  bottom: 1rem;
+  left: calc(70vw - 24rem);
 }
 
-
-
-.clientPhoto{
-    height: 3.5rem;
-    width: 3.5rem;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: #ffff;
-    transition: 0.3s;
+.buttonWhite:hover {
+  background-color: #e1f2ff;
 }
 
-.clientPhoto:hover{
-    opacity: 0.5;
+.saveButton {
+  width: 11rem;
+  margin-left: 1rem;
+  position: absolute;
+  bottom: 1rem;
+  left: calc(70vw - 12rem);
 }
-
-.iconEditAvatar{
-    position: absolute;
-    font-size: 0rem;
-    transition: 0.3s;
-}
-
-.clientPhoto:hover .iconEditAvatar{
-    font-size: 1.5rem;
-    position: absolute;
-}
-
-
-.clientPhoto img{
-    height: 100%;
-}
-
-.buttonsProfile{
-    float: right;
-    margin-right: 11vw;
-    margin-top: 11vh;
-    display: flex;
-}
-
-.buttonWhite{
-    display: flex;
-    justify-content: center;
-    margin-left: 1rem;
-    color: #383838;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-
-.endereçoDiv{
-    margin-top: 1rem;
-    overflow: hidden;
-}
-*/
 
 
 

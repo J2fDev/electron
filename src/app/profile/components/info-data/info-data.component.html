@@ -1,5 +1,5 @@
 <div class="infoDataDiv">
-  <form action="" [formGroup]="profileForm" style="display: flex; flex-wrap: wrap; height: 6rem">
+  <form action="" [formGroup]="profileForm" style="display: flex; flex-wrap: wrap; height: 6rem; margin-bottom: 2.5rem;">
       <mat-form-field class="tam48 Input firstIten" appearance="outline">
         <mat-label>Nome</mat-label>
         <input formControlName="fullName" matInput placeholder="Seu nome completo" />
@@ -15,7 +15,7 @@
       </mat-form-field>
 
       <mat-form-field class="tam10e5 Input" appearance="outline">
-        <mat-label>Seccional Uf</mat-label>
+        <mat-label>Seccional UF</mat-label>
         <mat-select formControlName="oabuf">
           <mat-option *ngFor="let uf of ibgeService.ufs" [value]="uf.sigla">{{uf.sigla}}</mat-option>
         </mat-select>
@@ -25,10 +25,10 @@
       <div class="flex clientPhoto" matTooltip="Trocar foto do perfil">
         <input type="file" id="fileInput" style="display: none;" />
         <app-avatar [imgUrl]="loginService.avatar" [nameString]="loginService.nome" sizeSelected="large"></app-avatar>
-        <mat-icon class="iconAv iconAvatar" >check</mat-icon>
+        <mat-icon class="iconAv iconAvatar" >edit</mat-icon>
         <mat-icon class="iconAv iconEditAvatar" >edit</mat-icon>
 
-        <div class="changeAvatar"  >
+        <div class="changeAvatar">
           <mat-icon>image</mat-icon>
         </div>
       </div>
@@ -68,14 +68,11 @@
 
   </form>
 
-  <br />
   <span style="font-size: 0.75rem; font-weight: bold;">Endereço</span>
-  <div style="border-top: 1px solid black"></div>
-  <app-adress-forms [(values)]="newAdress"></app-adress-forms>
+  <div style="border-top: 1px solid #dadada; width: calc(100% - 60px); margin-left: 60px; margin-top: -10px; margin-bottom: 1rem;"></div>
+  <app-adress-forms [(values)]="newAdress" class="fullwidth"></app-adress-forms>
 
 
-  <div class="buttonsProfile">
-    <button [disabled]="!profileForm.valid" mat-raised-button class="buttonWhite" (click)="saveInfo()">save</button>
-    <button mat-raised-button class="buttonWhite">cancel</button>
-  </div>
+  <button [disabled]="!profileForm.valid" mat-raised-button color="primary" class="saveButton" (click)="saveInfo()">Salvar</button>
+  <button mat-raised-button class="buttonWhite uprblue">Cancelar</button>
 </div>
